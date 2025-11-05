@@ -1,5 +1,5 @@
 ---
-slug: 1
+slug: '1'
 title: hello, world
 pubDate: 2020-06-14
 categories:

@@ -7,13 +7,27 @@ const blog = defineCollection({
 	// Type-check frontmatter using a schema
 	schema: ({ image }) =>
 		z.object({
+			slug: z.string().optional(),
 			title: z.string(),
-			description: z.string(),
+			description: z.string().optional(),
 			// Transform string to Date object
 			pubDate: z.coerce.date(),
 			updatedDate: z.coerce.date().optional(),
 			heroImage: image().optional(),
+			categories: z.array(z.string()).optional(),
+			tags: z.array(z.string()).optional(),
 		}),
 });
 
-export const collections = { blog };
+const page = defineCollection({
+	// Load Markdown files in the `src/content/page/` directory.
+	loader: glob({ base: './src/content/page', pattern: '**/*.md' }),
+	// Type-check frontmatter using a schema
+	schema: z.object({
+		slug: z.string(),
+		title: z.string(),
+		layout: z.string().optional(),
+	}),
+});
+
+export const collections = { blog, page };
