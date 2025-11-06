@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
+import HeaderLink from '../components/HeaderLink.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import FormattedDate from '../components/FormattedDate.astro';
@@ -49,6 +50,9 @@ const recentPosts = allPosts
 					))
 				}
 			</ul>
+			<p>
+				<HeaderLink href="/blog">查看全部</HeaderLink>
+			</p>
 		</main>
 		<Footer />
 	</body>
