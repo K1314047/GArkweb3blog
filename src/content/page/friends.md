@@ -1,6 +1,6 @@
 ---
 slug: friends
-title: 友情链接
+title: 友链
 ---
 
 > 感谢支持，暂不收录友链了哦~
@@ -15,7 +15,7 @@ title: 友情链接
 
 ```md
 名称：子舒的博客
-简介：一个热爱生活的前端开发工程师
+简介：想留下点什么，证明我来过，一个热爱生活的前端开发工程师
 域名：https://zishu.me
 图标：https://imgurl.zishu.me/favicon.png
 ```
@@ -31,3 +31,4 @@ title: 友情链接
 - [Wcowin's Blog](https://wcowin.work/) - 向循此苦旅，以达星辰
 - [Rise'blogs](https://blogs.qipai360.cn/) - Rise'blogs
 - [运维咖啡吧](https://blog.ops-coffee.com/) - 享受技术带来的乐趣，体验生活给予的感动
+- [且听书吟](https://yufan.me/) - 诗与梦想的远方

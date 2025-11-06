@@ -5,7 +5,8 @@ import BlogPost from '../../layouts/BlogPost.astro';
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
 	return posts.map((post) => ({
-		params: { slug: post.id },
+		// 添加 .html 后缀，使博客文章以 .html 结尾
+		params: { slug: `${post.id}.html` },
 		props: post,
 	}));
 }

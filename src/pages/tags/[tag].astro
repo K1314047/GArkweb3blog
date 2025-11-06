@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+
+export async function getStaticPaths() {
+	const allPosts = await getCollection('blog');
+	const tags = new Set();
+	
+	// 收集所有标签
+	allPosts.forEach((post) => {
+		if (post.data.tags) {
+			post.data.tags.forEach((tag) => tags.add(tag));
+		}
+	});
+	
+	// 为每个标签创建页面
+	return Array.from(tags).map((tag) => {
+		const filteredPosts = allPosts
+			.filter((post) => post.data.tags && post.data.tags.includes(tag))
+			.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+		
+		return {
+			params: { tag },
+			props: { posts: filteredPosts, tag },
+		};
+	});
+}
+
+const { posts, tag } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<BaseHead title={`标签：${tag}`} description={`包含标签 "${tag}" 的所有文章`} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h2>标签：{tag}</h2>
+			<p>共 {posts.length} 篇文章</p>
+			<ul class="posts">
+				{
+					posts.map((post) => (
+						<li>
+							<span>
+								<FormattedDate date={post.data.pubDate} />
+							</span>
+							<div>
+								<a href={`/blog/${post.id}.html`}>
+									{post.data.title}
+								</a>
+							</div>
+						</li>
+					))
+				}
+			</ul>
+		</main>
+		<Footer />
+	</body>
+</html>
+

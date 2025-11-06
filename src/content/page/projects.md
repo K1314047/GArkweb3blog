@@ -1,7 +1,7 @@
 ---
 slug: projects
 title: 项目
-layout: projects
+layout: Projects
 ---
 
 我的长期目标是开发 100 个工具，包括不限于浏览器扩展、油猴脚本、以及各种跨平台插件，后期会往 APP、小程序方面发展等，旨在提升效率的生产力工具或者其他类型工具。

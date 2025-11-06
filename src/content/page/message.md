@@ -1,7 +1,7 @@
 ---
 slug: message
 title: 留言
-layout: message
+layout: Message
 ---
 
 哎呀呀，终于盼到贵客光临啦！✨🎉 热烈欢迎欢迎～这里可是个神奇的留言板，一个装满彩虹泡泡和星星火花✨的奇思妙想乐园呢！  

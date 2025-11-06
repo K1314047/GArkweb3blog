@@ -1,6 +1,10 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import Page from '../layouts/Page.astro';
+import Message from '../layouts/Message.astro';
+import Shuoshuo from '../layouts/Shuoshuo.astro';
+import Projects from '../layouts/Projects.astro';
+import Search from '../layouts/Search.astro';
 
 export async function getStaticPaths() {
 	const pages = await getCollection('page');
@@ -14,9 +18,21 @@ type Props = CollectionEntry<'page'>;
 
 const page = Astro.props;
 const { Content } = await render(page);
+
+// 布局映射表：以后添加新布局只需在这里添加一行即可
+const layoutMap: Record<string, any> = {
+	Page,  // 默认布局
+	Message,
+	Shuoshuo,
+	Projects,
+	Search,
+};
+
+// 根据 layout 字段选择布局组件，如果未指定或找不到则使用 Page
+const Layout = (page.data.layout && layoutMap[page.data.layout]) || Page;
 ---
 
-<Page title={page.data.title}>
+<Layout title={page.data.title}>
 	<Content />
-</Page>
+</Layout>
 

@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import Comments from '../components/Comments.astro';
 
 type Props = CollectionEntry<'page'>['data'] & {
 	content?: string;
@@ -25,6 +26,9 @@ const { title } = Astro.props;
 			<div class="post-content content">
 				<slot />
 			</div>
+			
+			<!-- 评论组件 -->
+			<Comments showLinuxDo={false} />
 		</main>
 		<Footer />
 	</body>

@@ -8,7 +8,7 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
 	site: 'https://zishu.me',
 	integrations: [mdx(), sitemap()],
-	build: {
-		format: 'file', // 生成 .html 结尾的文件
+	devToolbar: {
+		enabled: true // 禁用开发工具栏
 	},
 });

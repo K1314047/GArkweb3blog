@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+
+export async function getStaticPaths() {
+	const allPosts = await getCollection('blog');
+	const categories = new Set();
+	
+	// 收集所有分类
+	allPosts.forEach((post) => {
+		if (post.data.categories) {
+			post.data.categories.forEach((category) => categories.add(category));
+		}
+	});
+	
+	// 为每个分类创建页面
+	return Array.from(categories).map((category) => {
+		const filteredPosts = allPosts
+			.filter((post) => post.data.categories && post.data.categories.includes(category))
+			.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+		
+		return {
+			params: { category },
+			props: { posts: filteredPosts, category },
+		};
+	});
+}
+
+const { posts, category } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<BaseHead title={`分类：${category}`} description={`分类 "${category}" 下的所有文章`} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h2>分类：{category}</h2>
+			<p>共 {posts.length} 篇文章</p>
+			<ul class="posts">
+				{
+					posts.map((post) => (
+						<li>
+							<span>
+								<FormattedDate date={post.data.pubDate} />
+							</span>
+							<div>
+								<a href={`/blog/${post.id}.html`}>
+									{post.data.title}
+								</a>
+							</div>
+						</li>
+					))
+				}
+			</ul>
+		</main>
+		<Footer />
+	</body>
+</html>
+
