@@ -4,7 +4,7 @@
 
 [子舒的博客](https://zishu.me)
 
-<img width="1971" height="1399" alt="frame_generic_dark (1)" src="https://github.com/user-attachments/assets/ca684ebe-e97f-4405-bc5e-9edf4b7f36c5" />
+<img width="1875" height="1399" alt="frame_generic_dark (2)" src="https://github.com/user-attachments/assets/ae29c1db-e874-4cab-b214-1f215fded57d" />
 
 ## Command
 
