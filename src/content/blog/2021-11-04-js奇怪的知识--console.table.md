@@ -1,5 +1,5 @@
 ---
-slug: '81'
+slug: 81
 title: js 奇怪的知识--console.table
 pubDate: 2021-11-04
 categories: 

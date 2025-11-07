@@ -1,5 +1,5 @@
 ---
-slug: '36'
+slug: 36
 title: javascript 进阶问题
 pubDate: 2020-12-19
 categories: 

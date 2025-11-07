@@ -1,5 +1,5 @@
 ---
-slug: '43'
+slug: 43
 title: 使用 React 与 Vue 创建同一款 App，差别究竟有多大？
 pubDate: 2021-01-06
 categories: 

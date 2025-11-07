@@ -1,5 +1,5 @@
 ---
-slug: '247'
+slug: 247
 title: Lobechat 使用 Webdav 同步数据的研究
 pubDate: 2024-11-12
 categories:

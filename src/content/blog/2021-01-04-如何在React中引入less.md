@@ -1,5 +1,5 @@
 ---
-slug: '41'
+slug: 41
 title: 如何在 React 中引入 less？ 
 pubDate: 2021-01-04
 categories: 

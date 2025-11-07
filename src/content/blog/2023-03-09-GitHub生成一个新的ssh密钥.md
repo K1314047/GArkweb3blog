@@ -1,5 +1,5 @@
 ---
-slug: '187'
+slug: 187
 title: GitHub 生成一个新的 ssh 密钥
 pubDate: 2023-03-09
 categories: 

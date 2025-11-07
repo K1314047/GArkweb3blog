@@ -1,5 +1,5 @@
 ---
-slug: '218'
+slug: 218
 title: 无法从非 EcmaScript 模块导入命名导出
 pubDate: 2024-02-23
 categories: 

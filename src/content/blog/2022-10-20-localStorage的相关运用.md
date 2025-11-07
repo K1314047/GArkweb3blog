@@ -1,5 +1,5 @@
 ---
-slug: '171'
+slug: 171
 title:  localStorage 的相关运用
 pubDate: 2022-10-20
 categories: 

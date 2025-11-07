@@ -1,5 +1,5 @@
 ---
-slug: '170'
+slug: 170
 title:  hugo 一键打包并上传 github
 pubDate: 2022-10-14
 categories: 

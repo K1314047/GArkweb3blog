@@ -1,5 +1,5 @@
 ---
-slug: '19'
+slug: 19
 title: getElementBy 系列和 querySelector 系列的区别
 pubDate: 2020-11-16
 categories: 

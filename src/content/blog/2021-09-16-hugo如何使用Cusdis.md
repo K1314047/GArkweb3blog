@@ -1,5 +1,5 @@
 ---
-slug: '77'
+slug: 77
 title: hugo 如何使用 Cusdis ?
 pubDate: 2021-09-16
 categories: 

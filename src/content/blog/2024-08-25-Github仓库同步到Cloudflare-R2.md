@@ -1,5 +1,5 @@
 ---
-slug: '236'
+slug: 236
 title: Github 仓库同步到 Cloudflare R2
 pubDate: 2024-08-25
 categories: 

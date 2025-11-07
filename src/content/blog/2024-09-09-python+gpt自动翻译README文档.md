@@ -1,5 +1,5 @@
 ---
-slug: '239'
+slug: 239
 title: Python + GPT 自动翻译 README 文档
 pubDate: 2024-09-09
 categories: 

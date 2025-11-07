@@ -1,5 +1,5 @@
 ---
-slug: '80'
+slug: 80
 title: 通过 getTimezoneOffset() 方法判断当前时区是否为夏令时
 pubDate: 2021-10-22
 categories: 

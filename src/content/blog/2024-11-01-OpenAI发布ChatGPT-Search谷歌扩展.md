@@ -1,5 +1,5 @@
 ---
-slug: '243'
+slug: 243
 title: OpenAI 发布 ChatGPT Search 谷歌扩展
 pubDate: 2024-11-01
 categories:

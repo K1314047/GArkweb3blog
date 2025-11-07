@@ -1,5 +1,5 @@
 ---
-slug: '29'
+slug: 29
 title: vue 学习笔记 (3)－－computed, watch，calss, style
 pubDate: 2020-11-25
 categories: 

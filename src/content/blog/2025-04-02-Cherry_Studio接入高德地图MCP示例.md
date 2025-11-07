@@ -1,5 +1,5 @@
 ---
-slug: '255'
+slug: 255
 title: Cherry Studio 接入高德地图 MCP 示例
 pubDate: 2025-04-02
 categories: 

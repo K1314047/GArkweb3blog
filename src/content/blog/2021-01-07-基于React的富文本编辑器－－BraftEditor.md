@@ -1,5 +1,5 @@
 ---
-slug: '44'
+slug: 44
 title: 基于 React 的富文本编辑器－－Braft Editor
 pubDate: 2021-01-07
 categories: 

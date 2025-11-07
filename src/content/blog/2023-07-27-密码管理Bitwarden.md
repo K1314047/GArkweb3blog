@@ -1,5 +1,5 @@
 ---
-slug: '203'
+slug: 203
 title: Bitwarden / Vaultwarden 密码管理工具
 pubDate: 2023-07-27
 categories: 

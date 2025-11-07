@@ -1,5 +1,5 @@
 ---
-slug: '251'
+slug: 251
 title: Cloudflare 上部署 Twikoo 服务时报错
 pubDate: 2025-02-20
 categories:

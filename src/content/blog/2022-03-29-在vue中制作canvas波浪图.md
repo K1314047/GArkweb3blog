@@ -1,5 +1,5 @@
 ---
-slug: '111'
+slug: 111
 title: 在 vue 中制作 canvas 波浪图
 pubDate: 2022-03-29
 categories: 

@@ -1,5 +1,5 @@
 ---
-slug: '13'
+slug: 13
 title: javascript——函数、变量和方法
 pubDate: 2020-11-04
 categories: 

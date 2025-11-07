@@ -1,5 +1,5 @@
 ---
-slug: '23'
+slug: 23
 title: react 学习路径－－怎么学习 react？
 pubDate: 2020-11-19
 categories: 

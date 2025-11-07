@@ -1,5 +1,5 @@
 ---
-slug: '192'
+slug: 192
 title: Github Actions 自动化打包流程
 pubDate: 2023-04-13
 categories: 

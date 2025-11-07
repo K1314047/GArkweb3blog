@@ -1,5 +1,5 @@
 ---
-slug: '51'
+slug: 51
 title: 使用宝塔面板安装 autoPicCdn 图床工具
 pubDate: 2021-02-25
 categories: 

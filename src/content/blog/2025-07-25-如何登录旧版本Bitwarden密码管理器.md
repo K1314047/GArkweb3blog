@@ -1,5 +1,5 @@
 ---
-slug: 'login-bitwarden-legacy-version'
+slug: login-bitwarden-legacy-version
 title: 如何登录旧版本 Bitwarden 密码管理器
 pubDate: 2025-07-25
 categories: 

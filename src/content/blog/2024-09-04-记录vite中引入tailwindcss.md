@@ -1,5 +1,5 @@
 ---
-slug: '237'
+slug: 237
 title: 记录 vite 中引入 tailwindcss
 pubDate: 2024-09-04
 categories: 

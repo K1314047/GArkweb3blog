@@ -1,5 +1,5 @@
 ---
-slug: '33'
+slug: 33
 title: React 中的占位符 Fragment
 pubDate: 2020-12-12
 categories: 

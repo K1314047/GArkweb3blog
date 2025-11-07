@@ -1,5 +1,5 @@
 ---
-slug: '8'
+slug: 8
 title: Chrome 浏览器中对 autoplay 的一些处理技巧
 pubDate: 2020-09-11
 categories: 

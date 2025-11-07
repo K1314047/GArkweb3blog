@@ -1,5 +1,5 @@
 ---
-slug: '212'
+slug: 212
 title: python 通过 json 生成小文件
 pubDate: 2023-11-10
 categories: 

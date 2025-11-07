@@ -1,5 +1,5 @@
 ---
-slug: '75'
+slug: 75
 title:  npm install 报错和取消本地代理的问题
 pubDate: 2021-08-19
 categories: 

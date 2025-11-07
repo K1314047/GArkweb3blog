@@ -3,11 +3,18 @@ import { glob } from 'astro/loaders';
 
 const blog = defineCollection({
 	// Load Markdown and MDX files in the `src/content/blog/` directory.
-	loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
+	loader: glob({ 
+		base: './src/content/blog', 
+		pattern: '**/*.{md,mdx}',
+		generateId: ({ entry, data }) => {
+			// 确保 ID 始终是字符串
+			return String(data.slug || entry);
+		}
+	}),
 	// Type-check frontmatter using a schema
 	schema: ({ image }) =>
 		z.object({
-			slug: z.string().optional(),
+			slug: z.coerce.string().optional(), // 强制转换为字符串，支持数字输入
 			title: z.string(),
 			description: z.string().optional(),
 			// Transform string to Date object
@@ -24,7 +31,7 @@ const page = defineCollection({
 	loader: glob({ base: './src/content/page', pattern: '**/*.md' }),
 	// Type-check frontmatter using a schema
 	schema: z.object({
-		slug: z.string(),
+		slug: z.coerce.string(), // 强制转换为字符串，支持数字输入
 		title: z.string(),
 		layout: z.string().optional(),
 		aliases: z.array(z.string()).optional(), // 支持多个别名

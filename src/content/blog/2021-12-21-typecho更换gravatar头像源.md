@@ -1,5 +1,5 @@
 ---
-slug: '92'
+slug: 92
 title: typecho 更换 gravatar 头像源
 pubDate: 2021-12-21
 categories: 
