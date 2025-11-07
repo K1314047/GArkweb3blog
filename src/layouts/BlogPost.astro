@@ -93,13 +93,7 @@ const {
       <slot />
     </div>
 
-    <!-- 评论组件 - 每个页面使用唯一的 transition name 确保重新加载 -->
-    <div
-      transition:name={postId ? `comments-${postId}` : `comments-${Date.now()}`}
-      transition:animate="none"
-    >
-      <Comments showLinuxDo={true} />
-    </div>
+    <Comments showLinuxDo={true} />
   </div>
 
   <!-- LightGallery JS (本地) -->

@@ -2,7 +2,6 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { ViewTransitions } from 'astro:transitions';
 import type { ImageMetadata } from 'astro';
 
 interface Props {
@@ -18,7 +17,6 @@ const { title, description, image } = Astro.props;
 <html lang="zh-CN">
   <head>
     <BaseHead title={title} description={description} image={image} />
-    <ViewTransitions />
     <slot name="head" />
   </head>
   <body>
