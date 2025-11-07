@@ -8,10 +8,27 @@ import Search from '../layouts/Search.astro';
 
 export async function getStaticPaths() {
 	const pages = await getCollection('page');
-	return pages.map((page) => ({
-		params: { slug: page.data.slug },
-		props: page,
-	}));
+	const paths: Array<{ params: { slug: string }; props: CollectionEntry<'page'> }> = [];
+	
+	pages.forEach((page) => {
+		// 添加主 slug
+		paths.push({
+			params: { slug: page.data.slug },
+			props: page,
+		});
+		
+		// 添加所有别名 slug
+		if (page.data.aliases && Array.isArray(page.data.aliases)) {
+			page.data.aliases.forEach((alias) => {
+				paths.push({
+					params: { slug: alias },
+					props: page,
+				});
+			});
+		}
+	});
+	
+	return paths;
 }
 
 type Props = CollectionEntry<'page'>;

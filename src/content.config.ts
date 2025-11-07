@@ -27,6 +27,7 @@ const page = defineCollection({
 		slug: z.string(),
 		title: z.string(),
 		layout: z.string().optional(),
+		aliases: z.array(z.string()).optional(), // 支持多个别名
 	}),
 });
 
