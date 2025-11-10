@@ -1,9 +1,5 @@
 :root {
   --width: 660px;
-  --font-yahei: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFangSC-Regular", "Hiragino Sans GB", "Lantinghei SC", "Microsoft Yahei", "Source Han Sans CN", "WenQuanYi Micro Hei", SimSun, sans-serif;
-  --font-fangsong: Baskerville, "Times New Roman", "Liberation Serif", STFangsong, FangSong, FangSong_GB2312, "CWTEX\-F", serif;
-  --font-songti: Georgia, "Nimbus Roman No9 L", "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "Source Han Serif CN", STSong, "AR PL New Sung", "AR PL SungtiL GB", NSimSun, SimSun, "TW\-Sung", "WenQuanYi Bitmap Song", "AR PL UMing CN", "AR PL UMing HK", "AR PL UMing TW", "AR PL UMing TW MBE", PMingLiU, MingLiU, serif;
-  --font-misans: "MiSans", "MiSans VF", "MiSans-Regular", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFangSC-Regular", "Hiragino Sans GB", "Lantinghei SC", "Microsoft Yahei", "Source Han Sans CN", "WenQuanYi Micro Hei", SimSun, sans-serif;
   --font-scale: 1em;
   --background-color: #FAFAFA;
   --heading-color: #030303;
@@ -481,8 +477,6 @@ ul.posts li a:visited {
 
 .categories-grid {
   width: 100%;
-
-
 }
 
 .categories-item {
@@ -513,9 +507,9 @@ ul.posts li a:visited {
   color: var(--gray-color);
   display: flex;
   flex-wrap: wrap;
-}
 
-.tags a {
-  margin: 0 15px 15px 0;
-  display: inline-flex;
+  a {
+    margin: 0 15px 15px 0;
+    display: inline-flex;
+  }
 }
