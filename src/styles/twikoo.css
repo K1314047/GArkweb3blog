@@ -62,7 +62,7 @@
 }
 
 .tk-meta-input .el-input .el-input-group__prepend {
-  padding: 0 1rem;
+  padding: 0 0.6rem;
 }
 
 .tk-meta-input .el-input input:invalid {
