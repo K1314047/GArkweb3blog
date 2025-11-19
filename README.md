@@ -4,7 +4,7 @@
 
 [子舒的博客](https://zishu.me)
 
-<img width="2198" height="1464" alt="frame_generic_dark" src="https://github.com/user-attachments/assets/8b8f8e0c-25eb-477a-9631-f8797aa200ad" />
+![Preview](https://github.com/user-attachments/assets/8b8f8e0c-25eb-477a-9631-f8797aa200ad)
 
 ## Command
 
@@ -15,7 +15,7 @@
 | `npm run build`           | 构建您的生产站点到 `./dist/`                   |
 | `npm run preview`         | 预览本地构建，再部署                           |
 | `npm run astro ...`       | 运行 CLI 命令，例如 `astro add`，`astro check` |
-| `npm run astro -- --help` | 获取 Astro CLI 使用帮助                          |
+| `npm run astro -- --help` | 获取 Astro CLI 使用帮助                        |
 
 ## 致谢
 
