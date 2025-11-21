@@ -6,6 +6,10 @@
 
 ![Preview](https://github.com/user-attachments/assets/8b8f8e0c-25eb-477a-9631-f8797aa200ad)
 
+参考 [Taking regular screenshots of my website](https://alexwlchan.net/2024/scheduled-screenshots/)，我决定每周一通过 GitHub Actions 给我的博客主页截图，然后存放在 `/screenshots` 下，这是一个自动化流程，可以记录我从今日起，未来无数年的博客变化。
+
+截图仓库：https://github.com/anghunk/scheduled-screenshots
+
 ## Command
 
 | Command                   | Action                                         |
@@ -22,3 +26,5 @@
 - [Astro](https://astro.build/) - 现代化的 Web 框架
 - [Bear Blog](https://github.com/HermanMartinus/bearblog/) - 设计灵感
 - [Twikoo](https://twikoo.js.org/) - 评论系统
+
+本仓库/博客基于 CC BY 4.0 协议开源。
