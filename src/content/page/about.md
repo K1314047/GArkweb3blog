@@ -15,6 +15,8 @@ title: 关于我
 
 同时我还维护了一个周刊（[奇趣周刊](/categories/weekly/)），一同发布到了该网站。督促自己多扩展眼界，获取更新的知识，不管是技术类型还是娱乐，让自己的容量不断 +1。（暂时停更）
 
+我开发的一些小工具 [项目](/projects/)
+
 ### 2. 博客架构
 
 这是一个基于 astro 框架搭建的博客，仓库在 [https://github.com/anghunk/astro-blog](https://github.com/anghunk/astro-blog)

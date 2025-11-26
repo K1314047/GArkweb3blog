@@ -24,17 +24,24 @@ import HeaderLink from './HeaderLink.astro';
 		</p>
 	</nav>
 
-	<script>
-		document.addEventListener('DOMContentLoaded', () => {
-			const searchTrigger = document.getElementById('search-trigger');
+	<script is:inline>
+		function initSearchTrigger() {
+			var searchTrigger = document.getElementById('search-trigger');
 			if (searchTrigger) {
-				searchTrigger.addEventListener('click', () => {
-					if ((window as any).openSearchModal) {
-						(window as any).openSearchModal();
+				searchTrigger.addEventListener('click', function() {
+					if (window.openSearchModal) {
+						window.openSearchModal();
 					}
 				});
 			}
-		});
+		}
+
+		// DOM 加载完成后初始化
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', initSearchTrigger);
+		} else {
+			initSearchTrigger();
+		}
 	</script>
 
 	<style>

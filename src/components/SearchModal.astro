@@ -53,133 +53,140 @@ const searchData = posts.map((post) => ({
 </script>
 
 <!-- 搜索功能 -->
-<script>
-	const searchModal = document.getElementById('search-modal') as HTMLElement;
-	const searchInput = document.getElementById('modal-search-input') as HTMLInputElement;
-	const searchResults = document.getElementById('modal-search-results') as HTMLElement;
-	const searchStats = document.getElementById('modal-search-stats') as HTMLElement;
-	const closeBtn = document.getElementById('close-search-modal') as HTMLElement;
-	const overlay = document.querySelector('.search-modal-overlay') as HTMLElement;
+<script is:inline>
+	function initSearchModal() {
+		const searchModal = document.getElementById('search-modal');
+		const searchInput = document.getElementById('modal-search-input');
+		const searchResults = document.getElementById('modal-search-results');
+		const searchStats = document.getElementById('modal-search-stats');
+		const closeBtn = document.getElementById('close-search-modal');
+		const overlay = document.querySelector('.search-modal-overlay');
 
-	// 获取搜索数据
-	const posts = (window as any).SEARCH_DATA;
-
-	// 打开弹窗
-	function openSearchModal() {
-		searchModal.classList.add('active');
-		document.body.style.overflow = 'hidden';
-		setTimeout(() => searchInput.focus(), 100);
-	}
-
-	// 关闭弹窗
-	function closeSearchModal() {
-		searchModal.classList.remove('active');
-		document.body.style.overflow = '';
-		searchInput.value = '';
-		searchResults.innerHTML = '<div class="search-tips"><p>💡 支持搜索：标题、描述、标签、分类</p><p>⌨️ 按 <kbd>Esc</kbd> 关闭弹窗</p></div>';
-		searchStats.innerHTML = '';
-	}
-
-	// 搜索函数
-	function performSearch(query: string) {
-		const keyword = query.trim().toLowerCase();
-
-		if (!keyword) {
-			searchResults.innerHTML = '<div class="search-tips"><p>💡 支持搜索：标题、描述、标签、分类</p><p>⌨️ 按 <kbd>Esc</kbd> 关闭弹窗</p></div>';
-			searchStats.innerHTML = '';
+		if (!searchModal || !searchInput || !searchResults || !searchStats || !closeBtn || !overlay) {
 			return;
 		}
 
-		// 搜索逻辑：标题、描述、标签、分类
-		const results = posts.filter((post: any) => {
-			const titleMatch = post.title.toLowerCase().includes(keyword);
-			const descMatch = post.description.toLowerCase().includes(keyword);
-			const tagsMatch = post.tags.some((tag: string) => tag.toLowerCase().includes(keyword));
-			const categoriesMatch = post.categories.some((cat: string) => cat.toLowerCase().includes(keyword));
+		// 获取搜索数据
+		const posts = window.SEARCH_DATA || [];
 
-			return titleMatch || descMatch || tagsMatch || categoriesMatch;
+		// 打开弹窗
+		window.openSearchModal = function() {
+			searchModal.classList.add('active');
+			document.body.style.overflow = 'hidden';
+			setTimeout(function() { searchInput.focus(); }, 100);
+		};
+
+		// 关闭弹窗
+		function closeSearchModal() {
+			searchModal.classList.remove('active');
+			document.body.style.overflow = '';
+			searchInput.value = '';
+			searchResults.innerHTML = '<div class="search-tips"><p>💡 支持搜索：标题、描述、标签、分类</p><p>⌨️ 按 <kbd>Esc</kbd> 关闭弹窗</p></div>';
+			searchStats.innerHTML = '';
+		}
+
+		// 搜索函数
+		function performSearch(query) {
+			const keyword = query.trim().toLowerCase();
+
+			if (!keyword) {
+				searchResults.innerHTML = '<div class="search-tips"><p>💡 支持搜索：标题、描述、标签、分类</p><p>⌨️ 按 <kbd>Esc</kbd> 关闭弹窗</p></div>';
+				searchStats.innerHTML = '';
+				return;
+			}
+
+			// 搜索逻辑：标题、描述、标签、分类
+			const results = posts.filter(function(post) {
+				const titleMatch = post.title.toLowerCase().includes(keyword);
+				const descMatch = post.description.toLowerCase().includes(keyword);
+				const tagsMatch = post.tags.some(function(tag) { return tag.toLowerCase().includes(keyword); });
+				const categoriesMatch = post.categories.some(function(cat) { return cat.toLowerCase().includes(keyword); });
+
+				return titleMatch || descMatch || tagsMatch || categoriesMatch;
+			});
+
+			// 显示统计信息
+			searchStats.innerHTML = '找到 <strong>' + results.length + '</strong> 篇相关文章';
+
+			// 显示搜索结果
+			if (results.length === 0) {
+				searchResults.innerHTML = '<div class="no-results">😔 没有找到相关文章</div>';
+			} else {
+				const html = results
+					.map(function(post) {
+						const date = new Date(post.pubDate);
+						const formattedDate = date.getFullYear() + '.' + String(date.getMonth() + 1).padStart(2, '0') + '.' + String(date.getDate()).padStart(2, '0');
+
+						// 高亮关键词
+						function highlightText(text) {
+							const regex = new RegExp('(' + keyword + ')', 'gi');
+							return text.replace(regex, '<mark>$1</mark>');
+						}
+
+						var tagsHtml = '';
+						if (post.tags.length > 0) {
+							tagsHtml = '<div class="result-tags">' + 
+								post.tags.map(function(tag) { return '<span class="tag">' + tag + '</span>'; }).join('') + 
+								'</div>';
+						}
+
+						return '<div class="result-item">' +
+							'<div class="result-header">' +
+								'<h3 class="result-title">' +
+									'<a href="/blog/' + post.id + '.html">' + highlightText(post.title) + '</a>' +
+								'</h3>' +
+								'<span class="result-date">' + formattedDate + '</span>' +
+							'</div>' +
+							(post.description ? '<p class="result-description">' + highlightText(post.description) + '</p>' : '') +
+							tagsHtml +
+						'</div>';
+					})
+					.join('');
+
+				searchResults.innerHTML = html;
+			}
+		}
+
+		// 事件监听
+		closeBtn.addEventListener('click', closeSearchModal);
+		overlay.addEventListener('click', closeSearchModal);
+
+		// 键盘事件
+		document.addEventListener('keydown', function(e) {
+			// Cmd/Ctrl + K 打开搜索
+			if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+				e.preventDefault();
+				window.openSearchModal();
+			}
+			// Esc 关闭搜索
+			if (e.key === 'Escape' && searchModal.classList.contains('active')) {
+				closeSearchModal();
+			}
 		});
 
-		// 显示统计信息
-		searchStats.innerHTML = `找到 <strong>${results.length}</strong> 篇相关文章`;
+		// 搜索输入事件
+		searchInput.addEventListener('keypress', function(e) {
+			if (e.key === 'Enter') {
+				performSearch(searchInput.value);
+			}
+		});
 
-		// 显示搜索结果
-		if (results.length === 0) {
-			searchResults.innerHTML = '<div class="no-results">😔 没有找到相关文章</div>';
-		} else {
-			const html = results
-				.map((post: any) => {
-					const date = new Date(post.pubDate);
-					const formattedDate = `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
-
-					// 高亮关键词
-					const highlightText = (text: string) => {
-						const regex = new RegExp(`(${keyword})`, 'gi');
-						return text.replace(regex, '<mark>$1</mark>');
-					};
-
-					return `
-					<div class="result-item">
-						<div class="result-header">
-							<h3 class="result-title">
-								<a href="/blog/${post.id}.html">${highlightText(post.title)}</a>
-							</h3>
-							<span class="result-date">${formattedDate}</span>
-						</div>
-						${post.description ? `<p class="result-description">${highlightText(post.description)}</p>` : ''}
-						${
-							post.tags.length > 0
-								? `
-							<div class="result-tags">
-								${post.tags.map((tag: string) => `<span class="tag">${tag}</span>`).join('')}
-							</div>
-						`
-								: ''
-						}
-					</div>
-				`;
-				})
-				.join('');
-
-			searchResults.innerHTML = html;
-		}
+		// 实时搜索
+		var searchTimeout;
+		searchInput.addEventListener('input', function() {
+			clearTimeout(searchTimeout);
+			searchTimeout = setTimeout(function() {
+				performSearch(searchInput.value);
+			}, 300);
+		});
 	}
 
-	// 事件监听
-	closeBtn.addEventListener('click', closeSearchModal);
-	overlay.addEventListener('click', closeSearchModal);
-
-	// 键盘事件
-	document.addEventListener('keydown', (e) => {
-		// Cmd/Ctrl + K 打开搜索
-		if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-			e.preventDefault();
-			openSearchModal();
-		}
-		// Esc 关闭搜索
-		if (e.key === 'Escape' && searchModal.classList.contains('active')) {
-			closeSearchModal();
-		}
-	});
-
-	// 搜索输入事件
-	searchInput.addEventListener('keypress', (e) => {
-		if (e.key === 'Enter') {
-			performSearch(searchInput.value);
-		}
-	});
-
-	// 实时搜索
-	let searchTimeout: number;
-	searchInput.addEventListener('input', () => {
-		clearTimeout(searchTimeout);
-		searchTimeout = window.setTimeout(() => {
-			performSearch(searchInput.value);
-		}, 300);
-	});
-
-	// 暴露打开函数到全局
-	(window as any).openSearchModal = openSearchModal;
+	// DOM 加载完成后初始化
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initSearchModal);
+	} else {
+		initSearchModal();
+	}
 </script>
 
 <style>
