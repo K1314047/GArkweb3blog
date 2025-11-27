@@ -1,0 +1,191 @@
+# .github/workflows/page-size-audit.yml
+name: "Page Size Audit: Generate Historical Data"
+
+on:
+  workflow_dispatch:
+    inputs:
+      start_version:
+        description: '起始版本 (例如：v1.0.0)'
+        required: false
+        default: 'v1.0.0'
+      end_version:
+        description: '结束版本 (留空表示最新)'
+        required: false
+        default: ''
+      create_pr:
+        description: '是否创建 PR 提交数据文件'
+        required: true
+        default: false
+        type: boolean
+  release:
+    types: [published]
+
+jobs:
+  get-versions:
+    name: Get Version List
+    runs-on: ubuntu-latest
+    outputs:
+      versions: ${{ steps.get-versions.outputs.versions }}
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Get version list
+        id: get-versions
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // 此处脚本无需修改，它负责获取 git tags
+            // ... (为简洁起见，省略原脚本内容) ...
+            let startVersion, endVersion;
+            if ('${{ github.event_name }}' === 'release') {
+              const releaseVersion = '${{ github.event.release.tag_name }}';
+              startVersion = releaseVersion;
+              endVersion = releaseVersion;
+            } else {
+              startVersion = '${{ github.event.inputs.start_version }}' || 'v1.0.0';
+              endVersion = '${{ github.event.inputs.end_version }}' || '';
+            }
+            const releases = await github.paginate(github.rest.repos.listReleases, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+            const stableReleases = releases.filter(r => !r.prerelease);
+            const semver = require('semver');
+            stableReleases.sort((a, b) => semver.compare(a.tag_name, b.tag_name));
+            const startIndex = stableReleases.findIndex(r => r.tag_name === startVersion);
+            const endIndex = endVersion ? stableReleases.findIndex(r => r.tag_name === endVersion) : stableReleases.length - 1;
+            if (startIndex === -1) {
+              core.setFailed(`Cannot find start version: ${startVersion}`);
+              return;
+            }
+            if (endVersion && endIndex === -1) {
+              core.setFailed(`Cannot find end version: ${endVersion}`);
+              return;
+            }
+            const versionList = stableReleases
+              .slice(startIndex, endIndex + 1)
+              .map(r => r.tag_name);
+            console.log(`Found ${versionList.length} versions:`, versionList);
+            core.setOutput('versions', JSON.stringify(versionList));
+
+  test-versions:
+    name: Test ${{ matrix.version }}
+    needs: get-versions
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: ${{ fromJson(needs.get-versions.outputs.versions) }}
+      fail-fast: false
+    
+    steps:
+      - name: Checkout project at ${{ matrix.version }}
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.version }}
+
+      - name: Copy latest .github files from workflow branch
+        run: |
+          rm -rf .github
+          WORKFLOW_BRANCH="${{ github.ref_name }}"
+          git fetch origin "${WORKFLOW_BRANCH}":"refs/remotes/origin/${WORKFLOW_BRANCH}"
+          git checkout "origin/${WORKFLOW_BRANCH}" -- .github
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Build Astro Site and Start Preview Server
+        run: |
+          set -e
+          pnpm install
+          pnpm build
+          pnpm add -g serve
+          serve -s dist -l 8090 &
+          # Wait for server to be ready
+          for i in {1..30}; do
+            if curl -sf http://localhost:8090 >/dev/null 2>&1; then
+              echo "✅ Preview server is ready!"
+              break
+            fi
+            [ $i -eq 30 ] && { echo "❌ Server start timed out"; exit 1; }
+            sleep 1
+          done
+      
+      - name: Setup Lighthouse CI
+        run: |
+          pnpm add -g @lhci/cli@0.15.x
+          echo "LHCI_VERSION=$(lhci --version)" >> $GITHUB_ENV
+
+      - name: Run Lighthouse CI (Homepage Only)
+        run: |
+          mkdir -p .lighthouseci
+          lhci autorun \
+            --collect.url=http://localhost:8090/ \
+            --collect.numberOfRuns=1 \
+            --collect.settings.preset=desktop \
+            --upload.target=filesystem \
+            --upload.outputDir=.lighthouseci
+
+      - name: Generate report (JSON only)
+        run: node .github/scripts/generate-report.js
+        env:
+          LIGHTHOUSE_RESULTS_DIR: .lighthouseci
+          OUTPUT_DIR: .github/page_size_audit_results
+          OUTPUT_FILENAME: ${{ matrix.version }}
+          JSON_ONLY: "true"
+          # (✅ 关键) 这里传递的是新的、通用的环境变量
+          PROJECT_VERSION: ${{ matrix.version }}
+          LHCI_VERSION: ${{ env.LHCI_VERSION }}
+
+      - name: Upload report for ${{ matrix.version }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: report-${{ matrix.version }}
+          path: .github/page_size_audit_results/${{ matrix.version }}.json
+          retention-days: 1
+      
+      - name: Stop Preview Server
+        if: always()
+        run: pkill serve || true
+
+  collect-and-pr:
+    name: Collect Reports and Create PR
+    needs: test-versions
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download all reports
+        uses: actions/download-artifact@v4
+        with:
+          pattern: report-*
+          path: ./all-reports
+          merge-multiple: true
+      - name: Copy reports to data directory
+        if: github.event.inputs.create_pr == 'true' || github.event_name == 'release'
+        run: |
+          mkdir -p .github/page_size_audit_results
+          cp ./all-reports/*.json .github/page_size_audit_results/
+      - name: Create PR with data files
+        if: github.event.inputs.create_pr == 'true' || github.event_name == 'release'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.PR_WORKFLOW_TOKEN }} # 需要一个有写权限的 PAT
+          commit-message: "chore: update page size audit results"
+          title: 'chore: Update Page Size Audit Results'
+          body: |
+            This PR adds/updates page size audit results for analysis.
+            *Auto-generated by Page Size Audit workflow*
+          branch: chore/page-size-audit-${{ github.run_number }}
+          delete-branch: true
+          labels: maintenance
+          add-paths: .github/page_size_audit_results/*.json
