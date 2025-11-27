@@ -51,8 +51,13 @@ jobs:
               repo: context.repo.repo,
             });
             const stableReleases = releases.filter(r => !r.prerelease);
-            const semver = require('semver');
-            stableReleases.sort((a, b) => semver.compare(a.tag_name, b.tag_name));
+            // 简单的版本号排序（v1.0.0 格式）
+            stableReleases.sort((a, b) => {
+              const parseVersion = (v) => v.replace(/^v/, '').split('.').map(Number);
+              const [aMajor, aMinor, aPatch] = parseVersion(a.tag_name);
+              const [bMajor, bMinor, bPatch] = parseVersion(b.tag_name);
+              return (aMajor - bMajor) || (aMinor - bMinor) || (aPatch - bPatch);
+            });
             const startIndex = stableReleases.findIndex(r => r.tag_name === startVersion);
             const endIndex = endVersion ? stableReleases.findIndex(r => r.tag_name === endVersion) : stableReleases.length - 1;
             if (startIndex === -1) {
