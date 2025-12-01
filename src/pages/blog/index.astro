@@ -2,7 +2,6 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
-import FadeInAnimation from '../../components/FadeInAnimation.astro';
 import { SITE_DESCRIPTION } from '../../consts';
 
 const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
@@ -50,5 +49,4 @@ const years = Object.keys(postsByYear)
 		}
 	</div>
 
-	<FadeInAnimation />
 </Base>

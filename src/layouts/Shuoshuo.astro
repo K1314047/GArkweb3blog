@@ -1,7 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import Base from './Base.astro';
-import FadeInAnimation from '../components/FadeInAnimation.astro';
 import { marked } from 'marked';
 
 type Props = CollectionEntry<'page'>['data'] & {
@@ -95,6 +94,4 @@ function formatDate(dateString: string): string {
 			</ul>
 		</div>
 	</div>
-
-	<FadeInAnimation includeShuoshuo={true} />
 </Base>

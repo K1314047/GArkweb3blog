@@ -2,7 +2,6 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
-import FadeInAnimation from '../../components/FadeInAnimation.astro';
 
 export async function getStaticPaths() {
 	const allPosts = await getCollection('blog');
@@ -51,6 +50,4 @@ const { posts, tag } = Astro.props;
 			))
 		}
 	</ul>
-
-	<FadeInAnimation />
 </Base>
