@@ -20,6 +20,21 @@ const title = rawTitle === SITE_TITLE ? rawTitle : `${rawTitle} - ${SITE_TITLE}`
 <!-- Global Metadata -->
 <meta charset='utf-8' />
 <meta name='viewport' content='width=device-width,initial-scale=1' />
+
+<!-- Theme (avoid flash by setting early) -->
+<script is:inline>
+	(function () {
+		try {
+			var stored = localStorage.getItem('theme');
+			if (stored === 'light' || stored === 'dark') {
+				document.documentElement.setAttribute('data-theme', stored);
+			}
+		} catch (e) {
+			// ignore
+		}
+	})();
+</script>
+
 <link rel='icon' type='image/svg+xml' href='/favicon.ico' />
 <link rel='sitemap' href='/sitemap-index.xml' />
 <link rel='alternate' type='application/rss+xml' title={SITE_TITLE} href={new URL('index.xml', Astro.site)} />

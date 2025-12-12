@@ -2289,3 +2289,59 @@
   -webkit-transition: .3s;
   transition: .3s;
 }
+
+/* Dark theme overrides (match site data-theme) */
+:root[data-theme="dark"] #twikoo,
+:root[data-theme="dark"] #twikoo .twikoo {
+  color: #ddd;
+}
+
+:root[data-theme="dark"] #twikoo .tk-submit,
+:root[data-theme="dark"] #twikoo .tk-comments-container > .tk-comment {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+:root[data-theme="dark"] #twikoo .tk-replies .tk-comment {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+:root[data-theme="dark"] #twikoo .tk-action-link {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+:root[data-theme="dark"] #twikoo .tk-action-icon {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+:root[data-theme="dark"] #twikoo .el-button {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+:root[data-theme="dark"] #twikoo .el-button:focus,
+:root[data-theme="dark"] #twikoo .el-button:hover {
+  background: rgba(64, 158, 255, 0.10);
+  border-color: rgba(64, 158, 255, 0.55);
+  color: #9fd2ff;
+}
+
+:root[data-theme="dark"] #twikoo .el-textarea__inner,
+:root[data-theme="dark"] #twikoo .el-input__inner {
+  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.88);
+}
+
+:root[data-theme="dark"] #twikoo .el-textarea__inner::placeholder,
+:root[data-theme="dark"] #twikoo .el-input__inner::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+:root[data-theme="dark"] #twikoo .el-input-group__append,
+:root[data-theme="dark"] #twikoo .el-input-group__prepend {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.75);
+}

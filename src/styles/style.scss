@@ -10,10 +10,11 @@
   --code-color: #222;
   --blockquote-color: #222;
   --gray-color: #999;
+  color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme]) {
     --background-color: #111;
     --heading-color: #eee;
     --text-color: #ddd;
@@ -23,7 +24,34 @@
     --code-color: #ddd;
     --blockquote-color: #ccc;
     --gray-color: #999;
+    color-scheme: dark;
   }
+}
+
+:root[data-theme="light"] {
+  --background-color: #FAFAFA;
+  --heading-color: #030303;
+  --text-color: #030303;
+  --link-color: #030303;
+  --visited-color: #030303;
+  --code-background-color: #f2f2f2;
+  --code-color: #222;
+  --blockquote-color: #222;
+  --gray-color: #999;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --background-color: #111;
+  --heading-color: #eee;
+  --text-color: #ddd;
+  --link-color: #6ab0e5;
+  --visited-color: #8b6fcb;
+  --code-background-color: #000;
+  --code-color: #ddd;
+  --blockquote-color: #ccc;
+  --gray-color: #999;
+  color-scheme: dark;
 }
 
 * {
@@ -62,6 +90,81 @@ body {
 
   position: relative;
   z-index: 1;
+}
+
+:root[data-theme="dark"] body {
+  /* 深色背景下隐藏浅色纹理，避免突兀 */
+  background-image: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) body {
+    background-image: none;
+  }
+}
+
+.theme-toggle-fab {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 999;
+
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+
+  color: var(--text-color);
+  background: rgba(127, 127, 127, 0.10);
+  border: 1px solid rgba(127, 127, 127, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+}
+
+.theme-toggle-fab:hover {
+  background: rgba(127, 127, 127, 0.16);
+  border-color: rgba(127, 127, 127, 0.35);
+}
+
+.theme-toggle-fab:focus-visible {
+  outline: 2px solid rgba(106, 176, 229, 0.9);
+  outline-offset: 3px;
+}
+
+.theme-toggle-fab svg {
+  display: block;
+  fill: currentColor;
+}
+
+.theme-toggle-icon {
+  line-height: 0;
+  display: inline-flex;
+}
+
+.theme-toggle-icon--sun {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle-icon--moon {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle-icon--sun {
+  display: inline-flex;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .theme-toggle-icon--moon {
+    display: none;
+  }
+  :root:not([data-theme]) .theme-toggle-icon--sun {
+    display: inline-flex;
+  }
 }
 
 ::selection {
@@ -192,27 +295,53 @@ pre code {
 }
 
 @media (prefers-color-scheme: dark) {
-  #shuoshuo li.comment {
-    border-color: rgba(255, 255, 255, 0.14);
+  :root:not([data-theme]) #shuoshuo li.comment {
+    border-color: rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.04);
   }
 
-  #shuoshuo li.comment:hover {
-    border-color: rgba(255, 255, 255, 0.32);
-  }
-
-  #shuoshuo .meta {
-    color: rgba(255, 255, 255, 0.6);
-  }
-
-  #shuoshuo .meta .tag {
-    border-color: rgba(255, 255, 255, 0.16);
+  :root:not([data-theme]) #shuoshuo li.comment:hover {
+    border-color: rgba(255, 255, 255, 0.40);
     background: rgba(255, 255, 255, 0.06);
-    color: rgba(255, 255, 255, 0.72);
   }
 
-  #shuoshuo li.empty {
-    color: rgba(255, 255, 255, 0.6);
+  :root:not([data-theme]) #shuoshuo .meta {
+    color: rgba(255, 255, 255, 0.75);
   }
+
+  :root:not([data-theme]) #shuoshuo .meta .tag {
+    border-color: rgba(255, 255, 255, 0.28);
+    background: rgba(255, 255, 255, 0.10);
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  :root:not([data-theme]) #shuoshuo li.empty {
+    color: rgba(255, 255, 255, 0.75);
+  }
+}
+
+:root[data-theme="dark"] #shuoshuo li.comment {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+:root[data-theme="dark"] #shuoshuo li.comment:hover {
+  border-color: rgba(255, 255, 255, 0.40);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+:root[data-theme="dark"] #shuoshuo .meta {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+:root[data-theme="dark"] #shuoshuo .meta .tag {
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.10);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+:root[data-theme="dark"] #shuoshuo li.empty {
+  color: rgba(255, 255, 255, 0.75);
 }
 
 
