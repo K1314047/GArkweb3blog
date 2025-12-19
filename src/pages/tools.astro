@@ -37,7 +37,7 @@ const description = "工欲善其事，必先利其器";
               <img 
                 src={tool.icon.startsWith('/') ? tool.icon : `https://cdn.simpleicons.org/${tool.icon}`} 
                 alt={`${tool.name} logo`} 
-                width="32" height="32" 
+                width="24" height="24" 
                 loading="lazy" 
                 onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/juejin';this.alt='fallback logo'"
               />
@@ -60,7 +60,7 @@ const description = "工欲善其事，必先利其器";
                 <img 
                     src={tool.icon.startsWith('/') ? tool.icon : `https://cdn.simpleicons.org/${tool.icon}`} 
                     alt={`${tool.name} logo`} 
-                    width="32" height="32" 
+                    width="24" height="24" 
                     loading="lazy" 
                 />
               </div>
@@ -82,7 +82,7 @@ const description = "工欲善其事，必先利其器";
                 <img 
                     src={tool.icon.startsWith('/') ? tool.icon : `https://cdn.simpleicons.org/${tool.icon}`} 
                     alt={`${tool.name} logo`} 
-                    width="32" height="32" 
+                    width="24" height="24" 
                     loading="lazy" 
                 />
               </div>
@@ -98,21 +98,21 @@ const description = "工欲善其事，必先利其器";
 
   <style>
     .tools-section {
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
     }
     .tools-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
+      gap: 1rem;
+      margin-top: 1rem;
     }
     .tool-card {
       background: var(--code-background-color, #f2f2f2);
-      padding: 1.5rem;
-      border-radius: 12px;
+      padding: 0.8rem;
+      border-radius: 8px;
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
+      flex-direction: row;
+      align-items: center;
       gap: 0.8rem;
       transition: transform 0.2s, box-shadow 0.2s;
       border: 1px solid rgba(0,0,0,0.05);
@@ -135,11 +135,12 @@ const description = "工欲善其事，必先利其器";
         border-bottom: 1px solid rgba(0,0,0,0.05);
     }
     .tool-icon {
-      width: 32px;
-      height: 32px;
+      width: 24px;
+      height: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
     }
     .tool-icon img {
         width: 100%;
@@ -152,18 +153,27 @@ const description = "工欲善其事，必先利其器";
         filter: invert(1);
     }
 
+    .tool-info {
+        min-width: 0;
+    }
     .tool-info h3 {
       margin: 0;
-      font-size: 1.1rem;
+      font-size: 0.9rem;
       font-weight: 600;
       color: var(--heading-color);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .tool-info p {
-      margin: 0.3rem 0 0;
-      font-size: 0.9rem;
+      margin: 0;
+      font-size: 0.75rem;
       opacity: 0.8;
-      line-height: 1.4;
+      line-height: 1.2;
       color: var(--text-color);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   </style>
 </Base>
