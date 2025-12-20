@@ -45,8 +45,9 @@ const layoutMap: Record<string, any> = {
 	Projects,
 };
 
-// 根据 layout 字段选择布局组件，如果未指定或找不到则使用 Page
-const Layout = (page.data.layout && layoutMap[page.data.layout]) || Page;
+// 根据 layout / pageLayout 字段选择布局组件（MDX 的 frontmatter layout 会触发“自动导入布局”的语义，避免冲突用 pageLayout）
+const layoutKey = (page.data.pageLayout || page.data.layout) as string | undefined;
+const Layout = (layoutKey && layoutMap[layoutKey]) || Page;
 ---
 
 <Layout title={page.data.title}>

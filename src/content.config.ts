@@ -31,7 +31,7 @@ const page = defineCollection({
 	// Load Markdown files in the `src/content/page/` directory.
 	loader: glob({
 		base: './src/content/page',
-		pattern: '**/*.md',
+		pattern: '**/*.{md,mdx}',
 		// 避免在某些环境下因 slug 冲突导致的重复 ID 警告
 		generateId: ({ entry }) => String(entry),
 	}),
@@ -40,12 +40,19 @@ const page = defineCollection({
 		slug: z.coerce.string(), // 强制转换为字符串，支持数字输入
 		title: z.string(),
 		layout: z.string().optional(),
+		pageLayout: z.string().optional(),
 		aliases: z.array(z.string()).optional(), // 支持多个别名
 	}),
 });
 
 const gossips = defineCollection({
-	loader: glob({ base: './src/content/gossips', pattern: '**/*.md' }),
+	loader: glob({
+		base: './src/content/gossips',
+		pattern: '**/*.md',
+		generateId: ({ entry, data }) => {
+			return String(data.slug || entry);
+		},
+	}),
 	schema: () =>
 		z.object({
 			slug: z.coerce.string().optional(),
