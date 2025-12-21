@@ -1,0 +1,123 @@
+<style is:inline>
+  /* Strava Banner */
+  .strava-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--code-background-color);
+    border: 1px solid transparent;
+    color: var(--text-color);
+    padding: 0.6rem 1rem; /* 减小内边距 */
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    transition: border-color 0.2s ease;
+  }
+  
+  .strava-banner:hover {
+    border-color: rgba(252, 76, 2, 0.3);
+  }
+
+  .strava-title { 
+    font-weight: bold; 
+    font-size: 0.95em; /* 稍微减小字号 */
+    color: #FC4C02;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .strava-desc { 
+    font-size: 0.8em; /* 稍微减小字号 */
+    color: var(--gray-color); 
+    margin-top: 0; /* 去掉顶部间距，让它和标题可能在一行或者更紧凑 */
+    margin-left: 0.5rem; /* 如果在大屏幕下想让描述跟在标题后面，可以改布局，或者保持上下结构但更紧凑 */
+  }
+
+  /* 优化布局：让标题和描述在左侧更紧凑 */
+  .strava-content {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  /* 在小屏幕下还是换行比较好 */
+  @media (max-width: 600px) {
+    .strava-content {
+      flex-direction: column;
+      gap: 0.2rem;
+      align-items: flex-start;
+    }
+    .strava-desc { margin-left: 0; }
+  }
+  
+  .strava-btn {
+    background: transparent;
+    color: var(--text-color) !important;
+    padding: 0.25rem 0.7rem; /* 更小的内边距 */
+    border-radius: 4px;      /* 更精致的圆角 */
+    font-size: 0.85em;       /* 稍微调小字号 */
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid var(--gray-color) !important;
+    white-space: nowrap;
+    margin-left: 1rem;
+    opacity: 0.8;
+  }
+  
+  .strava-btn:hover { 
+    border-color: #FC4C02 !important;
+    color: #FC4C02 !important;
+    opacity: 1;
+    background: rgba(252, 76, 2, 0.05);
+  }
+
+  /* Empty State */
+  .empty-state {
+    padding: 2rem;
+    text-align: center;
+    color: var(--gray-color);
+    background: var(--code-background-color);
+    border-radius: 8px;
+    border: 1px dashed rgba(0,0,0,0.1);
+  }
+
+  /* Table Customization for this page */
+  .tabs-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.95em;
+  }
+  
+  .tabs-content th {
+    text-align: left;
+    padding: 0.8rem;
+    border-bottom: 2px solid var(--code-background-color);
+    color: var(--gray-color);
+    font-weight: 600;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .tabs-content td {
+    padding: 0.8rem;
+    border-bottom: 1px solid var(--code-background-color);
+    color: var(--text-color);
+  }
+
+  .tabs-content tr:last-child td { border-bottom: none; }
+  
+  /* Hover effect for table rows */
+  .tabs-content tbody tr { transition: background-color 0.1s; }
+  .tabs-content tbody tr:hover { background-color: var(--code-background-color); }
+
+  /* Responsive Adjustments */
+  @media (max-width: 600px) {
+    .strava-banner { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .strava-btn { width: 100%; text-align: center; margin-left: 0; }
+  }
+</style>
+

@@ -1,0 +1,107 @@
+<astro-tabs class="tabs-container">
+  <div class="tabs-header">
+    {/* 这里会被 JS 填充 */}
+  </div>
+  <div class="tabs-content">
+    <slot />
+  </div>
+</astro-tabs>
+
+<script>
+  class Tabs extends HTMLElement {
+    constructor() {
+      super();
+      // 等待子元素渲染完成
+      this.init();
+    }
+
+    init() {
+      const header = this.querySelector('.tabs-header');
+      const content = this.querySelector('.tabs-content');
+      // 如果还没渲染好，可能拿不到 content
+      if (!content) return;
+
+      const items = Array.from(content.querySelectorAll('.tab-item'));
+      
+      if (items.length === 0) return;
+
+      // 清空 header 防止重复添加 (以防万一)
+      header.innerHTML = '';
+
+      // 生成 Tab 按钮
+      items.forEach((item, index) => {
+        const label = item.getAttribute('data-label');
+        const button = document.createElement('button');
+        button.textContent = label;
+        button.className = 'tab-btn' + (index === 0 ? ' active' : '');
+        button.addEventListener('click', () => this.switchTab(index));
+        header.appendChild(button);
+
+        // 初始化内容显示状态
+        if (index === 0) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+    }
+
+    switchTab(index) {
+      const header = this.querySelector('.tabs-header');
+      const content = this.querySelector('.tabs-content');
+      const buttons = header.querySelectorAll('.tab-btn');
+      const items = content.querySelectorAll('.tab-item');
+
+      buttons.forEach((btn, i) => {
+        if (i === index) btn.classList.add('active');
+        else btn.classList.remove('active');
+      });
+
+      items.forEach((item, i) => {
+        if (i === index) item.classList.add('active');
+        else item.classList.remove('active');
+      });
+    }
+  }
+
+  // 只有当浏览器还没定义时才定义，防止热更新报错
+  if (!customElements.get('astro-tabs')) {
+    customElements.define('astro-tabs', Tabs);
+  }
+</script>
+
+<style>
+  astro-tabs {
+    display: block;
+    margin: 1.5rem 0;
+  }
+
+  .tabs-header {
+    display: flex;
+    border-bottom: 1px solid var(--gray-color);
+    margin-bottom: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  :global(.tab-btn) {
+    background: none;
+    border: none;
+    padding: 0.5rem 0;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--gray-color);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    margin-bottom: -1px; /* 盖住底部分割线 */
+  }
+
+  :global(.tab-btn.active) {
+    color: var(--heading-color);
+    border-bottom-color: var(--heading-color);
+  }
+
+  :global(.tab-btn:hover:not(.active)) {
+    color: var(--text-color);
+  }
+</style>

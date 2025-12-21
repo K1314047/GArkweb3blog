@@ -1,0 +1,64 @@
+---
+slug: sports
+title: 运动主页
+pageLayout: Sports
+---
+import Tabs from '../../components/Tabs.astro';
+import TabItem from '../../components/TabItem.astro';
+import StatGrid from '../../components/StatGrid.astro';
+import StatCard from '../../components/StatCard.astro';
+import SportsStyles from '../../components/SportsStyles.astro';
+
+<SportsStyles />
+
+<div class="strava-banner">
+  <div class="strava-content">
+    <div class="strava-title">Follow on Strava</div>
+    <div class="strava-desc">查看详细训练日志、路线图与活动动态</div>
+  </div>
+  <a href="https://www.strava.com/athletes/134343081" target="_blank" class="strava-btn">
+    我的主页 <span class="arrow">→</span>
+  </a>
+</div>
+
+<Tabs>
+  <TabItem label="跑步">
+    
+    ### 个人最佳 (PR)
+    > 不记录日常训练，仅展示当前最佳表现。
+
+    <StatGrid>
+      <StatCard label="最远距离" value="11.2" unit="km" subtext="2025-12-21 室内跑" />
+      <StatCard label="3K 最快" value="16.34" unit="min" subtext="5'30''/km" />
+      <StatCard label="5K 最快" value="27.31" unit="min" subtext="5'30''/km" />
+      <StatCard label="10K 最快" value="59:01" unit="min" subtext="5'54''/km" />
+    </StatGrid>
+
+    ### 比赛记录
+    
+    <div class="empty-state">
+      暂无比赛记录（未来将在此更新马拉松赛事成绩）
+    </div>
+
+  </TabItem>
+
+  <TabItem label="骑行">
+    
+    ### 月度汇总 (2025)
+    > 按月统计里程与频次，回顾骑行趋势。
+
+    | 月份 | 距离 (km) | 次数 | 备注 |
+    | :--- | :--- | :--- | :--- |
+    | 2025-11 | 36.76 | 1 | 城市骑行 |
+    | 2025-10 | 89.65 | 3 | 城市骑行 |
+    | 2025-08 | 30.23 | 2 | 恢复训练 |
+    | 2025-03 | 13.99 | 1 | 恢复训练 |
+    | 2024-09 | 41.24 | 2 | 城市骑行 |
+    | 2024-08 | 177.94 | 6 | - |
+    | 2024-07 | 257.91 | 14 | - |
+    | 2024-06 | 304.58| 10 | - |
+    | 2024-05 | 378.06 | 26 | - |
+    | 2024-04 | 124.95 | 7 | - |
+
+  </TabItem>
+</Tabs>

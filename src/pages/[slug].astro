@@ -5,6 +5,7 @@ import About from '../layouts/About.astro';
 import Message from '../layouts/Message.astro';
 import Shuoshuo from '../layouts/Shuoshuo.astro';
 import Projects from '../layouts/Projects.astro';
+import Sports from '../layouts/Sports.astro';
 
 export async function getStaticPaths() {
 	const pages = await getCollection('page');
@@ -43,6 +44,7 @@ const layoutMap: Record<string, any> = {
 	Message,
 	Shuoshuo,
 	Projects,
+	Sports,
 };
 
 // 根据 layout / pageLayout 字段选择布局组件（MDX 的 frontmatter layout 会触发“自动导入布局”的语义，避免冲突用 pageLayout）

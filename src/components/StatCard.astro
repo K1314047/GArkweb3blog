@@ -1,0 +1,66 @@
+---
+const { label, value, unit, subtext } = Astro.props;
+---
+
+<div class="stat-card">
+  <div class="stat-label">{label}</div>
+  <div class="stat-main">
+    <span class="stat-value">{value}</span>
+    {unit && <span class="stat-unit">{unit}</span>}
+  </div>
+  {subtext && <div class="stat-sub">{subtext}</div>}
+</div>
+
+<style>
+  .stat-card {
+    background: var(--code-background-color);
+    padding: 1.2rem;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid transparent;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-color: rgba(0,0,0,0.05);
+  }
+
+  .stat-label {
+    font-size: 0.85em;
+    color: var(--gray-color);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .stat-main {
+    display: flex;
+    align-items: baseline;
+    gap: 0.2rem;
+  }
+
+  .stat-value {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--heading-color);
+    line-height: 1.1;
+    font-family: var(--font-heading, inherit);
+  }
+
+  .stat-unit {
+    font-size: 0.9em;
+    color: var(--gray-color);
+    font-weight: 500;
+  }
+
+  .stat-sub {
+    margin-top: 0.5rem;
+    font-size: 0.8em;
+    color: var(--gray-color);
+    opacity: 0.8;
+  }
+</style>
+

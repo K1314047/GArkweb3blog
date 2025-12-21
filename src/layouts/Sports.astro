@@ -1,0 +1,59 @@
+---
+import Base from './Base.astro';
+
+const { title } = Astro.props;
+---
+
+<Base title={title} description="运动记录" fullWidth={false} hideHeader={true}>
+  <div class="sports-layout">
+    <div class="page-header">
+        <a href="/about" class="back-link">
+            ← 返回
+        </a>
+        <div class="header-title">
+            <span class="title-text">{title}</span>
+        </div>
+    </div>
+    
+    <div class="content">
+      <slot />
+    </div>
+  </div>
+
+  <style>
+    .sports-layout {
+        /* 移除固定的宽度限制，跟随 Base 的默认宽度 (约960px) */
+        width: 100%;
+    }
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--code-background-color);
+    }
+    .back-link {
+        font-size: 0.9rem;
+        text-decoration: none;
+        color: var(--gray-color);
+        padding: 0.5rem 0;
+        transition: color 0.2s;
+    }
+    .back-link:hover {
+        color: var(--link-color);
+    }
+    .header-title {
+        font-size: 1rem;
+        font-weight: bold;
+        color: var(--heading-color);
+    }
+    
+    /* 内容区域样式调整，使其在无 Hero 模式下更紧凑 */
+    .content {
+      margin-top: 1rem;
+    }
+  </style>
+</Base>
+
