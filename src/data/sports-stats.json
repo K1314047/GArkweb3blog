@@ -1,10 +1,10 @@
 {
-  "generatedAt": null,
+  "generatedAt": "2025-12-22T14:41:10.402Z",
   "running": {
     "cards": {
       "totalDistance": {
         "label": "总跑量(2025.06起)",
-        "value": "374.24",
+        "value": "376.32",
         "unit": "km",
         "subtext": "~6'05''/km"
       },
@@ -26,35 +26,104 @@
         "unit": "min",
         "subtext": "5'54''/km"
       }
-    }
+    },
+    "monthly": [
+      {
+        "month": "2024-05",
+        "distanceKm": "2.08",
+        "count": 1,
+        "movingTimeHours": "0.2"
+      }
+    ]
   },
   "cycling": {
     "cards": {
       "totalDistance": {
         "label": "总里程",
-        "value": "1455.36",
+        "value": "1551.98",
         "unit": "km",
         "subtext": "历史累计"
       },
       "totalTime": {
         "label": "总时长",
-        "value": "60.02",
+        "value": "65.76",
         "unit": "h",
         "subtext": "在路上的时间"
       },
       "totalCount": {
         "label": "累计次数",
-        "value": "73",
+        "value": "78",
         "unit": "次",
         "subtext": "~19.9 km/次"
       },
       "totalCalories": {
         "label": "总热量",
-        "value": "41464",
+        "value": "22177",
         "unit": "kcal",
         "subtext": "Burn it up!"
       }
-    }
+    },
+    "monthly": [
+      {
+        "month": "2025-11",
+        "distanceKm": "36.76",
+        "count": 2,
+        "movingTimeHours": "3.46"
+      },
+      {
+        "month": "2025-10",
+        "distanceKm": "89.65",
+        "count": 3,
+        "movingTimeHours": "3.95"
+      },
+      {
+        "month": "2025-08",
+        "distanceKm": "30.24",
+        "count": 2,
+        "movingTimeHours": "1.38"
+      },
+      {
+        "month": "2025-03",
+        "distanceKm": "14",
+        "count": 1,
+        "movingTimeHours": "0.52"
+      },
+      {
+        "month": "2024-09",
+        "distanceKm": "41.25",
+        "count": 2,
+        "movingTimeHours": "1.86"
+      },
+      {
+        "month": "2024-08",
+        "distanceKm": "177.94",
+        "count": 6,
+        "movingTimeHours": "7.21"
+      },
+      {
+        "month": "2024-07",
+        "distanceKm": "257.92",
+        "count": 14,
+        "movingTimeHours": "9.98"
+      },
+      {
+        "month": "2024-06",
+        "distanceKm": "304.59",
+        "count": 10,
+        "movingTimeHours": "11.4"
+      },
+      {
+        "month": "2024-05",
+        "distanceKm": "474.68",
+        "count": 31,
+        "movingTimeHours": "20.4"
+      },
+      {
+        "month": "2024-04",
+        "distanceKm": "124.96",
+        "count": 7,
+        "movingTimeHours": "5.61"
+      }
+    ]
   }
 }
-

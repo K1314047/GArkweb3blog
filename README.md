@@ -91,15 +91,17 @@ curl -X POST https://www.strava.com/oauth/token \
 - `STRAVA_CLIENT_SECRET`
 - `STRAVA_REFRESH_TOKEN`
 
-#### 4) 配置“已有历史数据（基线）”
+#### 4) 配置“跑步已有历史数据（基线，仅跑步需要）”
 
 你提到 **Strava 目前还没有跑步数据**，但页面已经有“总跑量/PR”等历史累计数据。
 
-这些“已有数据”保存在：
+这些“跑步已有数据”保存在：
 
 - `src/data/strava/baseline.json`
 
-同步脚本会把 **Strava 拉到的跑步里程** 与 **baseline 里已有的里程** 叠加生成最终展示值，因此即使 Strava 跑步为空，页面也会继续显示你的当前数据。
+同步脚本会把 **Strava 的跑步总计（stats API）** 与 **baseline 里已有的跑步里程/PR** 叠加生成最终展示值，因此即使 Strava 跑步为空，页面也会继续显示你的当前数据。
+
+> 注意：**骑行数据不使用 baseline**，完全以 Strava 为准。
 
 #### 5) 触发同步
 

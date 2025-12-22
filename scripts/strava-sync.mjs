@@ -127,7 +127,20 @@ async function stravaRefreshAccessToken() {
   }
   const json = await res.json();
   if (!json.access_token) throw new Error('Strava token refresh response missing access_token');
-  return json.access_token;
+  return { accessToken: json.access_token, athleteId: json.athlete?.id ?? null };
+}
+
+async function fetchAthleteStats({ accessToken, athleteId }) {
+  if (!athleteId) return null;
+  const url = `https://www.strava.com/api/v3/athletes/${athleteId}/stats`;
+  const res = await fetch(url, {
+    headers: { authorization: `Bearer ${accessToken}` },
+  });
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Strava athlete stats fetch failed: ${res.status} ${text}`);
+  }
+  return await res.json();
 }
 
 async function fetchActivities({ accessToken, afterEpoch }) {
@@ -157,6 +170,18 @@ async function fetchActivities({ accessToken, afterEpoch }) {
   return out;
 }
 
+async function fetchActivityDetail({ accessToken, activityId }) {
+  const url = `https://www.strava.com/api/v3/activities/${activityId}?include_all_efforts=false`;
+  const res = await fetch(url, {
+    headers: { authorization: `Bearer ${accessToken}` },
+  });
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Strava activity detail fetch failed: ${res.status} ${text}`);
+  }
+  return await res.json();
+}
+
 function minimizeActivity(a) {
   return {
     id: a.id,
@@ -169,23 +194,49 @@ function minimizeActivity(a) {
     elapsed_time_s: a.elapsed_time ?? null,
     total_elevation_gain_m: a.total_elevation_gain ?? null,
     calories_kcal: a.calories ?? null,
+    kilojoules_kj: a.kilojoules ?? null,
+    average_speed_mps: a.average_speed ?? null,
+    max_speed_mps: a.max_speed ?? null,
+    average_temp_c: a.average_temp ?? null,
+    average_watts: a.average_watts ?? null,
+    has_heartrate: a.has_heartrate ?? null,
+    average_heartrate: a.average_heartrate ?? null,
+    max_heartrate: a.max_heartrate ?? null,
+    device_name: a.device_name ?? null,
+    trainer: a.trainer ?? null,
+    commute: a.commute ?? null,
   };
 }
 
-function computeSportsStats({ baseline, activities }) {
+function computeSportsStats({ baseline, activities, athleteStats }) {
   const runs = activities.filter(isRun);
   const rides = activities.filter(isRide);
 
   const sum = (arr, pick) => arr.reduce((acc, x) => acc + (Number(pick(x)) || 0), 0);
 
-  // --- running totals (baseline + strava)
-  const runDistanceKm = (baseline.running?.totalDistanceKm || 0) + sum(runs, (a) => a.distance_m) / 1000;
+  // --- totals
+  // 总计优先用 athlete stats（与活动列表是不同 API，且更“官方总计”）
+  const statsAllRun = athleteStats?.all_run_totals ?? null;
+  const statsAllRide = athleteStats?.all_ride_totals ?? null;
 
-  // --- cycling totals (baseline + strava)
-  const rideDistanceKm = (baseline.cycling?.totalDistanceKm || 0) + sum(rides, (a) => a.distance_m) / 1000;
-  const rideTimeH = (baseline.cycling?.totalMovingTimeHours || 0) + sum(rides, (a) => a.moving_time_s) / 3600;
-  const rideCount = (baseline.cycling?.totalCount || 0) + rides.length;
-  const rideCalories = (baseline.cycling?.totalCaloriesKcal || 0) + sum(rides, (a) => a.calories_kcal);
+  // 跑步：仍然需要加上 baseline（你已有历史跑量/PR）
+  const runDistanceKm =
+    (baseline.running?.totalDistanceKm || 0) +
+    (statsAllRun?.distance != null ? Number(statsAllRun.distance) / 1000 : sum(runs, (a) => a.distance_m) / 1000);
+
+  // 骑行：完全依赖 Strava（不加 baseline）
+  const rideDistanceKm =
+    statsAllRide?.distance != null ? Number(statsAllRide.distance) / 1000 : sum(rides, (a) => a.distance_m) / 1000;
+  const rideTimeH =
+    statsAllRide?.moving_time != null ? Number(statsAllRide.moving_time) / 3600 : sum(rides, (a) => a.moving_time_s) / 3600;
+  const rideCount = statsAllRide?.count != null ? Number(statsAllRide.count) : rides.length;
+
+  // 热量：athlete stats 里没有 calories；尽可能从 Strava 活动数据获得（calories 优先，其次用 kJ 换算）
+  const rideCalories = sum(rides, (a) => {
+    if (a.calories_kcal != null) return a.calories_kcal;
+    if (a.kilojoules_kj != null) return Number(a.kilojoules_kj) * 0.239006;
+    return 0;
+  });
 
   // --- running PR: farthest (baseline vs strava)
   const baselineFarthest = baseline.running?.best?.farthest;
@@ -256,6 +307,33 @@ function computeSportsStats({ baseline, activities }) {
 
   const cyclingAvgKmPerRide = rideCount > 0 ? rideDistanceKm / rideCount : 0;
 
+  const monthKey = (dateLike) => {
+    const d = new Date(dateLike);
+    const y = d.getFullYear();
+    const m = pad2(d.getMonth() + 1);
+    return `${y}-${m}`;
+  };
+
+  const groupMonthly = (arr) => {
+    const m = new Map();
+    for (const a of arr) {
+      const key = monthKey(a.start_date_local || a.start_date);
+      const prev = m.get(key) || { month: key, distanceKm: 0, count: 0, movingTimeHours: 0 };
+      prev.distanceKm += (Number(a.distance_m) || 0) / 1000;
+      prev.movingTimeHours += (Number(a.moving_time_s) || 0) / 3600;
+      prev.count += 1;
+      m.set(key, prev);
+    }
+    const out = Array.from(m.values());
+    out.sort((a, b) => (a.month < b.month ? 1 : -1));
+    return out.map((x) => ({
+      month: x.month,
+      distanceKm: toFixedTrim(x.distanceKm, 2),
+      count: x.count,
+      movingTimeHours: toFixedTrim(x.movingTimeHours, 2),
+    }));
+  };
+
   return {
     generatedAt: new Date().toISOString(),
     running: {
@@ -285,6 +363,7 @@ function computeSportsStats({ baseline, activities }) {
           subtext: best10kSub,
         },
       },
+      monthly: groupMonthly(runs),
     },
     cycling: {
       cards: {
@@ -313,6 +392,7 @@ function computeSportsStats({ baseline, activities }) {
           subtext: 'Burn it up!',
         },
       },
+      monthly: groupMonthly(rides),
     },
   };
 }
@@ -328,7 +408,8 @@ async function main() {
       ? afterEpochFromState
       : Number(process.env.STRAVA_INITIAL_AFTER_EPOCH || 0) || 0;
 
-  const accessToken = await stravaRefreshAccessToken();
+  const { accessToken, athleteId } = await stravaRefreshAccessToken();
+  const athleteStats = await fetchAthleteStats({ accessToken, athleteId });
   const fresh = await fetchActivities({ accessToken, afterEpoch });
 
   const map = new Map();
@@ -342,12 +423,31 @@ async function main() {
     return db - da;
   });
 
+  // 尽可能补齐热量：对缺少 calories/kJ 的活动，按需拉活动详情（有上限，避免过多请求）
+  const detailMax = Number(process.env.STRAVA_DETAIL_MAX || 30);
+  let detailFetched = 0;
+  if (detailMax > 0) {
+    for (const a of merged) {
+      if (detailFetched >= detailMax) break;
+      if (!a?.id) continue;
+      if (a.calories_kcal != null || a.kilojoules_kj != null) continue;
+      try {
+        const d = await fetchActivityDetail({ accessToken, activityId: a.id });
+        const patch = minimizeActivity(d);
+        Object.assign(a, patch);
+        detailFetched += 1;
+      } catch {
+        // 忽略单条失败，避免整次同步失败
+      }
+    }
+  }
+
   // next sync point: newest activity time - 60s (避免边界漏数据)
   const newest = merged[0];
   const newestEpoch = newest?.start_date ? Math.floor(new Date(newest.start_date).getTime() / 1000) : 0;
   const nextAfterEpoch = newestEpoch > 0 ? Math.max(0, newestEpoch - 60) : afterEpochFromState;
 
-  const stats = computeSportsStats({ baseline, activities: merged });
+  const stats = computeSportsStats({ baseline, activities: merged, athleteStats });
 
   await writeJson(PATHS.activities, merged);
   await writeJson(PATHS.state, { lastSyncEpoch: nextAfterEpoch, updatedAt: new Date().toISOString() });
@@ -360,6 +460,9 @@ async function main() {
         fetched: fresh.length,
         cached_before: cachedActivities.length,
         cached_after: merged.length,
+        detailFetched,
+        athleteId,
+        hasAthleteStats: !!athleteStats,
         nextAfterEpoch,
         generatedAt: stats.generatedAt,
       },
