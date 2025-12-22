@@ -205,6 +205,8 @@ function minimizeActivity(a) {
     device_name: a.device_name ?? null,
     trainer: a.trainer ?? null,
     commute: a.commute ?? null,
+    // internal: avoid re-fetching details for the same activity over and over
+    detail_attempted: a.detail_attempted ?? false,
   };
 }
 
@@ -411,6 +413,7 @@ async function main() {
   const { accessToken, athleteId } = await stravaRefreshAccessToken();
   const athleteStats = await fetchAthleteStats({ accessToken, athleteId });
   const fresh = await fetchActivities({ accessToken, afterEpoch });
+  const freshIds = new Set(fresh.map((a) => a?.id).filter(Boolean));
 
   const map = new Map();
   for (const a of cachedActivities) map.set(a.id, a);
@@ -430,7 +433,13 @@ async function main() {
     for (const a of merged) {
       if (detailFetched >= detailMax) break;
       if (!a?.id) continue;
-      if (a.calories_kcal != null || a.kilojoules_kj != null) continue;
+      // 只对“本次新增/更新的活动”尝试拉详情，减少重复请求
+      if (!freshIds.has(a.id)) continue;
+      if (a.detail_attempted) continue;
+      if (a.calories_kcal != null || a.kilojoules_kj != null) {
+        a.detail_attempted = true;
+        continue;
+      }
       try {
         const d = await fetchActivityDetail({ accessToken, activityId: a.id });
         const patch = minimizeActivity(d);
@@ -438,6 +447,8 @@ async function main() {
         detailFetched += 1;
       } catch {
         // 忽略单条失败，避免整次同步失败
+      } finally {
+        a.detail_attempted = true;
       }
     }
   }
