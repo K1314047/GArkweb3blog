@@ -7,27 +7,195 @@ const { title } = Astro.props;
 <Base title={title} description={title}>
 	<p></p>
 	<h2>–</h2>
-	<h3 class="about-title">{title}</h3>
+	<h1 class="about-title">{title}</h1>
 	<div class='post-content content about-page'>
-		<div class="about-content">
-			<slot />
-		</div>
+		<slot />
 	</div>
 
 	<style>
-		/* 页面主标题不要太靠下 */
 		.about-title {
 			font-size: 1.17em;
 			font-weight: bold;
 			margin-top: 0.2rem;
-			margin-bottom: 0.8rem;
+			margin-bottom: 0.5rem;
 		}
 
-		/* 正文内子标题：仅保留间距，不要下划线 */
-		.about-content :global(h3) {
-			margin-top: 1.4rem;
-			margin-bottom: 0.7rem;
+		.about-page :global(h3) {
+			margin-top: 1.8rem;
+			margin-bottom: 0.6rem;
+		}
+
+		/* 爱好标签 */
+		.about-page :global(.hobby-list) {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.5rem;
+			margin: 1rem 0;
+		}
+
+		.about-page :global(.hobby) {
+			display: inline-block;
+			padding: 0.4rem 0.85rem;
+			font-size: 0.88rem;
+			border-radius: 20px;
+			background: var(--code-background-color);
+			border: 1px solid rgba(0, 0, 0, 0.08);
+			transition: all 0.2s ease;
+		}
+
+		.about-page :global(.hobby:hover) {
+			border-color: rgba(0, 0, 0, 0.2);
+		}
+
+		.about-page :global(.hobby.inactive) {
+			text-decoration: line-through;
+			opacity: 0.45;
+		}
+
+		:global([data-theme='dark']) .about-page :global(.hobby) {
+			border-color: rgba(255, 255, 255, 0.12);
+		}
+
+		:global([data-theme='dark']) .about-page :global(.hobby:hover) {
+			border-color: rgba(255, 255, 255, 0.3);
+		}
+
+		/* 更多链接 */
+		.about-page :global(.more-links) {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			gap: 0.4rem;
+			margin: 0.5rem 0;
+		}
+
+		.about-page :global(.more-links a) {
+			font-size: 0.95rem;
+			color: var(--text-color);
+			text-decoration: none !important;
+			border-bottom: 1px solid transparent;
+			transition: border-color 0.15s;
+		}
+
+		.about-page :global(.more-links a:hover) {
+			border-bottom-color: var(--text-color);
+		}
+
+		.about-page :global(.more-links .sep) {
+			color: var(--gray-color);
+			font-size: 0.85rem;
+			user-select: none;
+		}
+
+		/* 联系方式列表 */
+		.about-page :global(.contact-list) {
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+			margin: 0.5rem 0;
+		}
+
+		.about-page :global(.contact-item) {
+			display: flex;
+			align-items: baseline;
+		}
+
+		.about-page :global(.contact-label) {
+			width: 70px;
+			flex-shrink: 0;
+			font-size: 0.85rem;
+			color: var(--gray-color);
+		}
+
+		.about-page :global(.contact-item a) {
+			font-size: 0.95rem;
+			color: var(--text-color);
+			text-decoration: none;
+			border-bottom: 1px dashed transparent;
+			transition: border-color 0.2s;
+		}
+
+		.about-page :global(.contact-item a:hover) {
+			border-bottom-color: var(--gray-color);
+		}
+
+		/* 历史折叠 */
+		.about-page :global(.history-fold) {
+			margin: 0.8rem 0;
+			background: var(--code-background-color);
+			border: 1px solid rgba(0, 0, 0, 0.06);
+			border-radius: 8px;
+			overflow: hidden;
+		}
+
+		:global([data-theme='dark']) .about-page :global(.history-fold) {
+			border-color: rgba(255, 255, 255, 0.1);
+		}
+
+		.about-page :global(.history-fold summary) {
+			padding: 0.75rem 1rem;
+			cursor: pointer;
+			font-size: 0.95rem;
+			list-style: none;
+			transition: background 0.2s;
+		}
+
+		.about-page :global(.history-fold summary:hover) {
+			background: rgba(0, 0, 0, 0.02);
+		}
+
+		:global([data-theme='dark']) .about-page :global(.history-fold summary:hover) {
+			background: rgba(255, 255, 255, 0.03);
+		}
+
+		.about-page :global(.history-fold summary::-webkit-details-marker) {
+			display: none;
+		}
+
+		.about-page :global(.history-fold summary::before) {
+			content: '▸ ';
+			font-size: 0.8em;
+			color: var(--gray-color);
+		}
+
+		.about-page :global(.history-fold[open] summary::before) {
+			content: '▾ ';
+		}
+
+		.about-page :global(.history-fold[open] summary) {
+			border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+		}
+
+		:global([data-theme='dark']) .about-page :global(.history-fold[open] summary) {
+			border-bottom-color: rgba(255, 255, 255, 0.08);
+		}
+
+		.about-page :global(.history-fold > p) {
+			padding: 0 1rem;
+			margin: 0.7rem 0;
+			font-size: 0.9rem;
+			line-height: 1.75;
+			color: var(--text-color);
+		}
+
+		.about-page :global(.history-tags) {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.4rem;
+			padding: 0 1rem 0.9rem;
+		}
+
+		.about-page :global(.history-tags span) {
+			display: inline-block;
+			padding: 0.25rem 0.6rem;
+			background: rgba(0, 0, 0, 0.04);
+			border-radius: 4px;
+			font-size: 0.8rem;
+			color: var(--gray-color);
+		}
+
+		:global([data-theme='dark']) .about-page :global(.history-tags span) {
+			background: rgba(255, 255, 255, 0.06);
 		}
 	</style>
 </Base>
-
