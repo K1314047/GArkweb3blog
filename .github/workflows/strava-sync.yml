@@ -122,8 +122,8 @@ jobs:
         run: |
           set -euo pipefail
           python -m pip install --upgrade pip
-          # Install GitHubPoster from upstream repo
-          python -m pip install "git+https://github.com/yihong0618/GitHubPoster@main"
+          # Install GitHubPoster with Strava extra dependencies
+          python -m pip install -U "github_poster[strava]"
 
           # Generate poster (year range is best-effort; GitHubPoster will decide output layout)
           python -m github_poster strava \
