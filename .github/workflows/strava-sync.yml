@@ -27,11 +27,6 @@ jobs:
           node-version: "20"
           cache: npm
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
       - name: Install dependencies
         run: npm ci
 
@@ -112,35 +107,9 @@ jobs:
             echo "generate_poster=false" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Generate Strava poster (GitHubPoster)
+      - name: Generate Strava poster
         if: steps.poster_plan.outputs.generate_poster == 'true'
-        env:
-          STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}
-          STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}
-          STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          python -m pip install --upgrade pip
-          # Install GitHubPoster with Strava extra dependencies
-          python -m pip install -U "github_poster[strava]"
-
-          # Generate poster (year range is best-effort; GitHubPoster will decide output layout)
-          python -m github_poster strava \
-            --strava_client_id "$STRAVA_CLIENT_ID" \
-            --strava_client_secret "$STRAVA_CLIENT_SECRET" \
-            --strava_refresh_token "$STRAVA_REFRESH_TOKEN" \
-            --year "$(date +%Y)" \
-            --me "Lynk"
-
-          # Copy newest svg from OUT_FOLDER to our site public path
-          mkdir -p public
-          newest_svg="$(ls -1t OUT_FOLDER/*.svg 2>/dev/null | head -n 1 || true)"
-          if [[ -z "${newest_svg}" ]]; then
-            echo "No SVG generated in OUT_FOLDER/*.svg"
-            exit 1
-          fi
-          cp -f "${newest_svg}" public/strava-poster.svg
+        run: node scripts/generate-poster.mjs
 
       - name: Commit changes (if any)
         id: commit
