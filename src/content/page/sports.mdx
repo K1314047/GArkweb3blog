@@ -12,24 +12,30 @@ import sportsStats from '../../data/sports-stats.json';
 
 <SportsStyles />
 
-<div class="poster-wrap" aria-label="Strava Poster">
-  <img
-    class="poster-img"
-    src="/strava-poster.svg"
-    alt="Strava Poster"
-    loading="lazy"
-    decoding="async"
-  />
-</div>
-
-<div class="strava-banner">
-  <div class="strava-content">
-    <div class="strava-title">Follow on Strava</div>
-    <div class="strava-desc">查看详细训练日志、路线图与活动动态</div>
+<div class="strava-card">
+  <div class="poster-wrap" aria-label="Strava Poster">
+    <img
+      class="poster-img"
+      src="/strava-poster.svg"
+      alt="Strava Poster"
+      loading="lazy"
+      decoding="async"
+    />
   </div>
-  <a href="https://www.strava.com/athletes/134343081" target="_blank" class="strava-btn">
-    我的主页 <span class="arrow">→</span>
-  </a>
+  <div class="strava-footer">
+    <div class="strava-content">
+      <div class="strava-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"></path></svg>
+      </div>
+      <div class="strava-text">
+        <div class="strava-title">Follow on Strava</div>
+        <div class="strava-desc">查看详细训练日志、路线图与活动动态</div>
+      </div>
+    </div>
+    <a href="https://www.strava.com/athletes/134343081" target="_blank" class="strava-btn">
+      我的主页 <span class="arrow">→</span>
+    </a>
+  </div>
 </div>
 
 <Tabs>

@@ -130,7 +130,8 @@ jobs:
             --strava_client_id "$STRAVA_CLIENT_ID" \
             --strava_client_secret "$STRAVA_CLIENT_SECRET" \
             --strava_refresh_token "$STRAVA_REFRESH_TOKEN" \
-            --year "2020-2025"
+            --year "$(date +%Y)" \
+            --me "Lynk"
 
           # Copy newest svg from OUT_FOLDER to our site public path
           mkdir -p public
