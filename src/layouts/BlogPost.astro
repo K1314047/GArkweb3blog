@@ -2,10 +2,8 @@
 import type { CollectionEntry } from 'astro:content';
 import Base from './Base.astro';
 import FormattedDate from '../components/FormattedDate.astro';
-import Comments from '../components/Comments.astro';
 import Toc from '../components/Toc.astro';
 import NavButton from '../components/NavButton.astro';
-import Sponsor from '../components/Sponsor.astro';
 
 type Props = CollectionEntry<'blog'>['data'] & {
 	postId?: string;
@@ -34,6 +32,29 @@ const {
 	<link rel='stylesheet' href='/lightgallery/css/lightgallery.min.css' slot='head' />
 
 	<style is:global>
+		/* 文章结束标识 */
+		.post-end {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 0.8rem;
+			margin: 3rem 0 2rem;
+			padding: 1.5rem 0;
+			color: var(--gray-color);
+			font-size: 0.85rem;
+			letter-spacing: 0.15em;
+		}
+
+		.post-end__symbol {
+			font-size: 0.5rem;
+			opacity: 0.6;
+		}
+
+		.post-end__text {
+			font-family: "Source Serif 4", serif;
+			font-weight: 500;
+		}
+
 		/* 代码块复制按钮样式 */
 		.copy-code-button {
 			position: absolute;
@@ -122,12 +143,15 @@ const {
 			<slot />
 		</div>
 
-		<Sponsor />
+		<!-- 文章结束标识 -->
+		<div class='post-end'>
+			<span class='post-end__symbol'>◆</span>
+			<span class='post-end__text'>END</span>
+			<span class='post-end__symbol'>◆</span>
+		</div>
 
 		<!-- 导航按钮 -->
 		<NavButton showBackToTop={true} />
-
-		<Comments showLinuxDo={false} />
 	</div>
 
 	<!-- LightGallery JS (本地) -->
