@@ -60,31 +60,43 @@ const { title } = Astro.props;
 			border-color: rgba(255, 255, 255, 0.3);
 		}
 
-		/* 更多链接 */
-		.about-page :global(.more-links) {
+		/* 更多导航 */
+		.about-page :global(.more-nav) {
 			display: flex;
 			flex-wrap: wrap;
 			align-items: center;
-			gap: 0.4rem;
+			gap: 0.15rem;
 			margin: 0.5rem 0;
 		}
 
-		.about-page :global(.more-links a) {
+		.about-page :global(.more-nav a) {
 			font-size: 0.95rem;
-			color: var(--text-color);
-			text-decoration: none !important;
-			border-bottom: 1px solid transparent;
-			transition: border-color 0.15s;
+			color: var(--text-color) !important;
+			text-decoration: underline !important;
+			text-underline-offset: 3px;
+			text-decoration-color: rgba(0, 0, 0, 0.2) !important;
+			border-bottom: none !important;
+			transition: text-decoration-color 0.15s;
 		}
 
-		.about-page :global(.more-links a:hover) {
-			border-bottom-color: var(--text-color);
+		.about-page :global(.more-nav a:hover) {
+			text-decoration-color: var(--text-color) !important;
+			border-bottom: none !important;
 		}
 
-		.about-page :global(.more-links .sep) {
+		.about-page :global(.more-nav .sep) {
 			color: var(--gray-color);
 			font-size: 0.85rem;
+			padding: 0 0.35rem;
 			user-select: none;
+		}
+
+		:global([data-theme='dark']) .about-page :global(.more-nav a) {
+			text-decoration-color: rgba(255, 255, 255, 0.25) !important;
+		}
+
+		:global([data-theme='dark']) .about-page :global(.more-nav a:hover) {
+			text-decoration-color: var(--text-color) !important;
 		}
 
 		/* 联系方式列表 */
@@ -122,9 +134,9 @@ const { title } = Astro.props;
 		/* 历史折叠 */
 		.about-page :global(.history-fold) {
 			margin: 0.8rem 0;
-			background: var(--code-background-color);
-			border: 1px solid rgba(0, 0, 0, 0.06);
-			border-radius: 8px;
+			background: transparent;
+			border: 1px solid rgba(0, 0, 0, 0.08);
+			border-radius: 6px;
 			overflow: hidden;
 		}
 
