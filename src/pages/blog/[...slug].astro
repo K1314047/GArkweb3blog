@@ -17,8 +17,13 @@ const { Content } = await render(post);
 
 // 从 frontmatter 中读取 TOC 配置
 const { showTOC, tocMinLevel, tocMaxLevel } = post.data as any;
+
+// 计算阅读时间（假设中文阅读速度约 300 字/分钟）
+const content = post.body || '';
+const wordCount = content.length;
+const readingTime = Math.max(1, Math.ceil(wordCount / 300));
 ---
 
-<BlogPost {...post.data} postId={post.id} showTOC={showTOC} tocMinLevel={tocMinLevel} tocMaxLevel={tocMaxLevel}>
+<BlogPost {...post.data} postId={post.id} showTOC={showTOC} tocMinLevel={tocMinLevel} tocMaxLevel={tocMaxLevel} readingTime={readingTime}>
 	<Content />
 </BlogPost>

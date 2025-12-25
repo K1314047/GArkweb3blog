@@ -10,6 +10,7 @@ type Props = CollectionEntry<'blog'>['data'] & {
 	showTOC?: boolean; // 是否显示目录，默认 true
 	tocMinLevel?: number; // 目录最小层级，默认 2 (h2)
 	tocMaxLevel?: number; // 目录最大层级，默认 3 (h3)
+	readingTime?: number; // 阅读时间（分钟）
 };
 
 const {
@@ -24,6 +25,7 @@ const {
 	showTOC = true,
 	tocMinLevel = 2,
 	tocMaxLevel = 3,
+	readingTime,
 } = Astro.props;
 ---
 
@@ -89,6 +91,27 @@ const {
 		pre {
 			position: relative;
 		}
+
+		/* 代码块语言标签 */
+		.code-lang-label {
+			position: absolute;
+			top: 0;
+			left: 0;
+			padding: 0.2rem 0.5rem;
+			font-size: 0.7rem;
+			font-family: consolas, Menlo, monospace;
+			color: #999;
+			background: rgba(0, 0, 0, 0.03);
+			border-bottom-right-radius: 4px;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+			user-select: none;
+		}
+
+		:root[data-theme="dark"] .code-lang-label {
+			background: rgba(255, 255, 255, 0.05);
+			color: #888;
+		}
 	</style>
 
 	<p></p>
@@ -98,6 +121,9 @@ const {
 		<div class="post-meta__row">
 			<span class="post-meta__label">发布于</span>
 			<span class="post-meta__value"><FormattedDate date={pubDate} /></span>
+			{readingTime && (
+				<span class="post-meta__reading-time">· 约 {readingTime} 分钟</span>
+			)}
 		</div>
 
 		{categories && categories.length > 0 && (
@@ -238,12 +264,27 @@ const {
 	</script>
 
 	<script is:inline>
-		// 添加复制按钮到代码块
+		// 添加复制按钮和语言标签到代码块
 		function addCopyButtons() {
 			const codeBlocks = document.querySelectorAll('pre:not(.code-block-added)');
 			codeBlocks.forEach((block) => {
 				// 标记已处理的代码块，避免重复添加
 				block.classList.add('code-block-added');
+
+				// 获取代码语言
+				const code = block.querySelector('code');
+				if (code) {
+					const classList = code.className.split(' ');
+					const langClass = classList.find(c => c.startsWith('language-'));
+					if (langClass) {
+						const lang = langClass.replace('language-', '');
+						// 创建语言标签
+						const langLabel = document.createElement('span');
+						langLabel.className = 'code-lang-label';
+						langLabel.textContent = lang;
+						block.appendChild(langLabel);
+					}
+				}
 
 				// 创建复制按钮
 				const button = document.createElement('button');

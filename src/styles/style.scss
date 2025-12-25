@@ -156,6 +156,12 @@ body {
   gap: 0.4rem 0.45rem;
 }
 
+.post-meta__reading-time {
+  color: var(--gray-color);
+  font-size: 0.9em;
+  margin-left: 0.3rem;
+}
+
 /* Re-style tag/category links inside post meta as pills (without affecting other places) */
 .post-meta .tag {
   display: inline-flex;
