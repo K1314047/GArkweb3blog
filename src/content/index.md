@@ -1,1 +1,1 @@
-Stay hungry, stay foolish.
+Do the right thing, do things right.
