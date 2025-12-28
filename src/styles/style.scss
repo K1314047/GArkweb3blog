@@ -520,11 +520,20 @@ time,
 }
 
 blockquote {
-  margin: auto;
-  border-left: 1px solid #999;
-  color: var(--code-color);
-  padding-left: 20px;
-  font-style: normal
+  margin: 1.5em 0;
+  border-left: 3px solid var(--gray-color);
+  background-color: rgba(127, 127, 127, 0.03);
+  color: var(--text-color);
+  padding: 0.6em 1.2em;
+  border-radius: 0;
+  font-style: normal;
+
+  > :first-child {
+    margin-top: 0;
+  }
+  > :last-child {
+    margin-bottom: 0;
+  }
 }
 
 header,
@@ -561,8 +570,8 @@ ul.posts li {
 
 ul.posts li span {
   flex: 0 0 115px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 0.85em;
+  /* font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; */
+  font-size: 0.95em;
   color: var(--gray-color);
   opacity: 0.8;
 }
