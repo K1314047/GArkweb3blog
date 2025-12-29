@@ -3,10 +3,9 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import { SITE_DESCRIPTION } from '../../consts';
+import { INCLUDE_DRAFTS, filterDrafts } from '../../utils/drafts';
 
-const posts = (await getCollection('blog'))
-	.filter((post) => !post.data.draft)
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = filterDrafts(await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 // 按年份分组文章
 const postsByYear: Record<number, typeof posts> = {};
@@ -42,6 +41,7 @@ const years = Object.keys(postsByYear)
 									<a href={`/blog/${post.id}.html`} transition:name={`post-title-${post.id}`}>
 										{post.data.title}
 									</a>
+									{INCLUDE_DRAFTS && post.data.draft && <span class="draft-badge" aria-label="草稿">草稿</span>}
 								</div>
 							</li>
 						))}

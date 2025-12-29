@@ -1,8 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
+import { filterDrafts } from '../utils/drafts';
 
 // 获取所有博客文章用于搜索
-const allPosts = (await getCollection('blog')).filter((post) => !post.data.draft);
+const allPosts = filterDrafts(await getCollection('blog'));
 const posts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 // 创建搜索索引数据
@@ -13,6 +14,7 @@ const searchData = posts.map((post) => ({
 	pubDate: post.data.pubDate.toISOString(),
 	tags: post.data.tags || [],
 	categories: post.data.categories || [],
+	draft: Boolean(post.data.draft),
 }));
 ---
 
@@ -130,10 +132,13 @@ const searchData = posts.map((post) => ({
 								'</div>';
 						}
 
+						var draftHtml = post.draft ? '<span class="draft-badge" aria-label="草稿">草稿</span>' : '';
+
 						return '<div class="result-item">' +
 							'<div class="result-header">' +
 								'<h3 class="result-title">' +
 									'<a href="/blog/' + post.id + '.html">' + highlightText(post.title) + '</a>' +
+									draftHtml +
 								'</h3>' +
 								'<span class="result-date">' + formattedDate + '</span>' +
 							'</div>' +

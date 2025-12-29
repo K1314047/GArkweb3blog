@@ -1,9 +1,10 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
+import { filterDrafts } from '../../utils/drafts';
 
 export async function getStaticPaths() {
-	const posts = (await getCollection('blog')).filter((post) => !post.data.draft);
+	const posts = filterDrafts(await getCollection('blog'));
 	return posts.map((post) => ({
 		// 添加 .html 后缀，使博客文章以 .html 结尾
 		params: { slug: `${post.id}.html` },

@@ -2,9 +2,10 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
+import { INCLUDE_DRAFTS, filterDrafts } from '../../utils/drafts';
 
 export async function getStaticPaths() {
-	const allPosts = (await getCollection('blog')).filter((post) => !post.data.draft);
+	const allPosts = filterDrafts(await getCollection('blog'));
 	const tags = new Set();
 
 	// 收集所有标签
@@ -45,6 +46,7 @@ const { posts, tag } = Astro.props;
 						<a href={`/blog/${post.id}.html`} transition:name={`post-title-${post.id}`}>
 							{post.data.title}
 						</a>
+						{INCLUDE_DRAFTS && post.data.draft && <span class="draft-badge" aria-label="草稿">草稿</span>}
 					</div>
 				</li>
 			))

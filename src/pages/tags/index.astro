@@ -2,7 +2,9 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 
-const allPosts = (await getCollection('blog')).filter((post) => !post.data.draft);
+import { filterDrafts } from '../../utils/drafts';
+
+const allPosts = filterDrafts(await getCollection('blog'));
 const tagsMap = new Map();
 
 // 统计每个标签的文章数量

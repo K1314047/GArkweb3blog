@@ -4,12 +4,13 @@ import Base from '../layouts/Base.astro';
 import HeaderLink from '../components/HeaderLink.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { INCLUDE_DRAFTS, filterDrafts } from '../utils/drafts';
 
 // 导入 index.md 文件
 import IndexContent from '../content/index.md';
 
 // 获取最新的博客文章（显示前8篇）
-const allPosts = (await getCollection('blog')).filter((post) => !post.data.draft);
+const allPosts = filterDrafts(await getCollection('blog'));
 const recentPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0, 8);
 
 // 统计标签（同 tags 页风格）
@@ -42,6 +43,7 @@ const sortedTags = Array.from(tagsMap.entries()).sort((a, b) => b[1] - a[1]);
 						<a href={`/blog/${post.id}.html`} transition:name={`post-title-${post.id}`}>
 							{post.data.title}
 						</a>
+						{INCLUDE_DRAFTS && post.data.draft && <span class="draft-badge" aria-label="草稿">草稿</span>}
 					</div>
 				</li>
 			))

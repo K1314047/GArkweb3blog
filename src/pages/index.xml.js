@@ -1,9 +1,10 @@
 import { getCollection } from 'astro:content';
 import rss from '@astrojs/rss';
 import { SITE_DESCRIPTION, SITE_TITLE, SITE_AUTHOR } from '../consts';
+import { filterDrafts } from '../utils/drafts';
 
 export async function GET(context) {
-	const posts = (await getCollection('blog')).filter((post) => !post.data.draft);
+	const posts = filterDrafts(await getCollection('blog'));
 	posts.sort((a, b) => b.data.pubDate - a.data.pubDate);
 
 	return rss({

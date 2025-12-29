@@ -180,6 +180,39 @@ body {
   border-bottom-color: rgba(0, 0, 0, 0.28);
 }
 
+/* Draft badge（仅 dev 环境会渲染 DOM，但样式全局可用） */
+.draft-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.05rem 0.38rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  background: rgba(0, 0, 0, 0.04);
+  color: rgba(0, 0, 0, 0.60);
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.10em;
+  margin-left: 0.45rem;
+  user-select: none;
+  line-height: 1;
+  vertical-align: middle;
+  transform: translateY(-0.06em);
+}
+
+:root[data-theme="dark"] .draft-badge {
+  border-color: rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.10);
+  color: rgba(255, 255, 255, 0.82);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .draft-badge {
+    border-color: rgba(255, 255, 255, 0.24);
+    background: rgba(255, 255, 255, 0.10);
+    color: rgba(255, 255, 255, 0.82);
+  }
+}
+
 :root[data-theme="dark"] .post-meta .tag {
   border-color: transparent;
   background: transparent;
@@ -198,17 +231,6 @@ body {
   }
   :root:not([data-theme]) .post-meta .tag:hover {
     border-bottom-color: rgba(255, 255, 255, 0.36);
-  }
-}
-
-:root[data-theme="dark"] body {
-  /* 深色背景下隐藏浅色纹理，避免突兀 */
-  /* background-image: none; */
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) body {
-    /* background-image: none; */
   }
 }
 

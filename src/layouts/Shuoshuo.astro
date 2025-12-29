@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import { getCollection } from 'astro:content';
 import Base from './Base.astro';
 import { marked } from 'marked';
+import { INCLUDE_DRAFTS, filterDrafts } from '../utils/drafts';
 
 type Props = CollectionEntry<'page'>['data'] & {
 	content?: string;
@@ -10,9 +11,7 @@ type Props = CollectionEntry<'page'>['data'] & {
 
 const { title } = Astro.props;
 
-const gossips = (await getCollection('gossips'))
-	.filter((item) => !item.data.draft)
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const gossips = filterDrafts(await getCollection('gossips')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const pageSize = 10;
 const totalPages = gossips.length > 0 ? Math.ceil(gossips.length / pageSize) : 0;
@@ -49,6 +48,7 @@ function formatDate(date: Date): string {
 								<div class='meta'>
 									<span class='date'>{formatDate(gossip.data.pubDate)}</span>
 									{gossip.data.tag && <span class='tag'>#{gossip.data.tag}</span>}
+									{INCLUDE_DRAFTS && gossip.data.draft && <span class="draft-badge" aria-label="草稿">草稿</span>}
 								</div>
 								<div class='body' set:html={marked.parse(gossip.body || '')} />
 							</li>
