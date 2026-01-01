@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2025-12-27T03:19:47.494Z",
+  "generatedAt": "2026-01-01T06:36:24.491Z",
   "running": {
     "cards": {
       "totalDistance": {
         "label": "总跑量(2025.06起)",
-        "value": "401.42",
+        "value": "409.47",
         "unit": "km",
         "subtext": "~6'05''/km"
       },
@@ -28,6 +28,12 @@
       }
     },
     "monthly": [
+      {
+        "month": "2026-01",
+        "distanceKm": "8.05",
+        "count": 1,
+        "movingTimeHours": "0.79"
+      },
       {
         "month": "2025-12",
         "distanceKm": "25.1",
