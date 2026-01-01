@@ -10,6 +10,8 @@
   --code-color: #222;
   --blockquote-color: #222;
   --gray-color: #999;
+  --selection-bg: #eceadf;
+  --selection-color: #111;
   color-scheme: light;
 }
 
@@ -24,6 +26,8 @@
     --code-color: #ddd;
     --blockquote-color: #ccc;
     --gray-color: #999;
+    --selection-bg: rgba(106, 176, 229, 0.85);
+    --selection-color: #111;
     color-scheme: dark;
   }
 }
@@ -38,6 +42,8 @@
   --code-color: #222;
   --blockquote-color: #222;
   --gray-color: #999;
+  --selection-bg: #eceadf;
+  --selection-color: #111;
   color-scheme: light;
 }
 
@@ -51,6 +57,8 @@
   --code-color: #ddd;
   --blockquote-color: #ccc;
   --gray-color: #999;
+  --selection-bg: rgba(106, 176, 229, 0.85);
+  --selection-color: #111;
   color-scheme: dark;
 }
 
@@ -310,7 +318,13 @@ body {
 }
 
 ::selection {
-  background-color: #eceadf;
+  background-color: var(--selection-bg);
+  color: var(--selection-color);
+}
+
+::-moz-selection {
+  background-color: var(--selection-bg);
+  color: var(--selection-color);
 }
 
 html {
