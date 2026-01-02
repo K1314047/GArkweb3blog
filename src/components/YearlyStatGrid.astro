@@ -71,6 +71,23 @@ const initialData =
   };
 
 const idPrefix = `stats-${type}`;
+
+// --- Detail View Logic ---
+const monthlyData = Array.isArray(stats.monthly) ? stats.monthly : [];
+
+// Group monthly data by year for easier rendering
+// Structure: { '2026': [...], '2025': [...], 'total': [...] }
+const monthlyGroups: Record<string, any[]> = {
+  total: monthlyData // Total always includes everything
+};
+
+// Initialize groups for all tabs
+tabs.forEach(year => {
+  monthlyGroups[year] = monthlyData.filter(m => m.month.startsWith(year));
+});
+
+// Helper to check if a year has any monthly data
+const hasMonthlyData = (year: string) => monthlyGroups[year] && monthlyGroups[year].length > 0;
 ---
 
 <div class="stats-switcher-container">
@@ -133,8 +150,66 @@ const idPrefix = `stats-${type}`;
   )}
 </StatGrid>
 
+<div class="detail-section" id={`${idPrefix}-detail-section`}>
+  {/* Header Title based on type */}
+  <h3>{type === 'running' ? '比赛记录' : (type === 'cycling' ? '月度汇总' : '详细数据')}</h3>
+  
+  {type === 'cycling' && <div class="section-desc">按月统计里程与频次，回顾骑行趋势。</div>}
+
+  {/* Render detail containers for each year + total */}
+  {[...tabs, 'total'].map(year => (
+    <div 
+      class={`detail-group ${year === initialKey ? 'active' : ''}`} 
+      data-year={year}
+    >
+      {type === 'running' ? (
+        // Running: Race Records (Placeholder for now as data structure is not yet ready)
+        <div class="empty-state">
+          {year === 'total' 
+            ? '暂无比赛记录（未来将在此更新马拉松赛事成绩）' 
+            : `${year} 年暂无比赛记录`}
+        </div>
+      ) : (
+        // Cycling: Monthly Table
+        hasMonthlyData(year) ? (
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th align="left">月份</th>
+                  <th align="left">距离 (km)</th>
+                  <th align="left">次数</th>
+                  <th align="left">时长 (h)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {monthlyGroups[year].map((row) => (
+                  <tr>
+                    <td>{row.month}</td>
+                    <td>{row.distanceKm}</td>
+                    <td>{row.count}</td>
+                    <td>{row.movingTimeHours}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div class="empty-state">
+            {year === 'total' 
+               ? '暂无月度数据' 
+               : `${year} 年暂无月度数据`}
+          </div>
+        )
+      )}
+    </div>
+  ))}
+</div>
+
 <script define:vars={{ dataMap, idPrefix }}>
   const container = document.getElementById(`${idPrefix}-switcher`);
+  const detailSection = document.getElementById(`${idPrefix}-detail-section`);
+
   if (container) {
     const btns = container.querySelectorAll('.switcher-btn');
     
@@ -149,7 +224,7 @@ const idPrefix = `stats-${type}`;
 
     btns.forEach(btn => {
       btn.addEventListener('click', () => {
-        // Toggle active class
+        // Toggle active class for buttons
         btns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
@@ -164,25 +239,70 @@ const idPrefix = `stats-${type}`;
         if (timeSub && data.timeSub) timeSub.textContent = data.timeSub;
         if (countVal && data.count !== undefined) countVal.textContent = data.count;
         if (countSub && data.countSub) countSub.textContent = data.countSub;
+
+        // Toggle active class for detail groups
+        if (detailSection) {
+          const groups = detailSection.querySelectorAll('.detail-group');
+          groups.forEach(g => {
+            if (g.getAttribute('data-year') === year) {
+              g.classList.add('active');
+            } else {
+              g.classList.remove('active');
+            }
+          });
+        }
       });
     });
   }
 </script>
 
 <style>
+  /* Local variables for theming with fallbacks */
   .stats-switcher-container {
     display: flex;
     justify-content: flex-start;
     margin-bottom: 1.5rem;
+    --switcher-bg: var(--code-background-color, #f2f2f2);
+    --switcher-border: rgba(0,0,0,0.06);
+    --btn-text: var(--gray-color, #999);
+    --btn-hover: var(--text-color, #333);
+    --btn-active-bg: var(--background-color, #fff);
+    --btn-active-text: var(--heading-color, #000);
+    --table-border: rgba(0,0,0,0.08);
+  }
+  
+  /* Dark mode overrides using global theme selectors */
+  :global([data-theme="dark"]) .stats-switcher-container,
+  :global([data-theme="dark"]) .detail-section {
+    --switcher-bg: var(--code-background-color, #000);
+    --switcher-border: rgba(255,255,255,0.12);
+    --btn-text: var(--gray-color, #999);
+    --btn-hover: var(--text-color, #ddd);
+    --btn-active-bg: var(--background-color, #111);
+    --btn-active-text: var(--heading-color, #eee);
+    --table-border: rgba(255,255,255,0.12);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme="light"])) .stats-switcher-container,
+    :global(:root:not([data-theme="light"])) .detail-section {
+      --switcher-bg: var(--code-background-color, #000);
+      --switcher-border: rgba(255,255,255,0.12);
+      --btn-text: var(--gray-color, #999);
+      --btn-hover: var(--text-color, #ddd);
+      --btn-active-bg: var(--background-color, #111);
+      --btn-active-text: var(--heading-color, #eee);
+      --table-border: rgba(255,255,255,0.12);
+    }
   }
   
   .stats-switcher {
     display: inline-flex;
-    background: var(--c-bg-soft); /* Assuming theme var exists */
+    background: var(--switcher-bg);
     padding: 4px;
     border-radius: 8px;
     gap: 4px;
-    border: 1px solid var(--c-border); /* Assuming theme var */
+    border: 1px solid var(--switcher-border);
   }
 
   .switcher-btn {
@@ -191,42 +311,77 @@ const idPrefix = `stats-${type}`;
     padding: 4px 12px;
     border-radius: 6px;
     font-size: 0.9rem;
-    color: var(--c-text-light); /* Assuming theme var */
+    color: var(--btn-text);
     cursor: pointer;
     transition: all 0.2s ease;
     font-family: inherit;
   }
 
   .switcher-btn:hover {
-    color: var(--c-text);
+    color: var(--btn-hover);
   }
 
   .switcher-btn.active {
-    background: var(--c-bg);
-    color: var(--c-brand); /* or var(--c-text) */
+    background: var(--btn-active-bg);
+    color: var(--btn-active-text);
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);
     font-weight: 500;
   }
   
-  /* Dark mode fallbacks / Theme vars approximation if specific vars don't exist */
-  :global(.dark) .stats-switcher {
-    background: #2a2a2a;
-    border-color: #444;
+  .detail-section {
+    margin-top: 2rem;
+  }
+
+  .section-desc {
+    margin-bottom: 1rem;
+    color: var(--gray-color);
+    font-size: 0.9em;
+    border-left: 3px solid var(--heading-color);
+    padding-left: 0.8rem;
+  }
+
+  /* Detail Groups Toggle Logic */
+  .detail-group {
+    display: none;
+    animation: fadeIn 0.3s ease-in-out;
   }
   
-  :global(html:not(.dark)) .stats-switcher {
-    background: #f1f1f1;
-    border-color: #e5e5e5;
+  .detail-group.active {
+    display: block;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
   }
   
-  :global(.dark) .switcher-btn.active {
-    background: #3a3a3a;
-    color: #fff;
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
   }
   
-  :global(html:not(.dark)) .switcher-btn.active {
-    background: #fff;
-    color: #000;
+  th, td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--table-border, rgba(0,0,0,0.08));
+    color: var(--text-color);
+  }
+  
+  th {
+    font-weight: 600;
+    color: var(--gray-color);
+  }
+
+  .empty-state {
+    padding: 2rem;
+    text-align: center;
+    background: var(--code-background-color);
+    border-radius: 8px;
+    color: var(--gray-color);
+    font-size: 0.9em;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 </style>
-

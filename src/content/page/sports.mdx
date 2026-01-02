@@ -33,12 +33,6 @@ import sportsStats from '../../data/sports-stats.json';
 
     <YearlyStatGrid type="running" stats={sportsStats.running} />
 
-    ### 比赛记录
-    
-    <div class="empty-state">
-      暂无比赛记录（未来将在此更新马拉松赛事成绩）
-    </div>
-
   </TabItem>
 
   <TabItem label="骑行">
@@ -46,37 +40,6 @@ import sportsStats from '../../data/sports-stats.json';
     ### 总计
     
     <YearlyStatGrid type="cycling" stats={sportsStats.cycling} />
-
-    ### 月度汇总
-    > 按月统计里程与频次，回顾骑行趋势。
-    
-    {(() => {
-      const cyclingMonthly = sportsStats?.cycling?.monthly ?? [];
-      return cyclingMonthly.length > 0 ? (
-        <table>
-          <thead>
-            <tr>
-              <th align="left">月份</th>
-              <th align="left">距离 (km)</th>
-              <th align="left">次数</th>
-              <th align="left">时长 (h)</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cyclingMonthly.map((row) => (
-              <tr>
-                <td>{row.month}</td>
-                <td>{row.distanceKm}</td>
-                <td>{row.count}</td>
-                <td>{row.movingTimeHours}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        <div class="empty-state">暂无骑行月度数据（等待首次同步 Strava）</div>
-      );
-    })()}
 
   </TabItem>
 </Tabs>
