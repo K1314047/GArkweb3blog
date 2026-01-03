@@ -376,6 +376,39 @@ pre code {
   text-shadow: none;
 }
 
+/* 优化正文中链接包含代码块的样式（用于延伸阅读/引用文章标题） */
+.post-content a code {
+  font-family: inherit; /* 使用正文字体 */
+  background: rgba(0, 0, 0, 0.04);
+  color: inherit;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  font-size: 0.95em;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.post-content a:hover code {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+:root[data-theme="dark"] .post-content a code {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="dark"] .post-content a:hover code {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .post-content a code {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  :root:not([data-theme]) .post-content a:hover code {
+    background: rgba(255, 255, 255, 0.15);
+  }
+}
+
 #back-to-top {
   cursor: pointer;
 }
@@ -549,7 +582,7 @@ nav {
 nav a {
   font-weight: 500;
   text-decoration: none;
-  color: var(--gray-color);
+  color: var(--link-color);
   transition: color 0.2s ease;
 }
 

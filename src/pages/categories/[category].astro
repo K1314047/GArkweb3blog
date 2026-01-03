@@ -5,7 +5,8 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import { INCLUDE_DRAFTS, filterDrafts } from '../../utils/drafts';
 
 export async function getStaticPaths() {
-	const allPosts = filterDrafts(await getCollection('blog'));
+	// 排除英文文章（en/ 前缀），英文分类页走 /en 侧
+	const allPosts = filterDrafts(await getCollection('blog')).filter((post) => !post.id.startsWith('en/'));
 	const categories = new Set<string>();
 
 	// 收集所有分类

@@ -4,7 +4,8 @@ import Base from '../../layouts/Base.astro';
 
 import { filterDrafts } from '../../utils/drafts';
 
-const allPosts = filterDrafts(await getCollection('blog'));
+// 排除英文文章（en/ 前缀），避免中英文标签混在一起
+const allPosts = filterDrafts(await getCollection('blog')).filter((post) => !post.id.startsWith('en/'));
 const tagsMap = new Map();
 
 // 统计每个标签的文章数量

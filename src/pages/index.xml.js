@@ -4,7 +4,8 @@ import { SITE_DESCRIPTION, SITE_TITLE, SITE_AUTHOR } from '../consts';
 import { filterDrafts } from '../utils/drafts';
 
 export async function GET(context) {
-	const posts = filterDrafts(await getCollection('blog'));
+	// 排除英文文章（en/ 前缀），避免 RSS 中英文混在一起
+	const posts = filterDrafts(await getCollection('blog')).filter((post) => !post.id.startsWith('en/'));
 	posts.sort((a, b) => b.data.pubDate - a.data.pubDate);
 
 	return rss({

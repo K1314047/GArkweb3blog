@@ -1,14 +1,14 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
-import BlogPost from '../../layouts/BlogPost.astro';
-import { filterDrafts } from '../../utils/drafts';
+import BlogPost from '../../../layouts/BlogPost.astro';
+import { filterDrafts } from '../../../utils/drafts';
 
 export async function getStaticPaths() {
-	// 排除英文文章（en/ 前缀），英文文章由 /en/blog/[...slug] 负责
-	const posts = filterDrafts(await getCollection('blog')).filter((post) => !post.id.startsWith('en/'));
+	const posts = filterDrafts(await getCollection('blog')).filter(p => p.id.startsWith('en/'));
 	return posts.map((post) => ({
-		// 添加 .html 后缀，使博客文章以 .html 结尾
-		params: { slug: `${post.id}.html` },
+		// Remove 'en/' prefix for the slug
+        // ID: en/slug -> Slug: slug.html
+		params: { slug: `${post.id.replace('en/', '')}.html` },
 		props: post,
 	}));
 }
@@ -29,3 +29,4 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 300));
 <BlogPost {...post.data} postId={post.id} showTOC={showTOC} tocMinLevel={tocMinLevel} tocMaxLevel={tocMaxLevel} readingTime={readingTime}>
 	<Content />
 </BlogPost>
+
