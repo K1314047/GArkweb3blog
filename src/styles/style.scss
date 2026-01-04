@@ -805,6 +805,32 @@ ul.posts li a:visited {
   ul {
     padding-left: 30px;
   }
+
+  /* 文字环绕图片的样式 */
+  .align-left {
+    float: left;
+    margin: 0.5rem 1.5rem 0.5rem 0;
+    max-width: 300px; /* 限制宽度，避免挤占太多文字空间 */
+    border-radius: 4px;
+  }
+
+  .align-right {
+    float: right;
+    margin: 0.5rem 0 0.5rem 1.5rem;
+    max-width: 300px;
+    border-radius: 4px;
+  }
+
+  /* 移动端取消浮动，恢复大图显示 */
+  @media (max-width: 640px) {
+    .align-left,
+    .align-right {
+      float: none;
+      display: block;
+      margin: 1rem auto;
+      max-width: 100%;
+    }
+  }
 }
 
 .post-content .img-grid {
