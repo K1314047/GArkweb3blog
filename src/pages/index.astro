@@ -99,21 +99,24 @@ const sortedTags = Array.from(tagsMap.entries()).sort((a, b) => b[1] - a[1]);
 
 		.view-all-container {
 			text-align: left;
-			margin-top: 0.6rem;
+			margin-top: 1.5rem;
+			padding-left: 0;
 		}
 
 		.view-all-container a {
-			font-size: 0.9rem;
-			color: var(--gray-color);
+			font-size: 1rem;
+			color: var(--heading-color);
+			font-weight: 500;
 			text-decoration: none;
+			border-bottom: 1px solid transparent;
 			display: inline-flex;
 			align-items: center;
 			gap: 4px;
-			transition: color 0.2s ease;
+			transition: all 0.2s ease;
 		}
 		
 		.view-all-container a:hover {
-			color: var(--heading-color);
+			border-bottom-color: var(--heading-color);
 		}
 
 		/* 箭头动画 */
