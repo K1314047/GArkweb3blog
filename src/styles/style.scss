@@ -113,9 +113,26 @@ body {
 
   &.full-width {
     width: 100%;
-    max-width: 100%;
-    padding: 20px 40px;
+    max-width: 1600px;
+    padding: 0 40px;
+    margin: 0 auto;
   }
+}
+
+/* 简单的自定义滚动条，保持克制 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+:root[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 main {
@@ -647,7 +664,7 @@ blockquote {
 }
 
 header {
-  padding: 3rem 0 1.5rem;
+  padding: 1rem 0 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;

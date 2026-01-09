@@ -4,7 +4,7 @@ import Base from './Base.astro';
 const { title } = Astro.props;
 ---
 
-<Base title={title} description="运动记录" fullWidth={false} hideHeader={true}>
+<Base title={title} description="运动记录" fullWidth={true} hideHeader={true}>
   <div class="sports-layout">
     <div class="page-header">
         <a href="/about" class="back-link">
@@ -22,8 +22,9 @@ const { title } = Astro.props;
 
   <style>
     .sports-layout {
-        /* 移除固定的宽度限制，跟随 Base 的默认宽度 (约960px) */
         width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
     .page-header {
