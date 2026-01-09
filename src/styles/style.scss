@@ -331,15 +331,17 @@ pre,
 pre,
 pre span,
 code {
-  font-family: "JetBrains Mono", "Fira Code", consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 code {
-  padding: 2px;
+  padding: 0.15em 0.4em;
+  margin: 0 0.2em;
   background-color: var(--code-background-color);
   color: var(--code-color);
   border-radius: 4px;
-  font-family: "JetBrains Mono", "Fira Code", consolas, Menlo, monospace;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.85em;
 }
 
 pre {
@@ -348,9 +350,12 @@ pre {
 
 pre code {
   padding: 0;
+  margin: 0;
+  font-size: inherit;
   color: #eee;
   background: none;
   text-shadow: none;
+  border-radius: 0;
 }
 
 /* 优化正文中链接包含代码块的样式（用于延伸阅读/引用文章标题） */
