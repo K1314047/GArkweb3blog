@@ -18,6 +18,13 @@
         "count": 5
       }
     },
+    "imported": {
+      "sinceLabel": "2025.06起",
+      "distanceKm": "374.24",
+      "timeHours": "37.94",
+      "avgPaceText": "~6'05''/km",
+      "hasMonthly": false
+    },
     "cards": {
       "totalDistance": {
         "label": "总跑量(2025.06起)",

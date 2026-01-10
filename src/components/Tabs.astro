@@ -18,6 +18,7 @@
     init() {
       const header = this.querySelector('.tabs-header');
       const content = this.querySelector('.tabs-content');
+      if (!header) return;
       // 如果还没渲染好，可能拿不到 content
       if (!content) return;
 
@@ -46,9 +47,10 @@
       });
     }
 
-    switchTab(index) {
+    switchTab(index: number) {
       const header = this.querySelector('.tabs-header');
       const content = this.querySelector('.tabs-content');
+      if (!header || !content) return;
       const buttons = header.querySelectorAll('.tab-btn');
       const items = content.querySelectorAll('.tab-item');
 
@@ -73,13 +75,13 @@
 <style>
   astro-tabs {
     display: block;
-    margin: 1.5rem 0;
+    margin: 0.75rem 0;
   }
 
   .tabs-header {
     display: flex;
     border-bottom: 1px solid rgba(0,0,0,0.06);
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
     gap: 2rem;
   }
 

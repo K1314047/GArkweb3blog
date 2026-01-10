@@ -8,7 +8,7 @@
                       linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
     border-radius: 24px;
     overflow: hidden;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
     width: 100%;
     /* 极淡的边框，几乎不可见，主要靠光影区分 */
     border: 1px solid rgba(0,0,0,0.02);
@@ -35,23 +35,24 @@
     border-color: rgba(252, 76, 2, 0.15);
   }
 
-  .strava-header {
-    position: absolute;
-    top: 1.25rem;
-    left: 1.5rem;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    pointer-events: none; /* Let clicks pass through */
-  }
-
   .strava-year {
-    font-size: 1.5rem;
+    font-size: 1.0rem;
     font-weight: 800;
     line-height: 1;
-    color: var(--heading-color);
+    /* 更像“卡片标注”，而不是正文标题 */
+    color: rgba(17, 17, 17, 0.62);
     letter-spacing: -0.03em;
     font-family: var(--font-heading, inherit);
+  }
+
+  :global([data-theme="dark"]) .strava-year {
+    color: rgba(255, 255, 255, 0.68);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme="light"])) .strava-year {
+      color: rgba(255, 255, 255, 0.68);
+    }
   }
 
   .strava-subtitle {
@@ -65,13 +66,44 @@
   }
 
   .poster-wrap {
+    position: relative;
     padding: 1rem;
-    padding-top: 4rem; /* Adjusted padding for smaller header */
     display: flex;
     justify-content: center;
     align-items: center;
     background: linear-gradient(to bottom, rgba(0,0,0,0.01), transparent);
     min-height: 200px;
+  }
+
+  .strava-overlay {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    z-index: 2;
+    pointer-events: none; /* meta 不挡图；按钮单独放开 */
+  }
+
+  .strava-meta {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 4px;
+    /* 取消“玻璃卡片”，避免遮挡热力图 */
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    /* 提升可读性但不遮挡：轻微文字阴影 */
+    text-shadow: 0 1px 2px rgba(0,0,0,0.18);
+  }
+
+  :global([data-theme="dark"]) .strava-meta {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.35);
   }
 
   .poster-img {
@@ -106,15 +138,14 @@
   } */
 
   .strava-btn {
-    position: absolute;
-    top: 1.25rem;
-    right: 1.5rem;
-    width: 32px;
-    height: 32px;
+    position: static;
+    width: 28px;
+    height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--background-color);
+    /* 让按钮更“轻”，减少遮挡 */
+    background: rgba(255,255,255,0.75);
     border-radius: 50%;
     color: #FC4C02 !important;
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
@@ -122,6 +153,13 @@
     z-index: 2;
     border: 1px solid rgba(0,0,0,0.05);
     opacity: 0.9;
+    pointer-events: auto; /* overlay 里可点击 */
+  }
+
+  :global([data-theme="dark"]) .strava-btn {
+    background: rgba(17,17,17,0.6);
+    border-color: rgba(255,255,255,0.08);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.22);
   }
 
   .strava-btn:hover { 
@@ -134,8 +172,8 @@
   }
 
   .strava-btn svg {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
   }
 
   /* Empty State */

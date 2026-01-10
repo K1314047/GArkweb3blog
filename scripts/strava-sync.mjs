@@ -225,6 +225,33 @@ function computeSportsStats({ baseline, activities, athleteStats }) {
 
   const sum = (arr, pick) => arr.reduce((acc, x) => acc + (Number(pick(x)) || 0), 0);
 
+  const computeBaselineRunning = (baselineRunning) => {
+    const sinceLabel = baselineRunning?.sinceLabel ?? null;
+    const avgPaceText = baselineRunning?.avgPaceText ?? null;
+    const monthly = Array.isArray(baselineRunning?.monthly) ? baselineRunning.monthly : null;
+
+    // Preferred: monthly baseline (has real month breakdown)
+    if (monthly && monthly.length > 0) {
+      const dist = monthly.reduce((acc, x) => acc + (Number(x.distanceKm) || 0), 0);
+      const timeFromMonthly = monthly.reduce((acc, x) => acc + (Number(x.movingTimeHours) || 0), 0);
+
+      // If monthly rows lack time, fall back to avg pace
+      const paceSec = parsePaceToSeconds(avgPaceText);
+      const timeFromPace = paceSec > 0 ? (dist * paceSec) / 3600 : 0;
+      const time = timeFromMonthly > 0 ? timeFromMonthly : timeFromPace;
+
+      return { sinceLabel, avgPaceText, distanceKm: dist, timeHours: time, hasMonthly: true };
+    }
+
+    // Legacy: aggregate baseline only (no month breakdown)
+    const dist = Number(baselineRunning?.totalDistanceKm || 0);
+    const paceSec = parsePaceToSeconds(avgPaceText);
+    const time = paceSec > 0 ? (dist * paceSec) / 3600 : 0;
+    return { sinceLabel, avgPaceText, distanceKm: dist, timeHours: time, hasMonthly: false };
+  };
+
+  const baselineRun = computeBaselineRunning(baseline?.running);
+
   // --- totals
   // 总计优先用 athlete stats（与活动列表是不同 API，且更“官方总计”）
   const statsAllRun = athleteStats?.all_run_totals ?? null;
@@ -232,14 +259,11 @@ function computeSportsStats({ baseline, activities, athleteStats }) {
 
   // 跑步：仍然需要加上 baseline（你已有历史跑量/PR）
   const runDistanceKm =
-    (baseline.running?.totalDistanceKm || 0) +
+    (baselineRun.distanceKm || 0) +
     (statsAllRun?.distance != null ? Number(statsAllRun.distance) / 1000 : sum(runs, (a) => a.distance_m) / 1000);
 
-  const baselinePaceSec = parsePaceToSeconds(baseline.running?.avgPaceText);
-  const baselineTimeH = (baseline.running?.totalDistanceKm || 0) * baselinePaceSec / 3600;
-
   const runTimeH =
-    baselineTimeH +
+    (baselineRun.timeHours || 0) +
     (statsAllRun?.moving_time != null ? Number(statsAllRun.moving_time) / 3600 : sum(runs, (a) => a.moving_time_s) / 3600);
 
   // 骑行：完全依赖 Strava（不加 baseline）
@@ -353,8 +377,9 @@ function computeSportsStats({ baseline, activities, athleteStats }) {
     return `${y}-${m}`;
   };
 
-  const groupMonthly = (arr) => {
+  const groupMonthly = (arr, baselineData = null) => {
     const m = new Map();
+
     for (const a of arr) {
       const key = monthKey(a.start_date_local || a.start_date);
       const prev = m.get(key) || { month: key, distanceKm: 0, count: 0, movingTimeHours: 0 };
@@ -363,6 +388,21 @@ function computeSportsStats({ baseline, activities, athleteStats }) {
       prev.count += 1;
       m.set(key, prev);
     }
+
+    // Merge baseline monthly breakdown ONLY if provided
+    const baselineMonthly = Array.isArray(baselineData?.monthly) ? baselineData.monthly : null;
+    if (baselineMonthly && baselineMonthly.length > 0) {
+      for (const row of baselineMonthly) {
+        const key = String(row.month || '').trim();
+        if (!key) continue;
+        const prev = m.get(key) || { month: key, distanceKm: 0, count: 0, movingTimeHours: 0 };
+        prev.distanceKm += Number(row.distanceKm) || 0;
+        prev.movingTimeHours += Number(row.movingTimeHours) || 0;
+        prev.count += Number(row.count) || 0;
+        m.set(key, prev);
+      }
+    }
+
     const out = Array.from(m.values());
     out.sort((a, b) => (a.month < b.month ? 1 : -1));
     return out.map((x) => ({
@@ -386,19 +426,32 @@ function computeSportsStats({ baseline, activities, athleteStats }) {
       years[y].count += 1;
     }
 
-    // Process baseline if provided (Assume baseline belongs to 2025 based on context "2025.06起")
-    // If you need more granular control, baseline.json needs a "year" field.
+    // Process baseline (prefer monthly breakdown if present; otherwise treat as aggregate)
     if (baselineData) {
-      const bDist = baselineData.totalDistanceKm || 0;
-      const bPace = parsePaceToSeconds(baselineData.avgPaceText);
-      const bTime = (bDist * bPace) / 3600;
-      // Hardcoded assignment of baseline to 2025 as per user context
-      if (!years['2025']) years['2025'] = { distance: 0, time: 0, count: 0 };
-      years['2025'].distance += bDist;
-      years['2025'].time += bTime;
-      // Count is unknown in baseline, ignore or estimate? 
-      // Keeping it 0 for baseline part to avoid skewing "avg per ride" if used, 
-      // but strictly speaking we don't have baseline count.
+      const baselineMonthly = Array.isArray(baselineData.monthly) ? baselineData.monthly : null;
+      if (baselineMonthly && baselineMonthly.length > 0) {
+        for (const row of baselineMonthly) {
+          const month = String(row.month || '').trim();
+          if (!month || month.length < 7) continue;
+          const y = month.slice(0, 4);
+          if (!years[y]) years[y] = { distance: 0, time: 0, count: 0 };
+          years[y].distance += Number(row.distanceKm) || 0;
+          years[y].time += Number(row.movingTimeHours) || 0;
+          years[y].count += Number(row.count) || 0;
+        }
+      } else {
+        const bDist = Number(baselineData.totalDistanceKm || 0);
+        const bPace = parsePaceToSeconds(baselineData.avgPaceText);
+        const bTime = bPace > 0 ? (bDist * bPace) / 3600 : 0;
+
+        // Fallback: put aggregate baseline into the year derived from sinceLabel (e.g. "2025.06起")
+        const sinceLabel = String(baselineData.sinceLabel || '');
+        const yearMatch = sinceLabel.match(/(\d{4})\./);
+        const y = yearMatch?.[1] || '2025';
+        if (!years[y]) years[y] = { distance: 0, time: 0, count: 0 };
+        years[y].distance += bDist;
+        years[y].time += bTime;
+      }
     }
 
     // Format output
@@ -429,6 +482,13 @@ function computeSportsStats({ baseline, activities, athleteStats }) {
     generatedAt: new Date().toISOString(),
     running: {
       years: runYears,
+      imported: {
+        sinceLabel: baselineRun.sinceLabel,
+        distanceKm: toFixedTrim(baselineRun.distanceKm || 0, 2),
+        timeHours: toFixedTrim(baselineRun.timeHours || 0, 2),
+        avgPaceText: baselineRun.avgPaceText,
+        hasMonthly: !!baselineRun.hasMonthly,
+      },
       cards: {
         totalDistance: {
           label: `总跑量(${baseline.running?.sinceLabel || '累计'})`,
@@ -455,7 +515,7 @@ function computeSportsStats({ baseline, activities, athleteStats }) {
           subtext: '暂无记录',
         },
       },
-      monthly: groupMonthly(runs),
+      monthly: groupMonthly(runs, baseline.running),
     },
     cycling: {
       years: rideYears,

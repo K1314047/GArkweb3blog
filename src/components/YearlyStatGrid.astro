@@ -115,7 +115,7 @@ const monthlyGroups: Record<string, any[]> = {
 
 // Initialize groups for all tabs
 tabs.forEach(year => {
-  monthlyGroups[year] = monthlyData.filter(m => m.month.startsWith(year));
+  monthlyGroups[year] = monthlyData.filter((m: any) => m.month.startsWith(year));
 });
 
 // Helper to check if a year has any monthly data
@@ -184,7 +184,7 @@ const hasMonthlyData = (year: string) => monthlyGroups[year] && monthlyGroups[ye
 
 <div class="detail-section" id={`${idPrefix}-detail-section`}>
   {/* Header Title based on type */}
-  <h3>{type === 'running' ? '比赛记录' : (type === 'cycling' ? '月度汇总' : '详细数据')}</h3>
+  <h3>{type === 'running' ? '数据详情' : (type === 'cycling' ? '月度汇总' : '详细数据')}</h3>
   
   {type === 'cycling' && <div class="section-desc">按月统计里程与频次，回顾骑行趋势。</div>}
 
@@ -194,45 +194,54 @@ const hasMonthlyData = (year: string) => monthlyGroups[year] && monthlyGroups[ye
       class={`detail-group ${year === initialKey ? 'active' : ''}`} 
       data-year={year}
     >
-      {type === 'running' ? (
-        // Running: Race Records (Placeholder for now as data structure is not yet ready)
-        <div class="empty-state">
-          {year === 'total' 
-            ? '暂无比赛记录（未来将在此更新马拉松赛事成绩）' 
-            : `${year} 年暂无比赛记录`}
+      {type === 'running' && (
+        <>
+          <h4 class="subsection-title">比赛记录</h4>
+          <div class="empty-state" style="margin-bottom: 2rem;">
+            {year === 'total' 
+              ? '暂无比赛记录（未来将在此更新马拉松赛事成绩）' 
+              : `${year} 年暂无比赛记录`}
+          </div>
+
+          <h4 class="subsection-title">月度跑量</h4>
+        </>
+      )}
+
+      {hasMonthlyData(year) ? (
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th align="left">月份</th>
+                <th align="left">距离 (km)</th>
+                <th align="left">次数</th>
+                <th align="left">时长 (h)</th>
+                {type === 'running' && <th align="left">平均配速</th>}
+              </tr>
+            </thead>
+            <tbody>
+              {monthlyGroups[year].map((row) => (
+                <tr>
+                  <td>{row.month}</td>
+                  <td>{row.distanceKm}</td>
+                  <td>{row.count}</td>
+                  <td>{row.movingTimeHours}</td>
+                  {type === 'running' && <td>{paceText(row.distanceKm, row.movingTimeHours)}</td>}
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       ) : (
-        // Cycling: Monthly Table
-        hasMonthlyData(year) ? (
-          <div class="table-wrapper">
-            <table>
-              <thead>
-                <tr>
-                  <th align="left">月份</th>
-                  <th align="left">距离 (km)</th>
-                  <th align="left">次数</th>
-                  <th align="left">时长 (h)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {monthlyGroups[year].map((row) => (
-                  <tr>
-                    <td>{row.month}</td>
-                    <td>{row.distanceKm}</td>
-                    <td>{row.count}</td>
-                    <td>{row.movingTimeHours}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ) : (
-          <div class="empty-state">
-            {year === 'total' 
-               ? '暂无月度数据' 
-               : `${year} 年暂无月度数据`}
-          </div>
-        )
+        <div class="empty-state">
+          {year === 'total'
+            ? '暂无月度数据'
+            : `${year} 年暂无月度数据`}
+        </div>
+      )}
+
+      {type === 'running' && (
+        <div style="margin-top: 1rem;"></div>
       )}
     </div>
   ))}
@@ -371,6 +380,14 @@ const hasMonthlyData = (year: string) => monthlyGroups[year] && monthlyGroups[ye
     margin-bottom: 1.5rem;
     color: var(--heading-color);
     letter-spacing: -0.01em;
+  }
+
+  .subsection-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--heading-color);
+    opacity: 0.9;
   }
 
   .section-desc {
