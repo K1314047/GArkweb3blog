@@ -14,22 +14,22 @@ import sportsStats from '../../data/sports-stats.json';
 <SportsStyles />
 
 <div class="strava-card">
+  <div class="strava-header">
+    <span class="strava-year">2026</span>
+    <span class="strava-subtitle">Yearly Heatmap</span>
+  </div>
   <div class="poster-wrap">
     <img class="poster-img" src="/strava-poster.svg" alt="年度运动热力图" loading="lazy" />
   </div>
-  <div class="strava-footer">
-    <span class="strava-year">2026</span>
-    <a href="https://www.strava.com/athletes/134343081" target="_blank" rel="noopener noreferrer" class="strava-btn">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"></path></svg>
-      Strava
-    </a>
-  </div>
+  <a href="https://www.strava.com/athletes/134343081" target="_blank" rel="noopener noreferrer" class="strava-btn" aria-label="View on Strava">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"></path></svg>
+  </a>
 </div>
 
 <Tabs>
   <TabItem label="跑步">
     
-    ### 个人最佳 (PR)
+    {/* ### 个人最佳 (PR) */}
 
     <YearlyStatGrid type="running" stats={sportsStats.running} />
 
@@ -37,7 +37,7 @@ import sportsStats from '../../data/sports-stats.json';
 
   <TabItem label="骑行">
     
-    ### 总计
+    {/* ### 总计 */}
     
     <YearlyStatGrid type="cycling" stats={sportsStats.cycling} />
 

@@ -1121,3 +1121,56 @@ ul.posts li a:visited {
     text-decoration: var(--shiki-dark-text-decoration) !important;
   }
 }
+
+/* 优化文章表格样式（简洁版） */
+.post-content table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  display: block;
+  overflow-x: auto; /* 保持响应式滚动，防止撑破 */
+  -webkit-overflow-scrolling: touch;
+  font-variant-numeric: tabular-nums; /* 数字等宽对齐 */
+}
+
+.post-content th,
+.post-content td {
+  padding: 0.6em 0.8em; /* 适当的内边距 */
+  text-align: left;
+  line-height: 1.6;
+font-size: 0.90em; /* 稍微缩小字号，比正文显得更紧凑精致 */
+}
+
+.post-content th {
+  font-weight: 600;
+  color: var(--heading-color);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08); /* 表头下划线稍粗 */
+  white-space: nowrap;
+}
+
+.post-content tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* 普通行细下划线 */
+}
+
+.post-content tr:last-child {
+  border-bottom: none; /* 最后一行不需要下划线 */
+}
+
+/* 暗色模式适配 */
+:root[data-theme="dark"] .post-content th {
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+:root[data-theme="dark"] .post-content tr {
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .post-content th {
+    border-bottom-color: rgba(255, 255, 255, 0.12);
+  }
+  :root:not([data-theme]) .post-content tr {
+    border-bottom-color: rgba(255, 255, 255, 0.06);
+  }
+}

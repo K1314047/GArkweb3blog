@@ -292,39 +292,39 @@ const hasMonthlyData = (year: string) => monthlyGroups[year] && monthlyGroups[ye
   /* Local variables for theming with fallbacks */
   .stats-switcher-container {
     display: flex;
-    justify-content: flex-start;
-    margin-bottom: 1.5rem;
+    justify-content: center; /* Center the switcher */
+    margin-bottom: 2rem;
     --switcher-bg: var(--code-background-color, #f2f2f2);
-    --switcher-border: rgba(0,0,0,0.06);
+    --switcher-border: rgba(0,0,0,0.04);
     --btn-text: var(--gray-color, #999);
     --btn-hover: var(--text-color, #333);
     --btn-active-bg: var(--background-color, #fff);
     --btn-active-text: var(--heading-color, #000);
-    --table-border: rgba(0,0,0,0.08);
+    --table-border: rgba(0,0,0,0.04);
   }
   
   /* Dark mode overrides using global theme selectors */
   :global([data-theme="dark"]) .stats-switcher-container,
   :global([data-theme="dark"]) .detail-section {
     --switcher-bg: var(--code-background-color, #000);
-    --switcher-border: rgba(255,255,255,0.12);
+    --switcher-border: rgba(255,255,255,0.08);
     --btn-text: var(--gray-color, #999);
     --btn-hover: var(--text-color, #ddd);
     --btn-active-bg: var(--background-color, #111);
     --btn-active-text: var(--heading-color, #eee);
-    --table-border: rgba(255,255,255,0.12);
+    --table-border: rgba(255,255,255,0.08);
   }
 
   @media (prefers-color-scheme: dark) {
     :global(:root:not([data-theme="light"])) .stats-switcher-container,
     :global(:root:not([data-theme="light"])) .detail-section {
       --switcher-bg: var(--code-background-color, #000);
-      --switcher-border: rgba(255,255,255,0.12);
+      --switcher-border: rgba(255,255,255,0.08);
       --btn-text: var(--gray-color, #999);
       --btn-hover: var(--text-color, #ddd);
       --btn-active-bg: var(--background-color, #111);
       --btn-active-text: var(--heading-color, #eee);
-      --table-border: rgba(255,255,255,0.12);
+      --table-border: rgba(255,255,255,0.08);
     }
   }
   
@@ -332,21 +332,22 @@ const hasMonthlyData = (year: string) => monthlyGroups[year] && monthlyGroups[ye
     display: inline-flex;
     background: var(--switcher-bg);
     padding: 4px;
-    border-radius: 8px;
-    gap: 4px;
+    border-radius: 9999px; /* Pill shape */
+    gap: 0;
     border: 1px solid var(--switcher-border);
   }
 
   .switcher-btn {
     background: transparent;
     border: none;
-    padding: 4px 12px;
-    border-radius: 6px;
-    font-size: 0.9rem;
+    padding: 4px 14px;
+    border-radius: 9999px; /* Pill shape */
+    font-size: 0.8rem;
     color: var(--btn-text);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     font-family: inherit;
+    font-weight: 500;
   }
 
   .switcher-btn:hover {
@@ -356,26 +357,35 @@ const hasMonthlyData = (year: string) => monthlyGroups[year] && monthlyGroups[ye
   .switcher-btn.active {
     background: var(--btn-active-bg);
     color: var(--btn-active-text);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    font-weight: 600;
   }
   
   .detail-section {
-    margin-top: 2rem;
+    margin-top: 3rem;
+  }
+  
+  .detail-section h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--heading-color);
+    letter-spacing: -0.01em;
   }
 
   .section-desc {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     color: var(--gray-color);
-    font-size: 0.9em;
+    font-size: 0.95em;
     border-left: 3px solid var(--heading-color);
-    padding-left: 0.8rem;
+    padding-left: 1rem;
+    line-height: 1.6;
   }
 
   /* Detail Groups Toggle Logic */
   .detail-group {
     display: none;
-    animation: fadeIn 0.3s ease-in-out;
+    animation: fadeIn 0.4s ease-out;
   }
   
   .detail-group.active {
@@ -384,6 +394,8 @@ const hasMonthlyData = (year: string) => monthlyGroups[year] && monthlyGroups[ye
 
   .table-wrapper {
     overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid var(--table-border);
   }
   
   table {
@@ -393,27 +405,37 @@ const hasMonthlyData = (year: string) => monthlyGroups[year] && monthlyGroups[ye
   }
   
   th, td {
-    padding: 0.75rem;
-    border-bottom: 1px solid var(--table-border, rgba(0,0,0,0.08));
+    padding: 1rem;
+    border-bottom: 1px solid var(--table-border);
     color: var(--text-color);
+    text-align: left;
   }
   
   th {
     font-weight: 600;
     color: var(--gray-color);
+    background: var(--code-background-color);
+    text-transform: uppercase;
+    font-size: 0.8em;
+    letter-spacing: 0.05em;
+  }
+  
+  tr:last-child td {
+    border-bottom: none;
   }
 
   .empty-state {
-    padding: 2rem;
+    padding: 3rem;
     text-align: center;
     background: var(--code-background-color);
-    border-radius: 8px;
+    border-radius: 12px;
     color: var(--gray-color);
-    font-size: 0.9em;
+    font-size: 0.95em;
+    border: 1px dashed var(--table-border);
   }
 
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(5px); }
+    from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
   }
 </style>
