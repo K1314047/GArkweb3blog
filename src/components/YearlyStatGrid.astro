@@ -304,43 +304,43 @@ const hasMonthlyData = (year: string) => monthlyGroups[year] && monthlyGroups[ye
     justify-content: flex-start;
     align-items: center;
     margin-bottom: 1.25rem;
-    --chip-bg: rgba(0, 0, 0, 0.03);
-    --chip-hover-bg: rgba(0, 0, 0, 0.05);
-    --chip-border: rgba(0, 0, 0, 0.06);
-    --chip-active-bg: rgba(0, 0, 0, 0.06);
-    --chip-active-border: rgba(0, 0, 0, 0.12);
+    --chip-bg: rgba(0, 0, 0, 0.04); /* 稍微加深 */
+    --chip-hover-bg: rgba(0, 0, 0, 0.08);
+    --chip-border: rgba(0, 0, 0, 0.12); /* 显著加深 */
+    --chip-active-bg: rgba(0, 0, 0, 0.08);
+    --chip-active-border: rgba(0, 0, 0, 0.18);
     --chip-text: var(--gray-color, #888);
     --chip-hover-text: var(--text-color, #333);
     --chip-active-text: var(--heading-color, #000);
-    --table-border: rgba(0,0,0,0.04);
+    --table-border: rgba(0,0,0,0.12); /* 显著加深 */
   }
   
   /* Dark mode overrides using global theme selectors */
   :global([data-theme="dark"]) .stats-switcher-container,
   :global([data-theme="dark"]) .detail-section {
-    --chip-bg: rgba(255, 255, 255, 0.05);
-    --chip-hover-bg: rgba(255, 255, 255, 0.08);
-    --chip-border: rgba(255, 255, 255, 0.10);
-    --chip-active-bg: rgba(255, 255, 255, 0.08);
-    --chip-active-border: rgba(255, 255, 255, 0.16);
+    --chip-bg: rgba(255, 255, 255, 0.08);
+    --chip-hover-bg: rgba(255, 255, 255, 0.12);
+    --chip-border: rgba(255, 255, 255, 0.15);
+    --chip-active-bg: rgba(255, 255, 255, 0.12);
+    --chip-active-border: rgba(255, 255, 255, 0.25);
     --chip-text: var(--gray-color, #999);
     --chip-hover-text: var(--text-color, #ddd);
     --chip-active-text: var(--heading-color, #eee);
-    --table-border: rgba(255,255,255,0.08);
+    --table-border: rgba(255,255,255,0.15);
   }
 
   @media (prefers-color-scheme: dark) {
     :global(:root:not([data-theme="light"])) .stats-switcher-container,
     :global(:root:not([data-theme="light"])) .detail-section {
-      --chip-bg: rgba(255, 255, 255, 0.05);
-      --chip-hover-bg: rgba(255, 255, 255, 0.08);
-      --chip-border: rgba(255, 255, 255, 0.10);
-      --chip-active-bg: rgba(255, 255, 255, 0.08);
-      --chip-active-border: rgba(255, 255, 255, 0.16);
+      --chip-bg: rgba(255, 255, 255, 0.08);
+      --chip-hover-bg: rgba(255, 255, 255, 0.12);
+      --chip-border: rgba(255, 255, 255, 0.15);
+      --chip-active-bg: rgba(255, 255, 255, 0.12);
+      --chip-active-border: rgba(255, 255, 255, 0.25);
       --chip-text: var(--gray-color, #999);
       --chip-hover-text: var(--text-color, #ddd);
       --chip-active-text: var(--heading-color, #eee);
-      --table-border: rgba(255,255,255,0.08);
+      --table-border: rgba(255,255,255,0.15);
     }
   }
   
@@ -417,6 +417,7 @@ const hasMonthlyData = (year: string) => monthlyGroups[year] && monthlyGroups[ye
   
   .detail-group.active {
     display: block;
+    animation: fadeIn 0.4s ease-out; /* 确保每次切换都有淡入效果 */
   }
 
   .table-wrapper {

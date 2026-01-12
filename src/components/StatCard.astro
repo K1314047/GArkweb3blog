@@ -14,8 +14,9 @@ const { label, value, unit, subtext, id } = Astro.props;
 <style>
   .stat-card {
     --card-bg: var(--code-background-color);
-    --card-border-top: rgba(0, 0, 0, 0.07);
-    --card-border-bottom: rgba(0, 0, 0, 0.025);
+    /* 增强边框可见度 */
+    --card-border-top: rgba(0, 0, 0, 0.12);
+    --card-border-bottom: rgba(0, 0, 0, 0.08);
 
     /* 细腻的“渐变描边”：比纯色 border 更精致 */
     background:
@@ -30,41 +31,47 @@ const { label, value, unit, subtext, id } = Astro.props;
     border: 1px solid transparent;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02);
+    /* 增加基础阴影，提升立体感 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
   }
 
   .stat-card:hover {
-    --card-border-top: rgba(0, 0, 0, 0.09);
-    --card-border-bottom: rgba(0, 0, 0, 0.035);
+    --card-border-top: rgba(0, 0, 0, 0.15);
+    --card-border-bottom: rgba(0, 0, 0, 0.10);
     transform: translateY(-2px);
-    box-shadow: 0 14px 32px -22px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 14px 32px -12px rgba(0, 0, 0, 0.12);
     background: var(--background-color);
+    border-color: rgba(0,0,0,0.1);
   }
 
   :global([data-theme="dark"]) .stat-card,
   :global(:root[data-theme="dark"]) .stat-card {
-    --card-border-top: rgba(255, 255, 255, 0.10);
-    --card-border-bottom: rgba(255, 255, 255, 0.04);
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03);
+    --card-border-top: rgba(255, 255, 255, 0.15);
+    --card-border-bottom: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(255, 255, 255, 0.05);
+    background: linear-gradient(#1e1e1e, #1e1e1e) padding-box,
+                linear-gradient(180deg, var(--card-border-top), var(--card-border-bottom)) border-box;
   }
 
   :global([data-theme="dark"]) .stat-card:hover,
   :global(:root[data-theme="dark"]) .stat-card:hover {
-    --card-border-top: rgba(255, 255, 255, 0.12);
-    --card-border-bottom: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 16px 36px -26px rgba(0, 0, 0, 0.55);
+    --card-border-top: rgba(255, 255, 255, 0.2);
+    --card-border-bottom: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 16px 36px -20px rgba(0, 0, 0, 0.6);
   }
 
   @media (prefers-color-scheme: dark) {
     :global(:root:not([data-theme="light"])) .stat-card {
-      --card-border-top: rgba(255, 255, 255, 0.10);
-      --card-border-bottom: rgba(255, 255, 255, 0.04);
-      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03);
+      --card-border-top: rgba(255, 255, 255, 0.15);
+      --card-border-bottom: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(255, 255, 255, 0.05);
+      background: linear-gradient(#1e1e1e, #1e1e1e) padding-box,
+                  linear-gradient(180deg, var(--card-border-top), var(--card-border-bottom)) border-box;
     }
     :global(:root:not([data-theme="light"])) .stat-card:hover {
-      --card-border-top: rgba(255, 255, 255, 0.12);
-      --card-border-bottom: rgba(255, 255, 255, 0.05);
-      box-shadow: 0 16px 36px -26px rgba(0, 0, 0, 0.55);
+      --card-border-top: rgba(255, 255, 255, 0.2);
+      --card-border-bottom: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 16px 36px -20px rgba(0, 0, 0, 0.6);
     }
   }
 
@@ -75,6 +82,7 @@ const { label, value, unit, subtext, id } = Astro.props;
     font-weight: 650;
     text-transform: none;
     letter-spacing: 0.02em;
+    opacity: 0.9;
   }
 
   .stat-main {
@@ -110,4 +118,3 @@ const { label, value, unit, subtext, id } = Astro.props;
     line-height: 1.45;
   }
 </style>
-
