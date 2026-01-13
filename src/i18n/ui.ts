@@ -7,7 +7,7 @@ export const defaultLang = 'zh';
 
 export const ui = {
   zh: {
-    'nav.blog': '文章',
+    'nav.blog': '归档',
     'nav.projects': '项目',
     'nav.gossips': '碎碎念',
     'nav.message': '留言',

@@ -3,9 +3,9 @@
   --font-scale: 0.95em;
   --background-color: #fafafa;
   --heading-color: #1a1a1a;
-  --text-color: #2c2c2c;
-  --link-color: #2c2c2c;
-  --visited-color: #2c2c2c;
+  --text-color: #1a1a1a;
+  --link-color: #1a1a1a;
+  --visited-color: #1a1a1a;
   --code-background-color: #f1f1f1;
   --code-color: #222;
   --blockquote-color: #555;
@@ -35,9 +35,9 @@
 :root[data-theme="light"] {
   --background-color: #fafafa;
   --heading-color: #1a1a1a;
-  --text-color: #2c2c2c;
-  --link-color: #2c2c2c;
-  --visited-color: #2c2c2c;
+  --text-color: #1a1a1a;
+  --link-color: #1a1a1a;
+  --visited-color: #1a1a1a;
   --code-background-color: #f1f1f1;
   --code-color: #222;
   --blockquote-color: #555;
@@ -102,8 +102,19 @@ body {
     - macOS 下开启更偏“细”的抗锯齿方式
   */
   font-synthesis: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* 浅色模式使用默认平滑（看起来更粗），深色模式使用抗锯齿（看起来更细） */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+
+  @media (prefers-color-scheme: dark) {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  :root[data-theme="dark"] & {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
   /* 噪点纹理背景，增加纸质感 */
   /* background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E"); */
