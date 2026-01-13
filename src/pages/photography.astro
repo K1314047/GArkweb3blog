@@ -278,13 +278,13 @@ const description = "光影的瞬间记录";
 
     /* Masonry Grid */
     .gallery-masonry {
-        column-count: 3;
-        column-gap: 1.5rem;
+        column-count: 4;
+        column-gap: 6px;
     }
 
     .gallery-item {
         display: block;
-        margin-bottom: 1.5rem;
+        margin-bottom: 6px;
         break-inside: avoid;
         cursor: zoom-in;
         text-decoration: none;
@@ -424,13 +424,19 @@ const description = "光影的瞬间记录";
     }
 
     /* Responsive */
-    @media (max-width: 1200px) {
+    @media (max-width: 1400px) {
+        .gallery-masonry {
+            column-count: 3;
+        }
+    }
+
+    @media (max-width: 900px) {
         .gallery-masonry {
             column-count: 2;
         }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 600px) {
         .page-header {
             display: flex;
             flex-direction: column;
@@ -443,12 +449,13 @@ const description = "光影的瞬间记录";
         }
 
         .gallery-masonry {
-            column-count: 1;
+            column-count: 2;
         }
         
         .overlay {
             opacity: 1;
-            background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 40%);
+            background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 50%);
+            padding: 0.8rem;
         }
         
         .zoom-icon {
@@ -457,6 +464,11 @@ const description = "光影的瞬间记录";
 
         .exif-badges {
             transform: translateY(0);
+        }
+        
+        .badge {
+            font-size: 0.6rem;
+            padding: 3px 6px;
         }
     }
   </style>
