@@ -146,11 +146,13 @@ const { title } = Astro.props;
 		}
 
 		.about-page :global(.history-fold summary) {
-			padding: 0.75rem 1rem;
+			padding: 0.5rem 0.75rem;
 			cursor: pointer;
-			font-size: 0.95rem;
+			font-size: 0.8rem;
 			list-style: none;
 			transition: background 0.2s;
+			font-weight: 500;
+			color: var(--text-color);
 		}
 
 		.about-page :global(.history-fold summary:hover) {
@@ -169,6 +171,7 @@ const { title } = Astro.props;
 			content: '▸ ';
 			font-size: 0.8em;
 			color: var(--gray-color);
+			margin-right: 0.25rem;
 		}
 
 		.about-page :global(.history-fold[open] summary::before) {
@@ -183,11 +186,15 @@ const { title } = Astro.props;
 			border-bottom-color: rgba(255, 255, 255, 0.08);
 		}
 
-		.about-page :global(.history-fold > p) {
-			padding: 0 1rem;
-			margin: 0.7rem 0;
-			font-size: 0.9rem;
-			line-height: 1.75;
+		/* 新增内容容器样式 */
+		.about-page :global(.history-content) {
+			padding: 0.75rem;
+		}
+
+		.about-page :global(.history-content p) {
+			margin: 0 0 0.8rem;
+			font-size: 0.85rem;
+			line-height: 1.6;
 			color: var(--text-color);
 		}
 
@@ -195,7 +202,6 @@ const { title } = Astro.props;
 			display: flex;
 			flex-wrap: wrap;
 			gap: 0.4rem;
-			padding: 0 1rem 0.9rem;
 		}
 
 		.about-page :global(.history-tags span) {
@@ -209,6 +215,44 @@ const { title } = Astro.props;
 
 		:global([data-theme='dark']) .about-page :global(.history-tags span) {
 			background: rgba(255, 255, 255, 0.06);
+		}
+
+		/* 底部弱化区域 */
+		.about-page :global(.about-footer) {
+			margin-top: 3rem;
+			padding-top: 1.5rem;
+			border-top: 1px dashed rgba(0, 0, 0, 0.1);
+			font-size: 0.9rem;
+			color: var(--gray-color);
+		}
+
+		:global([data-theme='dark']) .about-page :global(.about-footer) {
+			border-top-color: rgba(255, 255, 255, 0.1);
+		}
+
+		.about-page :global(.footer-section) {
+			margin-bottom: 1.5rem;
+		}
+
+		.about-page :global(.footer-label) {
+			display: block;
+			font-size: 0.75rem;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+			font-weight: 600;
+			color: var(--text-color);
+			margin-bottom: 0.5rem;
+		}
+		
+		.about-page :global(.footer-section p) {
+			margin: 0.2rem 0 0.5rem;
+			line-height: 1.6;
+		}
+
+		/* 调整 Sponsor 组件在 footer 里的样式微调 */
+		.about-page :global(.about-footer .sponsor-about) {
+			margin-top: 0.2rem;
+			margin-bottom: 0.5rem;
 		}
 	</style>
 </Base>
