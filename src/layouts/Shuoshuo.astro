@@ -32,10 +32,9 @@ function getDateParts(date: Date) {
 
 <Base title={title} description={title}>
 	<div class='gossip-page'>
-        <!-- 极简页眉：仅仅是一个装饰性的英文单词，不再是大标题 -->
-        <div class="journal-header">
-            <span class="journal-mark">Journal</span>
-        </div>
+        <p></p>
+        <h2>–</h2>
+        <!-- <h1>{title}</h1> -->
 
 		<div id='shuoshuo' class="feed-container">
             {
@@ -134,30 +133,13 @@ function getDateParts(date: Date) {
 
 	<style>
         .gossip-page {
-            max-width: 660px;
+            max-width: 820px;
             margin: 0 auto;
             padding-bottom: 4rem;
         }
 
-        /* 1. Header (Minimal Journal Style) */
-        .journal-header {
-            margin: 1.5rem 0 3rem; /* 顶部保留适度留白 */
-            display: flex;
-            align-items: center;
-            /* 可选：去掉下划线，让它更像一个装饰 */
-            /* border-bottom: 1px dashed rgba(0,0,0,0.05); */
-            /* padding-bottom: 1rem; */
-        }
+        /* 1. Header (Minimal Journal Style) - Removed */
         
-        .journal-mark {
-            font-family: "Source Serif 4", "Noto Serif SC", serif;
-            font-size: 1.1rem;
-            font-style: italic;
-            color: var(--gray-color);
-            opacity: 0.4; /* 非常淡，不抢视觉 */
-            letter-spacing: 0.05em;
-        }
-
         /* Feed Container */
         .feed-container {
             /* 不再需要额外的 margin-top，因为 header 已经有 margin-bottom */
