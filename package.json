@@ -8,6 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "sync:neodb": "node scripts/fetch-neodb.js",
     "copy-lightgallery": "node scripts/copy-lightgallery.js",
     "analyze-bundle": "node scripts/analyze-bundle.js"
   },

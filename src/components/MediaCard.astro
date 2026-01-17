@@ -1,0 +1,219 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  title: string;
+  cover: string;
+  rating?: number; // 个人评分 (1-10)
+  neodbRating?: number; // NeoDB 评分
+  brief?: string;
+  comment?: string;
+  date: string;
+  link?: string;
+  status?: string; // 'progress' or 'complete'
+}
+
+const { title, cover, rating, neodbRating, brief, comment, date, link, status } = Astro.props;
+
+// Format date
+const formattedDate = new Date(date).toLocaleDateString('zh-CN', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+}).replace(/\//g, '.');
+
+// Star rating component helper
+const renderStars = (score: number) => {
+    // Convert 10-point scale to 5 stars
+    const stars = score / 2;
+    const fullStars = Math.floor(stars);
+    const hasHalfStar = stars % 1 >= 0.5;
+    
+    return '★'.repeat(fullStars) + (hasHalfStar ? '½' : '') + '☆'.repeat(5 - fullStars - (hasHalfStar ? 1 : 0)); // Simple text stars for now
+};
+---
+
+<a href={link} target="_blank" rel="noopener noreferrer" class="media-card">
+    <div class="cover">
+        <img src={cover} alt={title} loading="lazy" onerror="this.src='/placeholder.png'"/>
+    </div>
+    <div class="info">
+        <div class="header">
+            <h3 class="title" title={title}>{title}</h3>
+            {rating && <div class="my-rating" title={`个人评分: ${rating}`}>{renderStars(rating)}</div>}
+        </div>
+        
+        {brief && <p class="brief">{brief}</p>}
+        
+        {comment && (
+            <div class="comment">
+                <span class="quote">“</span>
+                {comment}
+            </div>
+        )}
+        
+        <div class="meta">
+            <span class="date">{formattedDate}</span>
+            {status === 'progress' && <span class="status-badge progress">在看</span>}
+            {neodbRating && <span class="neodb-rating">NeoDB {neodbRating}</span>}
+        </div>
+    </div>
+</a>
+
+<style>
+    .media-card {
+        display: flex;
+        flex-direction: row;
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        overflow: hidden;
+        text-decoration: none;
+        color: inherit;
+        border: 1px solid rgba(0,0,0,0.05);
+        transition: transform 0.2s, box-shadow 0.2s;
+        height: 100%;
+    }
+    
+    :global([data-theme='dark']) .media-card {
+        background: rgba(40, 40, 40, 0.4);
+        border-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .media-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        background: rgba(255,255,255,0.9);
+    }
+
+    :global([data-theme='dark']) .media-card:hover {
+        background: rgba(50, 50, 50, 0.6);
+    }
+
+    .cover {
+        width: 100px;
+        flex-shrink: 0;
+        position: relative;
+    }
+
+    .cover img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .info {
+        flex: 1;
+        padding: 12px 16px;
+        display: flex;
+        flex-direction: column;
+        min-width: 0; /* Fix ellipsis in flex item */
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 4px;
+        gap: 8px;
+    }
+
+    .title {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--heading-color);
+        line-height: 1.3;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .my-rating {
+        color: #f5a623;
+        font-size: 0.8rem;
+        flex-shrink: 0;
+        letter-spacing: 1px;
+    }
+
+    .brief {
+        font-size: 0.8rem;
+        color: var(--gray-color);
+        margin: 0 0 8px 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        opacity: 0.8;
+    }
+
+    .comment {
+        font-size: 0.85rem;
+        color: var(--text-color);
+        margin-bottom: auto; /* Push meta to bottom */
+        line-height: 1.5;
+        position: relative;
+        padding-left: 10px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        border-left: 2px solid rgba(0,0,0,0.1);
+    }
+
+    :global([data-theme='dark']) .comment {
+        border-left-color: rgba(255,255,255,0.1);
+    }
+
+    /* .quote {
+        color: var(--gray-color);
+        margin-right: 2px;
+        font-family: serif;
+    } */
+    .quote { display: none; }
+
+    .meta {
+        margin-top: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.75rem;
+        color: var(--gray-color);
+        opacity: 0.8;
+    }
+
+    .neodb-rating {
+        background: rgba(0,0,0,0.05);
+        padding: 2px 6px;
+        border-radius: 4px;
+    }
+    .status-badge {
+        background: rgba(0,0,0,0.05);
+        padding: 2px 6px;
+        border-radius: 4px;
+        margin-right: auto;
+        margin-left: 8px;
+    }
+    .status-badge.progress {
+        background: rgba(66, 153, 225, 0.1);
+        color: #3182ce;
+    }
+    :global([data-theme='dark']) .status-badge.progress {
+        background: rgba(66, 153, 225, 0.2);
+        color: #63b3ed;
+    }
+    :global([data-theme='dark']) .neodb-rating {
+        background: rgba(255,255,255,0.1);
+    }
+
+    @media (max-width: 600px) {
+        .media-card {
+            /* flex-direction: column; */
+        }
+        .cover {
+            width: 80px;
+        }
+    }
+</style>
