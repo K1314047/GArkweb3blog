@@ -1,8 +1,8 @@
 ---
-const { label } = Astro.props;
+const { label, count } = Astro.props;
 ---
 
-<div class="tab-item" data-label={label}>
+<div class="tab-item" data-label={label} data-count={count}>
   <slot />
 </div>
 

@@ -32,9 +32,24 @@
       // 生成 Tab 按钮
       items.forEach((item, index) => {
         const label = item.getAttribute('data-label');
+        const count = item.getAttribute('data-count');
         const button = document.createElement('button');
-        button.textContent = label;
         button.className = 'tab-btn' + (index === 0 ? ' active' : '');
+
+        if (label) {
+          const labelText = document.createElement('span');
+          labelText.className = 'tab-label';
+          labelText.textContent = label;
+          button.appendChild(labelText);
+        }
+
+        if (count !== null) {
+          const countText = document.createElement('span');
+          countText.className = 'tab-count';
+          countText.textContent = count;
+          button.appendChild(countText);
+        }
+
         button.addEventListener('click', () => this.switchTab(index));
         header.appendChild(button);
 
@@ -97,6 +112,9 @@
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     margin-bottom: -1px;
     letter-spacing: 0.02em;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35rem;
   }
 
   :global(.tab-btn.active) {
@@ -106,6 +124,13 @@
 
   :global(.tab-btn:hover:not(.active)) {
     color: var(--text-color);
+  }
+
+  :global(.tab-count) {
+    font-size: 0.75em;
+    font-weight: 500;
+    opacity: 0.55;
+    letter-spacing: 0.01em;
   }
 
   /* Dark mode adjustment */

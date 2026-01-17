@@ -10,7 +10,7 @@ const title = "书影音";
 const description = "记录看过的书、电影和玩过的游戏";
 
     interface NeoDBItem {
-        uuid: string;
+        uuid?: string;
         item: {
             title: string;
             cover_image_url: string;
@@ -29,117 +29,137 @@ const sortItems = (items: NeoDBItem[]) => {
     return items.sort((a, b) => new Date(b.created_time).getTime() - new Date(a.created_time).getTime());
 };
 
-const books = sortItems((neodbData.book || []) as NeoDBItem[]);
-const movies = sortItems((neodbData.movie || []) as NeoDBItem[]);
-const tvs = sortItems((neodbData.tv || []) as NeoDBItem[]); // Add TV shows
-const games = sortItems((neodbData.game || []) as NeoDBItem[]);
+const books = sortItems(((neodbData.book || []) as unknown) as NeoDBItem[]);
+const movies = sortItems(((neodbData.movie || []) as unknown) as NeoDBItem[]);
+const tvs = sortItems(((neodbData.tv || []) as unknown) as NeoDBItem[]); // Add TV shows
+const games = sortItems(((neodbData.game || []) as unknown) as NeoDBItem[]);
 ---
 
 <Base title={title} description={description} useCard={false} hideHeader={true} fullWidth={true}>
     <SimpleHeader title="Media" description={description} />
-    
-    <div class="content-limit-width">
-        <Tabs>
-            <TabItem label="书籍">
-                <div class="media-grid">
-                    {books.length > 0 ? books.map(item => (
-                        <MediaCard 
-                            title={item.item.title}
-                            cover={item.item.cover_image_url}
-                            rating={item.rating_grade}
-                            neodbRating={item.item.rating}
-                            brief={item.item.brief}
-                            comment={item.comment_text}
-                            date={item.created_time}
-                            link={`https://neodb.social${item.item.url || '#'}`}
-                            status={item.shelf_type}
-                        />
-                    )) : <p>暂无书籍记录。</p>}
-                </div>
-            </TabItem>
-            
-            <TabItem label="电影">
-                <div class="media-grid">
-                    {movies.length > 0 ? movies.map(item => (
-                        <MediaCard 
-                            title={item.item.title}
-                            cover={item.item.cover_image_url}
-                            rating={item.rating_grade}
-                            neodbRating={item.item.rating}
-                            brief={item.item.brief}
-                            comment={item.comment_text}
-                            date={item.created_time}
-                            link={`https://neodb.social${item.item.url || '#'}`}
-                            status={item.shelf_type}
-                        />
-                    )) : <p>暂无电影记录。</p>}
-                </div>
-            </TabItem>
-            
-            <TabItem label="剧集">
-                <div class="media-grid">
-                    {tvs.length > 0 ? tvs.map(item => (
-                        <MediaCard 
-                            title={item.item.title}
-                            cover={item.item.cover_image_url}
-                            rating={item.rating_grade}
-                            neodbRating={item.item.rating}
-                            brief={item.item.brief}
-                            comment={item.comment_text}
-                            date={item.created_time}
-                            link={`https://neodb.social${item.item.url || '#'}`}
-                            status={item.shelf_type}
-                        />
-                    )) : <p>暂无剧集记录。</p>}
-                </div>
-            </TabItem>
-            
-            <TabItem label="游戏">
-                <div class="media-grid">
-                    {games.length > 0 ? games.map(item => (
-                        <MediaCard 
-                            title={item.item.title}
-                            cover={item.item.cover_image_url}
-                            rating={item.rating_grade}
-                            neodbRating={item.item.rating}
-                            brief={item.item.brief}
-                            comment={item.comment_text}
-                            date={item.created_time}
-                            link={`https://neodb.social${item.item.url || '#'}`}
-                            status={item.shelf_type}
-                        />
-                    )) : <p>暂无游戏记录。</p>}
-                </div>
-            </TabItem>
-        </Tabs>
+
+    <div class="content-limit-width media-page">
+        <div class="media-tabs">
+            <Tabs>
+                <TabItem label="书籍" count={books.length}>
+                    <div class="media-grid">
+                        {books.length > 0 ? books.map(item => (
+                            <MediaCard
+                                title={item.item.title}
+                                cover={item.item.cover_image_url}
+                                rating={item.rating_grade}
+                                neodbRating={item.item.rating}
+                                brief={item.item.brief}
+                                comment={item.comment_text}
+                                date={item.created_time}
+                                link={`https://neodb.social${item.item.url || '#'}`}
+                                status={item.shelf_type}
+                            />
+                        )) : <p class="empty-state">暂无书籍记录。</p>}
+                    </div>
+                </TabItem>
+
+                <TabItem label="电影" count={movies.length}>
+                    <div class="media-grid">
+                        {movies.length > 0 ? movies.map(item => (
+                            <MediaCard
+                                title={item.item.title}
+                                cover={item.item.cover_image_url}
+                                rating={item.rating_grade}
+                                neodbRating={item.item.rating}
+                                brief={item.item.brief}
+                                comment={item.comment_text}
+                                date={item.created_time}
+                                link={`https://neodb.social${item.item.url || '#'}`}
+                                status={item.shelf_type}
+                            />
+                        )) : <p class="empty-state">暂无电影记录。</p>}
+                    </div>
+                </TabItem>
+
+                <TabItem label="剧集" count={tvs.length}>
+                    <div class="media-grid">
+                        {tvs.length > 0 ? tvs.map(item => (
+                            <MediaCard
+                                title={item.item.title}
+                                cover={item.item.cover_image_url}
+                                rating={item.rating_grade}
+                                neodbRating={item.item.rating}
+                                brief={item.item.brief}
+                                comment={item.comment_text}
+                                date={item.created_time}
+                                link={`https://neodb.social${item.item.url || '#'}`}
+                                status={item.shelf_type}
+                            />
+                        )) : <p class="empty-state">暂无剧集记录。</p>}
+                    </div>
+                </TabItem>
+
+                <TabItem label="游戏" count={games.length}>
+                    <div class="media-grid">
+                        {games.length > 0 ? games.map(item => (
+                            <MediaCard
+                                title={item.item.title}
+                                cover={item.item.cover_image_url}
+                                rating={item.rating_grade}
+                                neodbRating={item.item.rating}
+                                brief={item.item.brief}
+                                comment={item.comment_text}
+                                date={item.created_time}
+                                link={`https://neodb.social${item.item.url || '#'}`}
+                                status={item.shelf_type}
+                            />
+                        )) : <p class="empty-state">暂无游戏记录。</p>}
+                    </div>
+                </TabItem>
+            </Tabs>
+        </div>
     </div>
 </Base>
 
 <style>
+    .media-page {
+        padding: 0 0 2rem;
+    }
+
     .media-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 1.5rem;
-        margin-top: 1.5rem;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.25rem;
+        margin-top: 1rem;
     }
-    
-    @media (max-width: 600px) {
-        .media-grid {
-            grid-template-columns: 1fr;
-        }
+
+    .empty-state {
+        margin: 1rem 0 0;
+        color: var(--gray-color);
+        font-size: 0.9rem;
     }
 
     .content-limit-width {
-        max-width: 1200px;
+        max-width: 1120px;
         margin: 0 auto;
         padding: 0 2rem;
         box-sizing: border-box;
         width: 100%;
     }
-    
+
+    :global(.media-tabs .tabs-header) {
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    :global(.media-tabs .tab-btn) {
+        font-size: 1rem;
+        padding: 0.7rem 0;
+    }
+
     @media (max-width: 600px) {
+        .media-grid {
+            grid-template-columns: 1fr;
+        }
+
         .content-limit-width {
-             padding: 0 1.5rem;
+            padding: 0 1.5rem;
         }
     }
 </style>
