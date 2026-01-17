@@ -4,6 +4,8 @@ import { getCollection } from 'astro:content';
 import Base from './Base.astro';
 import { marked } from 'marked';
 import { INCLUDE_DRAFTS, filterDrafts } from '../utils/drafts';
+import fs from 'fs';
+import path from 'path';
 
 type Props = CollectionEntry<'page'>['data'] & {
 	content?: string;
@@ -11,7 +13,32 @@ type Props = CollectionEntry<'page'>['data'] & {
 
 const { title } = Astro.props;
 
-const gossips = filterDrafts(await getCollection('gossips')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+// 读取 Markdown 文件中的碎碎念
+const fileGossips = filterDrafts(await getCollection('gossips'));
+
+// 读取 Mastodon 数据
+let mastodonGossips: any[] = [];
+try {
+	const mastodonDataPath = path.join(process.cwd(), 'src/data/mastodon.json');
+	if (fs.existsSync(mastodonDataPath)) {
+		const mastodonData = JSON.parse(fs.readFileSync(mastodonDataPath, 'utf-8'));
+		mastodonGossips = mastodonData.map((status: any) => ({
+			data: {
+				pubDate: new Date(status.created_at),
+				slug: `mastodon-${status.id}`,
+				draft: false,
+				tag: 'mastodon',
+			},
+			body: status.content_markdown,
+			_raw: status, // 保留原始数据用于扩展
+		}));
+	}
+} catch (error) {
+	console.warn('Failed to load Mastodon data:', error);
+}
+
+// 合并两个数据源并按日期排序
+const gossips = [...fileGossips, ...mastodonGossips].sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const pageSize = 10;
 const totalPages = gossips.length > 0 ? Math.ceil(gossips.length / pageSize) : 0;
