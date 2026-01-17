@@ -1,1 +1,15 @@
-[]
+[
+  {
+    "id": "115910919569563667",
+    "created_at": "2026-01-17T14:31:11.795Z",
+    "content_html": "<p>开始使用 Mastodon 了！</p>",
+    "content_markdown": "开始使用 Mastodon 了！",
+    "url": "https://mastodon.social/@lynkxu/115910919569563667",
+    "visibility": "public",
+    "tags": [],
+    "media_attachments": [],
+    "favourites_count": 0,
+    "reblogs_count": 0,
+    "replies_count": 0
+  }
+]
