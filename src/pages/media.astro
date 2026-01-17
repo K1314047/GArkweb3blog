@@ -33,6 +33,17 @@ const books = sortItems(((neodbData.book || []) as unknown) as NeoDBItem[]);
 const movies = sortItems(((neodbData.movie || []) as unknown) as NeoDBItem[]);
 const tvs = sortItems(((neodbData.tv || []) as unknown) as NeoDBItem[]); // Add TV shows
 const games = sortItems(((neodbData.game || []) as unknown) as NeoDBItem[]);
+
+const splitByStatus = (items: NeoDBItem[]) => {
+    const watching = items.filter(item => item.shelf_type === 'progress');
+    const completed = items.filter(item => item.shelf_type !== 'progress');
+    return { watching, completed };
+};
+
+const bookGroups = splitByStatus(books);
+const movieGroups = splitByStatus(movies);
+const tvGroups = splitByStatus(tvs);
+const gameGroups = splitByStatus(games);
 ---
 
 <Base title={title} description={description} useCard={false} hideHeader={true} fullWidth={true}>
@@ -42,75 +53,195 @@ const games = sortItems(((neodbData.game || []) as unknown) as NeoDBItem[]);
         <div class="media-tabs">
             <Tabs>
                 <TabItem label="书籍" count={books.length}>
-                    <div class="media-grid">
-                        {books.length > 0 ? books.map(item => (
-                            <MediaCard
-                                title={item.item.title}
-                                cover={item.item.cover_image_url}
-                                rating={item.rating_grade}
-                                neodbRating={item.item.rating}
-                                brief={item.item.brief}
-                                comment={item.comment_text}
-                                date={item.created_time}
-                                link={`https://neodb.social${item.item.url || '#'}`}
-                                status={item.shelf_type}
-                            />
-                        )) : <p class="empty-state">暂无书籍记录。</p>}
-                    </div>
+                    {books.length > 0 ? (
+                        <div class="media-group">
+                            <div class="media-group-header">
+                                <h3 class="media-group-title">在看</h3>
+                            </div>
+                            {bookGroups.watching.length > 0 ? (
+                                <div class="media-grid">
+                                    {bookGroups.watching.map(item => (
+                                        <MediaCard
+                                            title={item.item.title}
+                                            cover={item.item.cover_image_url}
+                                            rating={item.rating_grade}
+                                            neodbRating={item.item.rating}
+                                            brief={item.item.brief}
+                                            comment={item.comment_text}
+                                            date={item.created_time}
+                                            link={`https://neodb.social${item.item.url || '#'}`}
+                                            status={item.shelf_type}
+                                        />
+                                    ))}
+                                </div>
+                            ) : <p class="empty-state">暂无在看记录。</p>}
+
+                            <div class="media-group-header">
+                                <h3 class="media-group-title">看过</h3>
+                            </div>
+                            {bookGroups.completed.length > 0 ? (
+                                <div class="media-grid">
+                                    {bookGroups.completed.map(item => (
+                                        <MediaCard
+                                            title={item.item.title}
+                                            cover={item.item.cover_image_url}
+                                            rating={item.rating_grade}
+                                            neodbRating={item.item.rating}
+                                            brief={item.item.brief}
+                                            comment={item.comment_text}
+                                            date={item.created_time}
+                                            link={`https://neodb.social${item.item.url || '#'}`}
+                                            status={item.shelf_type}
+                                        />
+                                    ))}
+                                </div>
+                            ) : <p class="empty-state">暂无看过记录。</p>}
+                        </div>
+                    ) : <p class="empty-state">暂无书籍记录。</p>}
                 </TabItem>
 
                 <TabItem label="电影" count={movies.length}>
-                    <div class="media-grid">
-                        {movies.length > 0 ? movies.map(item => (
-                            <MediaCard
-                                title={item.item.title}
-                                cover={item.item.cover_image_url}
-                                rating={item.rating_grade}
-                                neodbRating={item.item.rating}
-                                brief={item.item.brief}
-                                comment={item.comment_text}
-                                date={item.created_time}
-                                link={`https://neodb.social${item.item.url || '#'}`}
-                                status={item.shelf_type}
-                            />
-                        )) : <p class="empty-state">暂无电影记录。</p>}
-                    </div>
+                    {movies.length > 0 ? (
+                        <div class="media-group">
+                            <div class="media-group-header">
+                                <h3 class="media-group-title">在看</h3>
+                            </div>
+                            {movieGroups.watching.length > 0 ? (
+                                <div class="media-grid">
+                                    {movieGroups.watching.map(item => (
+                                        <MediaCard
+                                            title={item.item.title}
+                                            cover={item.item.cover_image_url}
+                                            rating={item.rating_grade}
+                                            neodbRating={item.item.rating}
+                                            brief={item.item.brief}
+                                            comment={item.comment_text}
+                                            date={item.created_time}
+                                            link={`https://neodb.social${item.item.url || '#'}`}
+                                            status={item.shelf_type}
+                                        />
+                                    ))}
+                                </div>
+                            ) : <p class="empty-state">暂无在看记录。</p>}
+
+                            <div class="media-group-header">
+                                <h3 class="media-group-title">看过</h3>
+                            </div>
+                            {movieGroups.completed.length > 0 ? (
+                                <div class="media-grid">
+                                    {movieGroups.completed.map(item => (
+                                        <MediaCard
+                                            title={item.item.title}
+                                            cover={item.item.cover_image_url}
+                                            rating={item.rating_grade}
+                                            neodbRating={item.item.rating}
+                                            brief={item.item.brief}
+                                            comment={item.comment_text}
+                                            date={item.created_time}
+                                            link={`https://neodb.social${item.item.url || '#'}`}
+                                            status={item.shelf_type}
+                                        />
+                                    ))}
+                                </div>
+                            ) : <p class="empty-state">暂无看过记录。</p>}
+                        </div>
+                    ) : <p class="empty-state">暂无电影记录。</p>}
                 </TabItem>
 
                 <TabItem label="剧集" count={tvs.length}>
-                    <div class="media-grid">
-                        {tvs.length > 0 ? tvs.map(item => (
-                            <MediaCard
-                                title={item.item.title}
-                                cover={item.item.cover_image_url}
-                                rating={item.rating_grade}
-                                neodbRating={item.item.rating}
-                                brief={item.item.brief}
-                                comment={item.comment_text}
-                                date={item.created_time}
-                                link={`https://neodb.social${item.item.url || '#'}`}
-                                status={item.shelf_type}
-                            />
-                        )) : <p class="empty-state">暂无剧集记录。</p>}
-                    </div>
+                    {tvs.length > 0 ? (
+                        <div class="media-group">
+                            <div class="media-group-header">
+                                <h3 class="media-group-title">在看</h3>
+                            </div>
+                            {tvGroups.watching.length > 0 ? (
+                                <div class="media-grid">
+                                    {tvGroups.watching.map(item => (
+                                        <MediaCard
+                                            title={item.item.title}
+                                            cover={item.item.cover_image_url}
+                                            rating={item.rating_grade}
+                                            neodbRating={item.item.rating}
+                                            brief={item.item.brief}
+                                            comment={item.comment_text}
+                                            date={item.created_time}
+                                            link={`https://neodb.social${item.item.url || '#'}`}
+                                            status={item.shelf_type}
+                                        />
+                                    ))}
+                                </div>
+                            ) : <p class="empty-state">暂无在看记录。</p>}
+
+                            <div class="media-group-header">
+                                <h3 class="media-group-title">看过</h3>
+                            </div>
+                            {tvGroups.completed.length > 0 ? (
+                                <div class="media-grid">
+                                    {tvGroups.completed.map(item => (
+                                        <MediaCard
+                                            title={item.item.title}
+                                            cover={item.item.cover_image_url}
+                                            rating={item.rating_grade}
+                                            neodbRating={item.item.rating}
+                                            brief={item.item.brief}
+                                            comment={item.comment_text}
+                                            date={item.created_time}
+                                            link={`https://neodb.social${item.item.url || '#'}`}
+                                            status={item.shelf_type}
+                                        />
+                                    ))}
+                                </div>
+                            ) : <p class="empty-state">暂无看过记录。</p>}
+                        </div>
+                    ) : <p class="empty-state">暂无剧集记录。</p>}
                 </TabItem>
 
                 <TabItem label="游戏" count={games.length}>
-                    <div class="media-grid">
-                        {games.length > 0 ? games.map(item => (
-                            <MediaCard
-                                title={item.item.title}
-                                cover={item.item.cover_image_url}
-                                rating={item.rating_grade}
-                                neodbRating={item.item.rating}
-                                brief={item.item.brief}
-                                comment={item.comment_text}
-                                date={item.created_time}
-                                link={`https://neodb.social${item.item.url || '#'}`}
-                                status={item.shelf_type}
-                            />
-                        )) : <p class="empty-state">暂无游戏记录。</p>}
-                    </div>
+                    {games.length > 0 ? (
+                        <div class="media-group">
+                            <div class="media-group-header">
+                                <h3 class="media-group-title">在玩</h3>
+                            </div>
+                            {gameGroups.watching.length > 0 ? (
+                                <div class="media-grid">
+                                    {gameGroups.watching.map(item => (
+                                        <MediaCard
+                                            title={item.item.title}
+                                            cover={item.item.cover_image_url}
+                                            rating={item.rating_grade}
+                                            neodbRating={item.item.rating}
+                                            brief={item.item.brief}
+                                            comment={item.comment_text}
+                                            date={item.created_time}
+                                            link={`https://neodb.social${item.item.url || '#'}`}
+                                            status={item.shelf_type}
+                                        />
+                                    ))}
+                                </div>
+                            ) : <p class="empty-state">暂无在玩记录。</p>}
+
+                            <div class="media-group-header">
+                                <h3 class="media-group-title">玩过</h3>
+                            </div>
+                            {gameGroups.completed.length > 0 ? (
+                                <div class="media-grid">
+                                    {gameGroups.completed.map(item => (
+                                        <MediaCard
+                                            title={item.item.title}
+                                            cover={item.item.cover_image_url}
+                                            rating={item.rating_grade}
+                                            neodbRating={item.item.rating}
+                                            brief={item.item.brief}
+                                            comment={item.comment_text}
+                                            date={item.created_time}
+                                            link={`https://neodb.social${item.item.url || '#'}`}
+                                            status={item.shelf_type}
+                                        />
+                                    ))}
+                                </div>
+                            ) : <p class="empty-state">暂无玩过记录。</p>}
+                        </div>
+                    ) : <p class="empty-state">暂无游戏记录。</p>}
                 </TabItem>
             </Tabs>
         </div>
@@ -127,6 +258,32 @@ const games = sortItems(((neodbData.game || []) as unknown) as NeoDBItem[]);
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         gap: 1.25rem;
         margin-top: 1rem;
+    }
+
+    .media-group {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    .media-group-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 0.35rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    :global([data-theme='dark']) .media-group-header {
+        border-bottom-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .media-group-title {
+        margin: 0;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--heading-color);
+        letter-spacing: 0.01em;
     }
 
     .empty-state {
