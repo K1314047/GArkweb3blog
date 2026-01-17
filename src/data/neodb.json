@@ -1,6 +1,56 @@
 {
   "book": [
     {
+      "shelf_type": "progress",
+      "visibility": 0,
+      "post_id": 535337092532540700,
+      "item": {
+        "type": "Edition",
+        "title": "段永平投资问答录（商业逻辑篇）",
+        "description": "",
+        "localized_title": [
+          {
+            "lang": "zh-cn",
+            "text": "段永平投资问答录（商业逻辑篇）"
+          }
+        ],
+        "localized_description": [],
+        "cover_image_url": "https://neodb.social/m/book/2022/04/30c7da4f80-b1ac-4949-b884-2183d3bf9f26.jpg",
+        "rating": 7.7,
+        "rating_count": 7,
+        "rating_distribution": [
+          0,
+          0,
+          29,
+          57,
+          14
+        ],
+        "tags": [
+          "investment economy",
+          "中国",
+          "投资",
+          "非虚构"
+        ],
+        "brief": "",
+        "id": "https://neodb.social/book/7FZAbHh74iGZwCOIfnb52O",
+        "uuid": "7FZAbHh74iGZwCOIfnb52O",
+        "url": "/book/7FZAbHh74iGZwCOIfnb52O",
+        "api_url": "/api/book/7FZAbHh74iGZwCOIfnb52O",
+        "category": "book",
+        "parent_uuid": null,
+        "display_title": "段永平投资问答录（商业逻辑篇）",
+        "external_resources": [
+          {
+            "url": "https://book.douban.com/subject/35254511/"
+          }
+        ]
+      },
+      "created_time": "2025-09-01T12:54:00Z",
+      "comment_text": null,
+      "rating_grade": null,
+      "tags": []
+    },
+    {
       "shelf_type": "complete",
       "visibility": 0,
       "post_id": 535337208718118140,
@@ -80,57 +130,7 @@
           }
         ]
       },
-      "created_time": "2026-01-17T12:58:56.594Z",
-      "comment_text": null,
-      "rating_grade": null,
-      "tags": []
-    },
-    {
-      "shelf_type": "progress",
-      "visibility": 0,
-      "post_id": 535337092532540700,
-      "item": {
-        "type": "Edition",
-        "title": "段永平投资问答录（商业逻辑篇）",
-        "description": "",
-        "localized_title": [
-          {
-            "lang": "zh-cn",
-            "text": "段永平投资问答录（商业逻辑篇）"
-          }
-        ],
-        "localized_description": [],
-        "cover_image_url": "https://neodb.social/m/book/2022/04/30c7da4f80-b1ac-4949-b884-2183d3bf9f26.jpg",
-        "rating": 7.7,
-        "rating_count": 7,
-        "rating_distribution": [
-          0,
-          0,
-          29,
-          57,
-          14
-        ],
-        "tags": [
-          "investment economy",
-          "中国",
-          "投资",
-          "非虚构"
-        ],
-        "brief": "",
-        "id": "https://neodb.social/book/7FZAbHh74iGZwCOIfnb52O",
-        "uuid": "7FZAbHh74iGZwCOIfnb52O",
-        "url": "/book/7FZAbHh74iGZwCOIfnb52O",
-        "api_url": "/api/book/7FZAbHh74iGZwCOIfnb52O",
-        "category": "book",
-        "parent_uuid": null,
-        "display_title": "段永平投资问答录（商业逻辑篇）",
-        "external_resources": [
-          {
-            "url": "https://book.douban.com/subject/35254511/"
-          }
-        ]
-      },
-      "created_time": "2026-01-17T12:58:28.900Z",
+      "created_time": "2016-04-01T13:54:00Z",
       "comment_text": null,
       "rating_grade": null,
       "tags": []
@@ -427,7 +427,7 @@
           }
         ]
       },
-      "created_time": "2026-01-17T12:56:33.445Z",
+      "created_time": "2026-01-12T12:54:00Z",
       "comment_text": null,
       "rating_grade": null,
       "tags": []
@@ -494,7 +494,7 @@
           }
         ]
       },
-      "created_time": "2026-01-17T11:23:27.099Z",
+      "created_time": "2026-01-08T12:54:00Z",
       "comment_text": null,
       "rating_grade": null,
       "tags": []
