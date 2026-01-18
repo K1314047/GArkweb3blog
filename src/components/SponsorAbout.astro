@@ -31,7 +31,7 @@ import { SPONSOR_GROUPS } from './sponsorConfig';
 						<div class="sponsor-card__addr">
 							<code class="addr-text">{item.address}</code>
 							<button class="addr-copy" type="button" data-clipboard-text={item.address} aria-label="复制地址">
-								<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+								<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="0" ry="0"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
 							</button>
 						</div>
 					)}
@@ -53,7 +53,7 @@ import { SPONSOR_GROUPS } from './sponsorConfig';
 	.sponsor-fold {
 		background: transparent;
 		border: 1px solid rgba(0, 0, 0, 0.08);
-		border-radius: 6px;
+		border-radius: 0;
 		overflow: hidden;
 	}
 
@@ -134,7 +134,7 @@ import { SPONSOR_GROUPS } from './sponsorConfig';
 	.sponsor-card {
 		background: rgba(255, 255, 255, 0.5);
 		border: 1px solid rgba(0, 0, 0, 0.04);
-		border-radius: 6px;
+		border-radius: 0;
 		padding: 0.55rem;
 	}
 
@@ -159,7 +159,7 @@ import { SPONSOR_GROUPS } from './sponsorConfig';
 
 	.sponsor-card__qr {
 		background: #fff;
-		border-radius: 5px;
+		border-radius: 0;
 		padding: 0.25rem;
 		display: flex;
 		align-items: center;
@@ -186,7 +186,7 @@ import { SPONSOR_GROUPS } from './sponsorConfig';
 		flex: 1;
 		font-size: 0.68rem;
 		padding: 0.2rem 0.35rem;
-		border-radius: 4px;
+		border-radius: 0;
 		background: rgba(0, 0, 0, 0.04);
 		word-break: break-all;
 		line-height: 1.4;
@@ -201,7 +201,7 @@ import { SPONSOR_GROUPS } from './sponsorConfig';
 		padding: 0.2rem;
 		background: none;
 		border: 1px solid rgba(0, 0, 0, 0.1);
-		border-radius: 4px;
+		border-radius: 0;
 		color: var(--gray-color);
 		cursor: pointer;
 		display: flex;

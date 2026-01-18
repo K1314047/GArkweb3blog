@@ -1,5 +1,5 @@
 :root {
-  --width: 860px; /* 改回较小宽度 */
+  --width: 780px; /* 改回较小宽度，从 860px 减小 */
   --content-width: 820px;
   --font-scale: 0.95em;
   --serif-font: "Source Serif 4", "Noto Serif SC", "Source Han Serif CN", serif;
@@ -149,7 +149,7 @@ body {
   margin: 40px auto;
   padding: 40px 60px;
   background-color: var(--content-bg);
-  border-radius: 12px;
+  border-radius: 0;
   box-shadow: var(--card-shadow);
   min-height: calc(100vh - 80px); /* 留出上下边距 */
   width: 90%; /* 在小屏幕上留出一些余地 */
@@ -259,7 +259,7 @@ body.full-width .global-layout-transparent.travel-page footer {
 }
 ::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
+  border-radius: 0;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
@@ -338,7 +338,7 @@ main {
   display: inline-flex;
   align-items: center;
   padding: 0.05rem 0.38rem;
-  border-radius: 999px;
+  border-radius: 0;
   border: 1px solid rgba(0, 0, 0, 0.18);
   background: rgba(0, 0, 0, 0.04);
   color: rgba(0, 0, 0, 0.60);
@@ -375,7 +375,7 @@ main {
 
   width: 42px;
   height: 42px;
-  border-radius: 999px;
+  border-radius: 0;
 
   display: inline-flex;
   align-items: center;
@@ -468,7 +468,7 @@ code {
   margin: 0 0.2em;
   background-color: var(--code-background-color);
   color: var(--code-color);
-  border-radius: 4px;
+  border-radius: 0;
   font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 0.85em;
 }
@@ -493,7 +493,7 @@ pre code {
   background: rgba(0, 0, 0, 0.04);
   color: inherit;
   padding: 0.1em 0.3em;
-  border-radius: 3px;
+  border-radius: 0;
   font-size: 0.95em;
   font-weight: 500;
   transition: all 0.2s ease;
@@ -755,7 +755,7 @@ blockquote {
 }
 
 header {
-  padding: 1rem 0 1.5rem;
+  padding: 1.2rem 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -780,7 +780,7 @@ header {
 }
 
 footer {
-  padding: 60px 0 40px;
+  padding: 40px 0 30px;
   margin-top: auto;
   border-top: 1px solid rgba(0,0,0,0.05);
 }
@@ -982,7 +982,7 @@ ul.posts li a:visited {
 .post-content .img-grid img {
   width: 100%;
   display: block;
-  border-radius: var(--radius);
+  border-radius: 0;
   object-fit: cover;
   aspect-ratio: 4 / 3;
 }
