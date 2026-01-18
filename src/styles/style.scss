@@ -915,6 +915,53 @@ ul.posts li a:visited {
 
 .post-content {
 
+  /* 标题前的 # 号装饰 - 极客悬挂风格 */
+  h1, h2, h3, h4, h5, h6 {
+    position: relative;
+  }
+
+  h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
+    color: var(--gray-color);
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+    font-weight: normal;
+    opacity: 0.3; /* 默认淡化，不抢视觉 */
+    transition: all 0.2s ease;
+  }
+
+  /* 鼠标悬停时高亮 # 号 */
+  h1:hover::before, h2:hover::before, h3:hover::before, h4:hover::before, h5:hover::before, h6:hover::before {
+    opacity: 1;
+    color: var(--link-color);
+  }
+
+  h1::before { content: "#"; }
+  h2::before { content: "##"; }
+  h3::before { content: "###"; }
+  h4::before { content: "####"; }
+  h5::before { content: "#####"; }
+  h6::before { content: "######"; }
+
+  /* 大屏幕：悬挂式（Outdent）- 保持标题文字左对齐，# 号悬挂在左侧 */
+  @media (min-width: 900px) {
+    h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
+      position: absolute;
+      right: 100%;
+      margin-right: 0.75rem; /* 与标题保持舒适距离 */
+      font-size: 0.65em; /* 符号小一点，更精致 */
+      top: 0.3em; /* 视觉垂直居中微调 */
+      letter-spacing: -1px; /* 让多个 # 号稍微紧凑一点 */
+    }
+  }
+
+  /* 小屏幕：内联式（Inline）- 避免溢出屏幕 */
+  @media (max-width: 899px) {
+    h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
+      display: inline-block;
+      margin-right: 0.35rem;
+      font-size: 0.85em;
+    }
+  }
+
   ol,
   ul {
     padding-left: 30px;
