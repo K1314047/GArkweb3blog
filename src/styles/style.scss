@@ -740,11 +740,11 @@ time,
 blockquote {
   margin: 2em 0;
   border-left: 3px solid var(--gray-color);
-  color: var(--text-color);
+  color: var(--blockquote-color);
   padding: 0.2em 0 0.2em 1.2em;
   border-radius: 0;
   font-style: italic;
-  opacity: 0.9;
+  opacity: 0.8;
   
   > :first-child {
     margin-top: 0;
@@ -1219,8 +1219,25 @@ ul.posts li a:visited {
   line-height: 1.5;
 }
 
+.toc-hash {
+  color: var(--gray-color);
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+  font-weight: normal;
+  opacity: 0.3;
+  margin-right: 0.25rem;
+  font-size: 0.85em; /* 稍微小一点 */
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
 .toc-link:hover {
   background: var(--code-background-color);
+}
+
+.toc-link:hover .toc-hash,
+.toc-link.active .toc-hash {
+  opacity: 1;
+  color: var(--link-color);
 }
 
 .toc-link.active {
