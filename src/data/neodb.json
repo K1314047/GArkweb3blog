@@ -295,6 +295,76 @@
     {
       "shelf_type": "complete",
       "visibility": 0,
+      "post_id": 535651410172626050,
+      "item": {
+        "type": "TVSeason",
+        "title": "金部长的梦想人生",
+        "description": "在企业担任经理职的中年男子（柳承龙 饰）意气风发，却在一夕之间跌落谷底。他踏上自我探索的旅程，重新学习什么能带来真正的快乐。",
+        "localized_title": [
+          {
+            "lang": "zh-cn",
+            "text": "金部长的梦想人生"
+          },
+          {
+            "lang": "en",
+            "text": "The Dream Life of Mr. Kim"
+          },
+          {
+            "lang": "zh-cn",
+            "text": "金部长"
+          },
+          {
+            "lang": "ko",
+            "text": "서울 자가에 대기업 다니는 김 부장 이야기"
+          },
+          {
+            "lang": "zh-cn",
+            "text": "在首尔自家大企业工作的金部长的故事"
+          },
+          {
+            "lang": "ko",
+            "text": "김부장"
+          }
+        ],
+        "localized_description": [
+          {
+            "lang": "zh-cn",
+            "text": "在企业担任经理职的中年男子（柳承龙 饰）意气风发，却在一夕之间跌落谷底。他踏上自我探索的旅程，重新学习什么能带来真正的快乐。"
+          }
+        ],
+        "cover_image_url": "https://neodb.social/m/item/doubanmovie/2025/11/29/10c824fd-139b-4028-9380-c8ae98349b48.jpg",
+        "rating": null,
+        "rating_count": 2,
+        "rating_distribution": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "tags": [],
+        "brief": "在企业担任经理职的中年男子（柳承龙 饰）意气风发，却在一夕之间跌落谷底。他踏上自我探索的旅程，重新学习什么能带来真正的快乐。",
+        "id": "https://neodb.social/tv/season/1lC3eOcx2VD8F0nyVsIbFv",
+        "uuid": "1lC3eOcx2VD8F0nyVsIbFv",
+        "url": "/tv/season/1lC3eOcx2VD8F0nyVsIbFv",
+        "api_url": "/api/tv/season/1lC3eOcx2VD8F0nyVsIbFv",
+        "category": "tv",
+        "parent_uuid": "1wg2lyVSDTTA6dg8mnyElw",
+        "display_title": "金部长的梦想人生",
+        "external_resources": [
+          {
+            "url": "https://movie.douban.com/subject/36363109/"
+          }
+        ]
+      },
+      "created_time": "2026-01-18T09:47:28.043Z",
+      "comment_text": null,
+      "rating_grade": 8,
+      "tags": []
+    },
+    {
+      "shelf_type": "complete",
+      "visibility": 0,
       "post_id": 535383512768060000,
       "item": {
         "type": "TVSeason",
