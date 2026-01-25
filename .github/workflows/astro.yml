@@ -111,7 +111,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: ${{ github.sha }}
+          # Checkout the branch so later `git push` won't fail in detached HEAD.
+          ref: ${{ github.ref }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -150,4 +151,4 @@ jobs:
             exit 0
           fi
           git commit -m "chore: record mastodon published posts"
-          git push
+          git push origin HEAD:${{ github.ref_name }}
