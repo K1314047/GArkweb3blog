@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "url": "https://lynkxu.com/blog/2026-01-25-test-2.html/",
+    "postId": "2026-01-25-test-2",
+    "title": "测试一下博文同步-2",
+    "sourcePath": "src/content/blog/2026-01-25-test/test-2.md",
+    "tootId": "115955170585287550",
+    "tootUrl": "https://mastodon.social/@lynkxu/115955170585287550",
+    "visibility": "public",
+    "commit": "8a50cb856ee51c990b473c247393a7dc927ccbf1",
+    "publishedAt": "2026-01-25T10:04:48.892Z"
+  }
+]
