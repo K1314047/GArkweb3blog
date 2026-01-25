@@ -200,6 +200,9 @@
   },
   "active": "dd6aab88e0d9cf51",
   "lastOpenFiles": [
+    "src/content/blog/2026-01-25-test/test-2.md",
+    "src/content/blog/2026-01-25-test",
+    "src/content/blog/2026-01-24-test/test-2.md",
     "src/content/blog/2026-01-24-test/test.md",
     "src/content/blog/2026-01-24-test",
     "scripts/publish-blog-to-mastodon.mjs",
@@ -214,7 +217,6 @@
     "dist/friends/index.html",
     "dist/friends",
     "dist/projects/index.html",
-    "dist/jianli/index.html",
     "dist/_astro/thumbnail.UTvGGEIF.jpg",
     "dist/_astro/thumbnail.DYSx6Sp5.jpg",
     "dist/_astro/thumbnail.CqYFMfK8.jpg",
