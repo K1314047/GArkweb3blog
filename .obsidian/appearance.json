@@ -1,4 +1,5 @@
 {
-  "cssTheme": "Minimal",
-  "textFontFamily": "Hiragino Sans GB"
+  "cssTheme": "Things",
+  "textFontFamily": "Hiragino Sans GB",
+  "theme": "system"
 }
