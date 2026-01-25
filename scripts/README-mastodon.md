@@ -72,7 +72,7 @@ node scripts/publish-blog-to-mastodon.mjs
 
 可选参数：
 
-- `SITE_URL`：覆盖站点域名（默认从 `astro.config.mjs` 读取 `site`）
+- `SITE_URL`：覆盖站点域名（在 GitHub Actions 中默认取 Pages 部署输出的 `page_url`；本地则默认从 `astro.config.mjs` 读取 `site`）
 - `MASTODON_VISIBILITY`：默认 `public`
 - `MASTODON_CHAR_LIMIT`：默认 `500`
 

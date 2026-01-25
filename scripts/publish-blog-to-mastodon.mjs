@@ -230,7 +230,8 @@ async function main() {
 		}
 
 		const postId = computePostId(rel, fm);
-		const canonicalUrl = `${siteUrl.replace(/\/+$/, '')}/blog/${postId}.html`;
+		// Site output uses a trailing slash for these routes (e.g. ".../xxx.html/").
+		const canonicalUrl = `${siteUrl.replace(/\/+$/, '')}/blog/${postId}.html/`;
 		if (publishedUrlSet.has(canonicalUrl)) {
 			console.log(`[mastodon-publish] Skip (already published): ${canonicalUrl}`);
 			continue;
