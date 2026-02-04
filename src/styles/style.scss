@@ -1152,13 +1152,21 @@ ul.posts li a:visited {
   }
 }
 
-@media (max-width: 1000px) {
-  .blog-layout.has-sidebar .blog-main-column {
-      max-width: 100%;
+@media (max-width: 1399px) {
+  .blog-layout {
+    display: flex;
+    flex-direction: column;
   }
 
   .blog-sidebar {
-    display: none; /* 在小屏幕隐藏目录 */
+    order: -1;
+    margin: 0 auto 2rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .blog-layout.has-sidebar .blog-main-column {
+      max-width: 100%;
   }
 }
 
@@ -1279,12 +1287,8 @@ ul.posts li a:visited {
   background: var(--text-color);
 }
 
-/* 响应式：小屏幕隐藏目录 */
+/* 响应式：小屏幕调整目录位置 */
 @media (max-width: 1200px) {
-  .toc-container {
-    display: none;
-  }
-
   .blog-sidebar {
     position: relative;
     right: auto;
