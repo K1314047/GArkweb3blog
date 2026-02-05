@@ -48,12 +48,14 @@ marked.setOptions({
 	gfm: true,
 });
 
-// 解析日期，返回 { day, month, year }
+// 解析日期，返回 { day, month, year, time }
 function getDateParts(date: Date) {
-    const day = date.getDate().toString();
-    const month = date.toLocaleString('en-US', { month: 'short' }).toUpperCase(); // JAN, FEB
-    const year = date.getFullYear();
-    return { day, month, year };
+    const options: Intl.DateTimeFormatOptions = { timeZone: 'Asia/Shanghai' };
+    const day = new Intl.DateTimeFormat('en-US', { ...options, day: 'numeric' }).format(date);
+    const month = new Intl.DateTimeFormat('en-US', { ...options, month: 'short' }).format(date).toUpperCase();
+    const year = new Intl.DateTimeFormat('en-US', { ...options, year: 'numeric' }).format(date);
+    const time = new Intl.DateTimeFormat('en-US', { ...options, hour: '2-digit', minute: '2-digit', hour12: false }).format(date);
+    return { day, month, year, time };
 }
 ---
 
@@ -147,7 +149,7 @@ function getDateParts(date: Date) {
                     <div class='empty-state'>暂无碎碎念</div>
                 ) : (
                     gossips.map((gossip: any, index) => {
-                        const { day, month, year } = getDateParts(gossip.data.pubDate);
+                        const { day, month, year, time } = getDateParts(gossip.data.pubDate);
                         const attachments = gossip._raw?.media_attachments || [];
                         return (
                             <div class='feed-item' data-index={index}>
@@ -170,6 +172,7 @@ function getDateParts(date: Date) {
                                             </div>
                                         )}
                                         
+                                        <div class:list={["card-time", { "on-media": attachments.length > 0 }]}>{time}</div>
                                         {INCLUDE_DRAFTS && gossip.data.draft && <div class="draft-indicator">DRAFT</div>}
                                     </div>
                                 </div>
@@ -327,6 +330,34 @@ function getDateParts(date: Date) {
             color: var(--gray-color);
             opacity: 0.6;
             margin-top: 2px;
+        }
+
+        .card-time {
+            position: absolute;
+            bottom: 6px;
+            right: 12px;
+            font-size: 0.65rem;
+            color: var(--gray-color);
+            opacity: 0.2;
+            transition: opacity 0.2s;
+            user-select: none;
+            font-family: var(--font-mono, monospace);
+        }
+
+        .card-time.on-media {
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+            opacity: 0.6;
+            right: 8px; /* 稍微靠右一点，更紧凑 */
+            bottom: 8px;
+        }
+
+        .feed-card:hover .card-time {
+            opacity: 0.6;
+        }
+        
+        .feed-card:hover .card-time.on-media {
+            opacity: 1;
         }
 
         /* 4. Content Column */
