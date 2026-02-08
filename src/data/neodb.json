@@ -142,6 +142,95 @@
     {
       "shelf_type": "complete",
       "visibility": 0,
+      "post_id": 543349425809501800,
+      "item": {
+        "type": "Movie",
+        "title": "哈姆奈特",
+        "description": "影片改编自同名畅销小说，讲述启发莎士比亚最伟大的作品背后，那段不为人知的传奇爱情故事。\n威廉·莎士比亚（保罗·麦斯卡 Paul Mescal 饰）和妻子艾格尼丝（杰西·巴克利 Jessie Buckley 饰）11岁的儿子哈姆奈特染疫亡故，4年后莎士比亚以此为灵感，写出了后世传颂的《哈姆雷特》。",
+        "localized_title": [
+          {
+            "lang": "en",
+            "text": "Hamnet"
+          },
+          {
+            "lang": "zh-cn",
+            "text": "哈姆奈特"
+          },
+          {
+            "lang": "zh-hk",
+            "text": "哈姆尼特(港)"
+          }
+        ],
+        "localized_description": [
+          {
+            "lang": "zh-cn",
+            "text": "影片改编自同名畅销小说，讲述启发莎士比亚最伟大的作品背后，那段不为人知的传奇爱情故事。\n威廉·莎士比亚（保罗·麦斯卡 Paul Mescal 饰）和妻子艾格尼丝（杰西·巴克利 Jessie Buckley 饰）11岁的儿子哈姆奈特染疫亡故，4年后莎士比亚以此为灵感，写出了后世传颂的《哈姆雷特》。"
+          }
+        ],
+        "cover_image_url": "https://neodb.social/m/item/doubanmovie/2025/11/29/dfd0a56c-1ff0-4eaa-8302-9dcadd39ba54.jpg",
+        "rating": 7.1,
+        "rating_count": 81,
+        "rating_distribution": [
+          1,
+          4,
+          27,
+          48,
+          20
+        ],
+        "tags": [
+          "2020s",
+          "2025",
+          "c 2025",
+          "传记",
+          "保罗 麦斯卡",
+          "剧情",
+          "历史",
+          "古装",
+          "哈姆雷特",
+          "地区 英国",
+          "女性",
+          "家庭",
+          "年代 2020s",
+          "悲剧",
+          "电影",
+          "美国",
+          "艾米丽 沃森",
+          "英国",
+          "英国电影",
+          "赵婷"
+        ],
+        "brief": "影片改编自同名畅销小说，讲述启发莎士比亚最伟大的作品背后，那段不为人知的传奇爱情故事。\n威廉·莎士比亚（保罗·麦斯卡 Paul Mescal 饰）和妻子艾格尼丝（杰西·巴克利 Jessie Buckley 饰）11岁的儿子哈姆奈特染疫亡故，4年后莎士比亚以此为灵感，写出了后世传颂的《哈姆雷特》。",
+        "id": "https://neodb.social/movie/4JhwtCkcbhDyWzuThYHVLC",
+        "uuid": "4JhwtCkcbhDyWzuThYHVLC",
+        "url": "/movie/4JhwtCkcbhDyWzuThYHVLC",
+        "api_url": "/api/movie/4JhwtCkcbhDyWzuThYHVLC",
+        "category": "movie",
+        "parent_uuid": null,
+        "display_title": "哈姆奈特",
+        "external_resources": [
+          {
+            "url": "https://www.imdb.com/title/tt14905854/"
+          },
+          {
+            "url": "https://www.wikidata.org/wiki/Q122741016"
+          },
+          {
+            "url": "https://movie.douban.com/subject/35618471/"
+          },
+          {
+            "url": "https://www.themoviedb.org/movie/858024"
+          }
+        ]
+      },
+      "created_time": "2026-02-08T15:36:37.993Z",
+      "comment_text": null,
+      "rating_grade": null,
+      "tags": [],
+      "publication_year": "2025"
+    },
+    {
+      "shelf_type": "complete",
+      "visibility": 0,
       "post_id": 542964371471658800,
       "item": {
         "type": "Movie",
