@@ -4,7 +4,6 @@ import SimpleHeader from '../components/SimpleHeader.astro';
 import Tabs from '../components/Tabs.astro';
 import TabItem from '../components/TabItem.astro';
 import MediaCard from '../components/MediaCard.astro';
-import MediaCardLarge from '../components/MediaCardLarge.astro';
 import neodbData from '../data/neodb.json';
 
 const title = "书影音";
@@ -81,9 +80,9 @@ const gamesByYear = groupByYear(games);
                                 <h3 class="media-group-title">在看</h3>
                             </div>
                             {bookGroups.watching.length > 0 ? (
-                                <div class="media-grid-lg">
+                                <div class="media-grid">
                                     {bookGroups.watching.map(item => (
-                                        <MediaCardLarge
+                                        <MediaCard
                                             title={item.item.title}
                                             cover={item.item.cover_image_url}
                                             rating={item.rating_grade}
@@ -147,9 +146,9 @@ const gamesByYear = groupByYear(games);
                                 <h3 class="media-group-title">在看</h3>
                             </div>
                             {tvGroups.watching.length > 0 ? (
-                                <div class="media-grid-lg">
+                                <div class="media-grid">
                                     {tvGroups.watching.map(item => (
-                                        <MediaCardLarge
+                                        <MediaCard
                                             title={item.item.title}
                                             cover={item.item.cover_image_url}
                                             rating={item.rating_grade}
@@ -356,20 +355,6 @@ const gamesByYear = groupByYear(games);
         grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
         gap: 1.6rem 0.9rem;
         margin-top: 0.6rem;
-    }
-
-    /* ── Grid (horizontal cards for "在看") ── */
-    .media-grid-lg {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.75rem;
-        margin-top: 0.6rem;
-    }
-
-    @media (max-width: 700px) {
-        .media-grid-lg {
-            grid-template-columns: 1fr;
-        }
     }
 
     .media-group {
