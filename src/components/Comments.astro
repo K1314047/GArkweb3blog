@@ -241,22 +241,33 @@ const twikooEnv = 'https://moonlit-mousse-b8e262.netlify.app/.netlify/functions/
 	.comment-tabs {
 		display: flex;
 		padding: 0;
+		gap: 0.8rem;
 	}
 	.comment-tabs li {
-		margin-right: 2em;
 		cursor: pointer;
 		text-align: center;
 		position: relative;
 		padding: 0.4em 1.4em;
-		background: white;
-		border: 2px solid;
-		border-radius: 12px;
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		background: var(--content-bg);
+		border: 1px solid rgba(0, 0, 0, 0.12);
+		border-radius: 0;
+		transition: all 0.2s ease;
 		overflow: hidden;
+		color: var(--text-color);
+	}
+	.comment-tabs li:hover {
+		border-color: rgba(0, 0, 0, 0.3);
 	}
 	.comment-tabs li.active {
-		background: #333;
-		color: #fff;
+		background: var(--heading-color);
+		color: var(--content-bg);
+		border-color: var(--heading-color);
+	}
+	:root[data-theme="dark"] .comment-tabs li {
+		border-color: rgba(255, 255, 255, 0.15);
+	}
+	:root[data-theme="dark"] .comment-tabs li:hover {
+		border-color: rgba(255, 255, 255, 0.35);
 	}
 	.comments > div.active {
 		display: block;
@@ -273,7 +284,6 @@ const twikooEnv = 'https://moonlit-mousse-b8e262.netlify.app/.netlify/functions/
 			justify-content: space-between;
 		}
 		.comment-tabs li {
-			margin: 0;
 			width: 48%;
 			padding: 0.6em 1.4em;
 		}

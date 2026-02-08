@@ -842,19 +842,18 @@ ul.posts li > span {
   font-size: 0.95em; /* 字号不需要太小 */
   font-weight: 400;
   color: var(--gray-color);
-  opacity: 0.6; /* 降低透明度，模仿参考图的浅灰色 */
   font-variant-numeric: tabular-nums;
   font-family: inherit; /* 继承正文的 Source Serif 4，保证统一 */
   letter-spacing: 0.05em; /* 关键：增加一点点间距，让宋体数字呼吸起来 */
 }
 
-/* 强化栏目标题 */
+/* 栏目标题 - 降低视觉权重，与整体极简风格协调 */
 .indextitle {
-  font-size: 1.3em; /* 加大 */
+  font-size: 1.1em;
   margin: 1.5em 0 1em;
   color: var(--heading-color);
-  font-weight: 700; /* 加粗，模仿参考图的重视觉 */
-  letter-spacing: -0.02em; /* 稍微收紧字间距，显得更有力 */
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 ul.posts li > div {
@@ -1058,11 +1057,11 @@ ul.posts li a:visited {
 .post-content a {
   border-bottom: 1px solid;
   transition: all 0.1s linear;
-  color: #0277BD;
+  color: var(--link-color);
 }
 
 .post-content a:hover {
-  background: #eee;
+  background: var(--code-background-color);
 }
 
 .author {
@@ -1339,9 +1338,9 @@ ul.posts li a:visited {
   color: var(--gray-color);
   display: flex;
   flex-wrap: wrap;
+  gap: 0.5rem 1.2rem;
 
   a {
-    margin: 0 15px 15px 0;
     display: inline-flex;
   }
 }

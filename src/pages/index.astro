@@ -26,7 +26,6 @@ const sortedTags = Array.from(tagsMap.entries()).sort((a, b) => b[1] - a[1]);
 
 <Base title={SITE_TITLE} description={SITE_DESCRIPTION}>
 	<div class="content-limit-width">
-		<p></p>
 		<div class='post-content content motto'>
 			<IndexContent />
 		</div>
@@ -70,16 +69,15 @@ const sortedTags = Array.from(tagsMap.entries()).sort((a, b) => b[1] - a[1]);
 	</div>
 
 	<style>
-		/* 座右铭样式优化 - Minimal Sans */
+		/* 座右铭样式优化 - 使用衬线体，与站点整体风格统一 */
 		.motto {
-			font-family: system-ui, -apple-system, sans-serif;
+			font-family: var(--serif-font);
 			font-size: 0.95em;
 			font-weight: 400;
 			color: var(--gray-color);
-			opacity: 1;
 			margin: 0.5rem 0;
-			letter-spacing: 0.05em;
-			text-transform: uppercase; /* 全大写，增加一种冷淡的秩序感 */
+			letter-spacing: 0.02em;
+			font-style: italic;
 		}
 
 		.motto :global(p) {
@@ -90,9 +88,9 @@ const sortedTags = Array.from(tagsMap.entries()).sort((a, b) => b[1] - a[1]);
 			content: none;
 		}
 
-		/* 增加与上方座右铭的距离 */
+		/* 统一区块间距：使用一致的 2.5rem 节奏 */
 		.recent-header {
-			margin-top: 3rem;
+			margin-top: 2.5rem;
 		}
 
 		.recent-header .indextitle {
@@ -122,18 +120,9 @@ const sortedTags = Array.from(tagsMap.entries()).sort((a, b) => b[1] - a[1]);
 			border-bottom-color: var(--heading-color);
 		}
 
-		/* 箭头动画 */
-		.view-all-container a::after {
-			/* content: "→"; 已经在HTML里写了，这里不需要content */
-			/* transition: transform 0.2s ease; */
-		}
-		
-		/* 既然HTML里写了箭头是文本的一部分，我们通过HTML结构不好直接控制箭头的transform
-		   除非把箭头放到span里。但简单点，我们只做颜色变化即可。
-		*/
-
 		.home-tags {
-			margin: 0.8rem 0 1rem;
+			margin-top: 2.5rem;
+			margin-bottom: 1rem;
 		}
 
 		.home-tags .indextitle {
@@ -142,11 +131,17 @@ const sortedTags = Array.from(tagsMap.entries()).sort((a, b) => b[1] - a[1]);
 
 		.home-tags .tags a {
 			font-size: 0.9rem;
-			text-decoration: underline;
-			text-underline-offset: 2px;
+			text-decoration: none;
+			border-bottom: 1px solid transparent;
+			transition: all 0.2s ease;
 			/* 防止某些字体把 "(1)" 自动替换成 "①" 等圈号数字 */
 			font-variant-ligatures: none;
 			font-feature-settings: "liga" 0, "clig" 0, "calt" 0;
+		}
+
+		.home-tags .tags a:hover {
+			color: var(--heading-color);
+			border-bottom-color: var(--gray-color);
 		}
 
 		/* 首页“标签”区块：缩小标题与标签列表之间的间距 */

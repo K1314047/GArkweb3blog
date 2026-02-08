@@ -65,10 +65,15 @@ const isDev = import.meta.env.DEV;
 		.code-wrapper {
 			position: relative;
 			margin: 2rem 0;
-			border-radius: 8px;
+			border-radius: 0;
 			background: var(--code-background-color);
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+			box-shadow: none;
+			border: 1px solid rgba(0, 0, 0, 0.06);
 			overflow: hidden;
+		}
+
+		:root[data-theme="dark"] .code-wrapper {
+			border-color: rgba(255, 255, 255, 0.08);
 		}
 
 		/* Header - Immersive Style */
@@ -92,21 +97,19 @@ const isDev = import.meta.env.DEV;
 			pointer-events: auto;
 		}
 
-		/* Mac Traffic Lights */
+		/* Code block decorative dots - 克制的单色风格 */
 		.mac-buttons {
 			display: flex;
 			gap: 6px;
 		}
 
 		.mac-button {
-			width: 11px;
-			height: 11px;
+			width: 9px;
+			height: 9px;
 			border-radius: 50%;
+			background-color: var(--gray-color);
+			opacity: 0.2;
 		}
-
-		.mac-button.close { background-color: #ff5f56; }
-		.mac-button.minimize { background-color: #ffbd2e; }
-		.mac-button.maximize { background-color: #27c93f; }
 
 		/* Language Label */
 		.code-lang {
@@ -122,6 +125,15 @@ const isDev = import.meta.env.DEV;
 			user-select: none;
 		}
 
+		/* 文章标题上方装饰分隔线 */
+		.post-title-separator {
+			color: var(--gray-color);
+			opacity: 0.3;
+			font-size: 1.2rem;
+			margin: 0.5rem 0 0.8rem;
+			user-select: none;
+		}
+
 		/* Copy Button */
 		.copy-btn {
 			display: inline-flex;
@@ -132,7 +144,7 @@ const isDev = import.meta.env.DEV;
 			color: var(--gray-color);
 			cursor: pointer;
 			padding: 4px;
-			border-radius: 4px;
+			border-radius: 0;
 			transition: all 0.2s;
 			opacity: 0.0; /* 默认隐藏，悬停显示 */
 		}
@@ -165,8 +177,7 @@ const isDev = import.meta.env.DEV;
 		}
 	</style>
 
-	<p></p>
-	<h2>–</h2>
+	<div class="post-title-separator" aria-hidden="true">–</div>
 	<h1 class="post-title" transition:name={postId ? `post-title-${postId}` : undefined}>{title}</h1>
 		<div class="post-meta" role="note" aria-label="文章信息">
 			<FormattedDate date={pubDate} />
@@ -346,6 +357,9 @@ const isDev = import.meta.env.DEV;
 					macButtons.appendChild(btn);
 				});
 
+				// 获取 code 元素（在 forEach 顶层定义，供后续复制功能使用）
+				const code = block.querySelector('code');
+
 				// 获取语言
 				let lang = '';
 				// 尝试从 pre 的 data-language 属性获取
@@ -353,14 +367,11 @@ const isDev = import.meta.env.DEV;
 					lang = block.dataset.language;
 				}
 				// 尝试从 code 的 class 获取
-				else {
-					const code = block.querySelector('code');
-					if (code) {
-						const classList = code.className.split(' ');
-						const langClass = classList.find(c => c.startsWith('language-'));
-						if (langClass) {
-							lang = langClass.replace('language-', '');
-						}
+				else if (code) {
+					const classList = code.className.split(' ');
+					const langClass = classList.find(c => c.startsWith('language-'));
+					if (langClass) {
+						lang = langClass.replace('language-', '');
 					}
 				}
 
