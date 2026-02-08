@@ -22,10 +22,11 @@ const description = "记录看过的书、电影和玩过的游戏";
         rating_grade: number;
         created_time: string;
         shelf_type?: string;
+        publication_year?: string;
     }
 
 // Helper to sort items by creation date (newest first)
-const sortItems = (items: NeoDBItem[]) => {
+const sortItems = <T extends NeoDBItem>(items: T[]) => {
     return items.sort((a, b) => new Date(b.created_time).getTime() - new Date(a.created_time).getTime());
 };
 
@@ -34,7 +35,7 @@ const movies = sortItems(((neodbData.movie || []) as unknown) as NeoDBItem[]);
 const tvs = sortItems(((neodbData.tv || []) as unknown) as NeoDBItem[]); // Add TV shows
 const games = sortItems(((neodbData.game || []) as unknown) as NeoDBItem[]);
 
-const splitByStatus = (items: NeoDBItem[]) => {
+const splitByStatus = <T extends NeoDBItem>(items: T[]) => {
     const watching = items.filter(item => item.shelf_type === 'progress');
     const completed = items.filter(item => item.shelf_type !== 'progress');
     return { watching, completed };
@@ -42,8 +43,8 @@ const splitByStatus = (items: NeoDBItem[]) => {
 
 const shouldOpenCompleted = (items: NeoDBItem[]) => items.length <= 8;
 
-const groupByYear = (items: NeoDBItem[]) => {
-    const groups = new Map<string, NeoDBItem[]>();
+const groupByYear = <T extends NeoDBItem>(items: T[]) => {
+    const groups = new Map<string, T[]>();
     for (const item of items) {
         const year = Number.isFinite(new Date(item.created_time).getFullYear())
             ? String(new Date(item.created_time).getFullYear())
@@ -90,6 +91,7 @@ const gamesByYear = groupByYear(games);
                                             brief={item.item.brief}
                                             comment={item.comment_text}
                                             date={item.created_time}
+                                            year={item.publication_year ?? '未知'}
                                             link={`https://neodb.social${item.item.url || '#'}`}
                                             status={item.shelf_type}
                                         />
@@ -120,6 +122,7 @@ const gamesByYear = groupByYear(games);
                                                             brief={item.item.brief}
                                                             comment={item.comment_text}
                                                             date={item.created_time}
+                                                            year={item.publication_year ?? '未知'}
                                                             link={`https://neodb.social${item.item.url || '#'}`}
                                                             status={item.shelf_type}
                                                         />
@@ -156,6 +159,7 @@ const gamesByYear = groupByYear(games);
                                             brief={item.item.brief}
                                             comment={item.comment_text}
                                             date={item.created_time}
+                                            year={item.publication_year ?? '未知'}
                                             link={`https://neodb.social${item.item.url || '#'}`}
                                             status={item.shelf_type}
                                         />
@@ -186,6 +190,7 @@ const gamesByYear = groupByYear(games);
                                                             brief={item.item.brief}
                                                             comment={item.comment_text}
                                                             date={item.created_time}
+                                                            year={item.publication_year ?? '未知'}
                                                             link={`https://neodb.social${item.item.url || '#'}`}
                                                             status={item.shelf_type}
                                                         />
@@ -225,6 +230,7 @@ const gamesByYear = groupByYear(games);
                                                     brief={item.item.brief}
                                                     comment={item.comment_text}
                                                     date={item.created_time}
+                                                    year={item.publication_year ?? '未知'}
                                                     link={`https://neodb.social${item.item.url || '#'}`}
                                                     status={item.shelf_type}
                                                 />
@@ -262,6 +268,7 @@ const gamesByYear = groupByYear(games);
                                                     brief={item.item.brief}
                                                     comment={item.comment_text}
                                                     date={item.created_time}
+                                                    year={item.publication_year ?? '未知'}
                                                     link={`https://neodb.social${item.item.url || '#'}`}
                                                     status={item.shelf_type}
                                                 />

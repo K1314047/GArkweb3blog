@@ -9,11 +9,12 @@ interface Props {
   brief?: string;
   comment?: string;
   date: string;
+  year?: string | number;
   link?: string;
   status?: string; // 'progress' or 'complete'
 }
 
-const { title, cover, rating, neodbRating, brief, comment, date, link, status } = Astro.props;
+const { title, cover, rating, neodbRating, brief, comment, date, year, link, status } = Astro.props;
 
 // Format date - this is the time when the item was first added to any shelf
 const formattedDate = new Date(date).toLocaleDateString('zh-CN', {
@@ -31,6 +32,7 @@ const starCount = rating ? Math.round(rating / 2) : 0;
         <img src={cover} alt={title} loading="lazy" onerror="this.src='/placeholder.png'"/>
         {neodbRating && <span class="badge-rating">{neodbRating}</span>}
         {status === 'progress' && <span class="badge-status">在看</span>}
+        {year && <span class="badge-year">{year}</span>}
         <div class="cover-overlay">
             {starCount > 0 && (
                 <div class="overlay-stars">
@@ -115,6 +117,21 @@ const starCount = rating ? Math.round(rating / 2) : 0;
         padding: 1px 5px;
         border-radius: 3px;
         backdrop-filter: blur(4px);
+        z-index: 2;
+    }
+
+    .badge-year {
+        position: absolute;
+        bottom: 5px;
+        left: 5px;
+        background: rgba(0, 0, 0, 0.55);
+        color: #fff;
+        font-size: 0.58rem;
+        font-weight: 600;
+        padding: 1px 5px;
+        border-radius: 3px;
+        backdrop-filter: blur(4px);
+        letter-spacing: 0.03em;
         z-index: 2;
     }
 

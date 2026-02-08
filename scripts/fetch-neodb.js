@@ -53,6 +53,7 @@ if (!TOKEN) {
 // Shelf types: 'wishlist' (想看), 'progress' (在看), 'complete' (看过), 'dropped' (搁置)
 const SHELF_TYPES = ['complete', 'progress']; // Now fetching both 'complete' and 'progress'
 const CATEGORIES = ['book', 'movie', 'tv', 'game']; // Added 'tv' for TV shows/series
+const ITEM_API_BASE = 'https://neodb.social';
 
 function normalizeTime(value) {
     const time = Date.parse(value);
@@ -112,6 +113,91 @@ function mergeItems(newItems, existingItems) {
     }
     merged.sort((a, b) => normalizeTime(b?.created_time) - normalizeTime(a?.created_time));
     return merged;
+}
+
+function buildExistingYearMap(existingData) {
+    const map = new Map();
+    if (!existingData) {
+        return map;
+    }
+    for (const category of CATEGORIES) {
+        const items = existingData?.[category] ?? [];
+        for (const item of items) {
+            const key = getItemKey(item);
+            if (item?.publication_year) {
+                map.set(key, item.publication_year);
+            }
+        }
+    }
+    return map;
+}
+
+function pickYear(value) {
+    if (typeof value === 'number' && Number.isFinite(value)) {
+        return String(value);
+    }
+    if (typeof value === 'string') {
+        const match = value.match(/\d{4}/);
+        return match ? match[0] : undefined;
+    }
+    return undefined;
+}
+
+function extractYearFromApi(payload) {
+    return (
+        pickYear(payload?.pub_year) ||
+        pickYear(payload?.year) ||
+        pickYear(payload?.release_year) ||
+        pickYear(payload?.release_date) ||
+        pickYear(payload?.pub_date) ||
+        pickYear(payload?.first_air_date) ||
+        pickYear(payload?.air_date) ||
+        pickYear(payload?.premiere_date)
+    );
+}
+
+async function fetchPublicationYear(apiUrl, cache) {
+    if (!apiUrl) {
+        return '未知';
+    }
+    if (cache.has(apiUrl)) {
+        return cache.get(apiUrl);
+    }
+    try {
+        const response = await fetch(`${ITEM_API_BASE}${apiUrl}`, {
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        if (!response.ok) {
+            throw new Error(`API Error: ${response.status} ${response.statusText}`);
+        }
+        const data = await response.json();
+        const year = extractYearFromApi(data) || '未知';
+        cache.set(apiUrl, year);
+        return year;
+    } catch (error) {
+        console.warn(`Failed to fetch detail for ${apiUrl}:`, error.message);
+        cache.set(apiUrl, '未知');
+        return '未知';
+    }
+}
+
+async function attachPublicationYears(items, existingYearMap) {
+    const cache = new Map();
+    for (const item of items) {
+        if (item?.publication_year) {
+            continue;
+        }
+        const key = getItemKey(item);
+        if (existingYearMap.has(key)) {
+            item.publication_year = existingYearMap.get(key);
+            continue;
+        }
+        const apiUrl = item?.item?.api_url;
+        item.publication_year = await fetchPublicationYear(apiUrl, cache);
+        await new Promise(resolve => setTimeout(resolve, 200));
+    }
 }
 
 async function fetchCategory(category, existingItems) {
@@ -188,11 +274,14 @@ async function fetchCategory(category, existingItems) {
 async function main() {
     const result = {};
     const existingData = readExistingData();
+    const existingYearMap = buildExistingYearMap(existingData);
 
     for (const category of CATEGORIES) {
         const existingItems = existingData?.[category] ?? [];
         const newItems = await fetchCategory(category, existingItems);
-        result[category] = mergeItems(newItems, existingItems);
+        const mergedItems = mergeItems(newItems, existingItems);
+        await attachPublicationYears(mergedItems, existingYearMap);
+        result[category] = mergedItems;
     }
 
     // Ensure directory exists
