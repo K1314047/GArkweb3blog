@@ -115,14 +115,21 @@
 .tk-author-badge {
   display: inline-flex;
   align-items: center;
-  margin-left: 0.4rem;
-  padding: 0 0.4em;
-  font-size: 0.72em;
-  line-height: 1.4;
-  border-radius: 2px;
-  color: #4a8f5a;
-  background-color: rgba(74, 143, 90, 0.12);
-  border: 1px solid rgba(74, 143, 90, 0.35);
+  margin-left: 0.15rem;
+  color: #9fc3d8;
+  vertical-align: middle;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  line-height: 0;
+}
+
+.tk-author-badge svg {
+  width: 14px !important;
+  height: 14px !important;
+  max-width: 14px;
+  max-height: 14px;
+  display: block;
 }
 
 .tk-comment-author > .tk-main {
@@ -434,6 +441,20 @@
   position: relative;
   font-size: 0.86em;
   line-height: 1.45;
+}
+
+/* 回复中的 @用户名 样式 */
+.tk-content .tk-nick {
+  font-weight: 600;
+  color: var(--heading-color, #1a1a1a);
+  background-color: rgba(0, 0, 0, 0.04);
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  font-size: 0.95em;
+}
+
+:root[data-theme="dark"] .tk-content .tk-nick {
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
 .tk-content-expand {
@@ -1002,6 +1023,11 @@
   background-color: #fafbfc;
   border-color: rgba(0, 0, 0, 0.08);
   border-radius: 8px;
+}
+
+/* Dark theme - author badge */
+:root[data-theme="dark"] .tk-author-badge {
+  color: #7bafc8;
 }
 
 /* Dark theme tweaks */
