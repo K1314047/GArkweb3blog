@@ -8,8 +8,8 @@ const { title } = Astro.props;
 	<div class="profile-header">
 		<div class="profile-info">
 			<h1 class="about-title">{title}</h1>
-			<p class="profile-greeting">Hi👋，我是 Lynk。</p>
-			<p class="profile-desc">后端 / 全栈开发 · 上海</p>
+			<p class="profile-greeting">Hi👋，我是 G.Ark。</p>
+			<p class="profile-desc">Web3 / 投资 / 撸毛 · Moldova</p>
 		</div>
 		<img src="/avatar.png" alt={title} class="profile-avatar" />
 	</div>
@@ -26,40 +26,40 @@ const { title } = Astro.props;
 			gap: 1.25rem;
 			margin: 1.5rem 0 1.5rem;
 		}
-
+	
 		.profile-avatar {
 			width: 82px;
 			height: 82px;
 			object-fit: cover;
 			flex-shrink: 0;
 		}
-
+	
 		.profile-info {
 			display: flex;
 			flex-direction: column;
 			gap: 0.25rem;
 		}
-
+	
 		.about-title {
 			font-size: 1.17em;
 			font-weight: bold;
 			margin: 0;
 		}
-
+	
 		.profile-greeting {
 			margin: 0;
 			font-size: 0.95rem;
 			color: var(--text-color);
 			line-height: 1.5;
 		}
-
+	
 		.profile-desc {
 			margin: 0;
 			font-size: 0.84rem;
 			color: var(--gray-color);
 			letter-spacing: 0.01em;
 		}
-
+	
 		/* 移动端：居中堆叠 */
 		@media (max-width: 520px) {
 			.profile-header {
@@ -68,22 +68,22 @@ const { title } = Astro.props;
 				text-align: center;
 				gap: 0.75rem;
 			}
-
+	
 			.profile-avatar {
 				width: 72px;
 				height: 72px;
 			}
-
+	
 			.profile-info {
 				align-items: center;
 			}
 		}
-
+	
 		.about-page :global(h3) {
 			margin-top: 1.8rem;
 			margin-bottom: 0.6rem;
 		}
-
+	
 		/* 爱好标签 */
 		.about-page :global(.hobby-list) {
 			display: flex;
@@ -91,7 +91,7 @@ const { title } = Astro.props;
 			gap: 0.4rem;
 			margin: 1rem 0;
 		}
-
+	
 		.about-page :global(.hobby) {
 			display: inline-block;
 			padding: 0.3rem 0.65rem;
@@ -102,24 +102,24 @@ const { title } = Astro.props;
 			color: var(--text-color);
 			transition: border-color 0.15s;
 		}
-
+	
 		.about-page :global(.hobby:hover) {
 			border-color: rgba(0, 0, 0, 0.3);
 		}
-
+	
 		.about-page :global(.hobby.inactive) {
 			text-decoration: line-through;
 			opacity: 0.4;
 		}
-
+	
 		:global([data-theme='dark']) .about-page :global(.hobby) {
 			border-color: rgba(255, 255, 255, 0.15);
 		}
-
+	
 		:global([data-theme='dark']) .about-page :global(.hobby:hover) {
 			border-color: rgba(255, 255, 255, 0.35);
 		}
-
+	
 		/* 更多导航 — 网格布局 */
 		.about-page :global(.more-nav) {
 			display: grid;
@@ -127,7 +127,7 @@ const { title } = Astro.props;
 			gap: 0.5rem;
 			margin: 0.5rem 0;
 		}
-
+	
 		.about-page :global(.more-nav a) {
 			display: flex;
 			align-items: center;
@@ -141,30 +141,30 @@ const { title } = Astro.props;
 			transition: border-color 0.15s, background 0.15s;
 			white-space: nowrap;
 		}
-
+	
 		.about-page :global(.more-nav a:hover) {
 			border-color: rgba(0, 0, 0, 0.25);
 			border-bottom-color: rgba(0, 0, 0, 0.25) !important;
 			background: rgba(0, 0, 0, 0.02);
 		}
-
+	
 		:global([data-theme='dark']) .about-page :global(.more-nav a) {
 			border-color: rgba(255, 255, 255, 0.1);
 			border-bottom-color: rgba(255, 255, 255, 0.1) !important;
 		}
-
+	
 		:global([data-theme='dark']) .about-page :global(.more-nav a:hover) {
 			border-color: rgba(255, 255, 255, 0.25);
 			border-bottom-color: rgba(255, 255, 255, 0.25) !important;
 			background: rgba(255, 255, 255, 0.03);
 		}
-
+	
 		@media (max-width: 520px) {
 			.about-page :global(.more-nav) {
 				grid-template-columns: repeat(2, 1fr);
 			}
 		}
-
+	
 		/* 联系方式列表 */
 		.about-page :global(.contact-list) {
 			display: flex;
@@ -172,19 +172,19 @@ const { title } = Astro.props;
 			gap: 0.5rem;
 			margin: 0.5rem 0;
 		}
-
+	
 		.about-page :global(.contact-item) {
 			display: flex;
 			align-items: baseline;
 		}
-
+	
 		.about-page :global(.contact-label) {
 			width: 70px;
 			flex-shrink: 0;
 			font-size: 0.85rem;
 			color: var(--gray-color);
 		}
-
+	
 		.about-page :global(.contact-item a) {
 			font-size: 0.95rem;
 			color: var(--text-color);
@@ -192,11 +192,11 @@ const { title } = Astro.props;
 			border-bottom: 1px dashed transparent;
 			transition: border-color 0.2s;
 		}
-
+	
 		.about-page :global(.contact-item a:hover) {
 			border-bottom-color: var(--gray-color);
 		}
-
+	
 		/* 历史折叠 */
 		.about-page :global(.history-fold) {
 			margin: 0.8rem 0;
@@ -206,12 +206,12 @@ const { title } = Astro.props;
 			overflow: hidden;
 			margin-bottom: 0.4rem;
 		}
-
+	
 		:global([data-theme='dark']) .about-page :global(.history-fold) {
 			border-color: transparent;
 			background: rgba(255, 255, 255, 0.03);
 		}
-
+	
 		.about-page :global(.history-fold summary) {
 			padding: 0.5rem 0.75rem;
 			cursor: pointer;
@@ -221,56 +221,56 @@ const { title } = Astro.props;
 			font-weight: 500;
 			color: var(--text-color);
 		}
-
+	
 		.about-page :global(.history-fold summary:hover) {
 			background: rgba(0, 0, 0, 0.02);
 		}
-
+	
 		:global([data-theme='dark']) .about-page :global(.history-fold summary:hover) {
 			background: rgba(255, 255, 255, 0.03);
 		}
-
+	
 		.about-page :global(.history-fold summary::-webkit-details-marker) {
 			display: none;
 		}
-
+	
 		.about-page :global(.history-fold summary::before) {
 			content: '▸ ';
 			font-size: 0.8em;
 			color: var(--gray-color);
 			margin-right: 0.25rem;
 		}
-
+	
 		.about-page :global(.history-fold[open] summary::before) {
 			content: '▾ ';
 		}
-
+	
 		.about-page :global(.history-fold[open] summary) {
 			border-bottom: none;
 		}
-
+	
 		:global([data-theme='dark']) .about-page :global(.history-fold[open] summary) {
 			border-bottom-color: transparent;
 		}
-
+	
 		/* 新增内容容器样式 */
 		.about-page :global(.history-content) {
 			padding: 0.75rem;
 		}
-
+	
 		.about-page :global(.history-content p) {
 			margin: 0 0 0.8rem;
 			font-size: 0.85rem;
 			line-height: 1.6;
 			color: var(--text-color);
 		}
-
+	
 		.about-page :global(.history-tags) {
 			display: flex;
 			flex-wrap: wrap;
 			gap: 0.4rem;
 		}
-
+	
 		.about-page :global(.history-tags span) {
 			display: inline-block;
 			padding: 0.25rem 0.6rem;
@@ -279,11 +279,11 @@ const { title } = Astro.props;
 			font-size: 0.8rem;
 			color: var(--gray-color);
 		}
-
+	
 		:global([data-theme='dark']) .about-page :global(.history-tags span) {
 			background: rgba(255, 255, 255, 0.06);
 		}
-
+	
 		/* 底部弱化区域 */
 		.about-page :global(.about-footer) {
 			margin-top: 3rem;
@@ -292,15 +292,15 @@ const { title } = Astro.props;
 			font-size: 0.9rem;
 			color: var(--gray-color);
 		}
-
+	
 		:global([data-theme='dark']) .about-page :global(.about-footer) {
 			border-top-color: rgba(255, 255, 255, 0.1);
 		}
-
+	
 		.about-page :global(.footer-section) {
 			margin-bottom: 1.5rem;
 		}
-
+	
 		.about-page :global(.footer-label) {
 			display: block;
 			font-size: 0.75rem;
@@ -315,7 +315,7 @@ const { title } = Astro.props;
 			margin: 0.2rem 0 0.5rem;
 			line-height: 1.6;
 		}
-
+	
 		/* 调整 Sponsor 组件在 footer 里的样式微调 */
 		.about-page :global(.about-footer .sponsor-about) {
 			margin-top: 0.2rem;

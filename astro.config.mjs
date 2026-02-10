@@ -5,7 +5,7 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://lynkxu.com',
+	site: 'https://1314047.xyz',
 	integrations: [mdx(), sitemap()],
 	devToolbar: {
 		enabled: false, // 是否开启开发工具栏
