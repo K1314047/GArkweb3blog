@@ -1,9 +1,6 @@
 name: Sync Strava data
 
 on:
-  schedule:
-    # Every 5 hours (UTC)
-    - cron: "0 */5 * * *"
   workflow_dispatch: {}
 
 permissions:

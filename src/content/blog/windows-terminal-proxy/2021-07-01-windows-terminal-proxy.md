@@ -1,6 +1,6 @@
 ---
 slug: 2026-01-24-windows-terminal-proxy
-title: ALXC 自动交易脚本使用指南
+title: ALXC 自动交易脚本使用指南 (失效)
 description: alxc是贾跃亭投资，顺手做做
 pubDate: 2026-01-24
 tags:
