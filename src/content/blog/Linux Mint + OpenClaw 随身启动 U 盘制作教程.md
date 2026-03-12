@@ -1,11 +1,12 @@
 ---
 slug: 2026-03-12-Upan
-title: 只需要一个普通 U 盘，就可以做出一个可随身携带、插上电脑即可启动的 Linux Mint 系统，而且还能自动保存文件、配置和 OpenClaw 环境。
+title: Linux Mint + OpenClaw 随身启动 U 盘制作教程
 description: 教程
 pubDate: 2026-03-12
 tags:
   - openclaw
 ---
+只需要一个普通 U 盘，就可以做出一个可随身携带、插上电脑即可启动的 Linux Mint 系统，而且还能自动保存文件、配置和 OpenClaw 环境。
 这类启动 U 盘适合以下场景：
 
 - 想随身携带自己的工作环境
