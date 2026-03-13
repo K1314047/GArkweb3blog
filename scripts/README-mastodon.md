@@ -12,7 +12,7 @@
 
 ```env
 MASTODON_INSTANCE=https://mastodon.social
-MASTODON_USERNAME=lynkxu
+MASTODON_USERNAME=gark
 ```
 
 如果不配置，将使用默认值。

@@ -14,9 +14,9 @@ title: 友链
 如有任何疑问，欢迎随时联系我~
 
 ```md
-名称：LynkXu's Blog
+名称：G.ArkWeb3投资撸毛
 简介：Stay hungry, stay foolish
-域名：https://lynkxu.github.io
+域名：https://1314047.xyz
 logo：https://lynkxu.github.io/favicon/favicon.ico
 ```
 

@@ -7,7 +7,7 @@ const __dirname = path.dirname(__filename);
 
 // Configuration
 const MASTODON_INSTANCE = process.env.MASTODON_INSTANCE || 'https://mastodon.social';
-const MASTODON_USERNAME = process.env.MASTODON_USERNAME || 'lynkxu';
+const MASTODON_USERNAME = process.env.MASTODON_USERNAME || 'gark';
 const OUTPUT_FILE = path.join(__dirname, '../src/data/mastodon.json');
 
 // Simple HTML to Markdown converter

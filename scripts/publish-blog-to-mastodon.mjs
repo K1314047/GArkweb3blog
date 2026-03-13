@@ -48,9 +48,9 @@ function getSiteUrlFromAstroConfig() {
 		const m =
 			txt.match(/site:\s*'([^']+)'/) ||
 			txt.match(/site:\s*"([^"]+)"/);
-		return (m?.[1] || '').trim() || 'https://lynkxu.com';
+		return (m?.[1] || '').trim() || 'https://1314047.xyz';
 	} catch {
-		return 'https://lynkxu.com';
+		return 'https://1314047.xyz';
 	}
 }
 

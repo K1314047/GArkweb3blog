@@ -58,14 +58,14 @@ const projects: Project[] = projectsData;
 				)
 			}
 		</div>
-
+	
 		<h2 class='section-title'>GitHub Activity</h2>
-
+	
 		<!-- GitHub 活动 -->
 		<section class='github-activity'>
 			<div class='github-activity__chart'>
 				<img
-					src='https://ghchart.rshah.org/659eb9/lynkxu'
+					src='https://ghchart.rshah.org/659eb9/k1314047'
 					alt='GitHub activity chart'
 					loading='lazy'
 				/>
@@ -89,35 +89,35 @@ const projects: Project[] = projectsData;
 		text-decoration: none;
 		transition: border-color 0.2s, background-color 0.2s;
 	}
-
+	
 	.project-item:hover {
 		border-color: rgba(0, 0, 0, 0.2);
 		background-color: rgba(0, 0, 0, 0.01);
 	}
-
+	
 	:global([data-theme='dark']) .project-item {
 		border-color: rgba(255, 255, 255, 0.1);
 	}
-
+	
 	:global([data-theme='dark']) .project-item:hover {
 		border-color: rgba(255, 255, 255, 0.25);
 		background-color: rgba(255, 255, 255, 0.02);
 	}
-
+	
 	.project-header {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		gap: 0.5rem;
 	}
-
+	
 	.project-name {
 		margin: 0;
 		font-size: 1.05rem;
 		font-weight: 600;
 		color: var(--heading-color);
 	}
-
+	
 	.project-arrow {
 		flex-shrink: 0;
 		color: var(--gray-color);
@@ -125,26 +125,26 @@ const projects: Project[] = projectsData;
 		transform: translateX(-4px);
 		transition: opacity 0.2s, transform 0.2s;
 	}
-
+	
 	.project-item:hover .project-arrow {
 		opacity: 1;
 		transform: translateX(0);
 	}
-
+	
 	.project-desc {
 		margin: 0.4rem 0 0;
 		font-size: 0.9rem;
 		color: var(--gray-color);
 		line-height: 1.5;
 	}
-
+	
 	.project-tags {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.4rem;
 		margin-top: 0.6rem;
 	}
-
+	
 	.project-tags .tag {
 		padding: 0.15rem 0.5rem;
 		font-size: 0.75rem;
@@ -153,41 +153,41 @@ const projects: Project[] = projectsData;
 		color: var(--gray-color);
 		border: none;
 	}
-
+	
 	:global([data-theme='dark']) .project-tags .tag {
 		background: rgba(255, 255, 255, 0.06);
 	}
-
+	
 	.empty-state {
 		text-align: center;
 		padding: 2rem;
 		color: var(--gray-color);
 		font-size: 0.95rem;
 	}
-
+	
 	.section-title {
 		margin: 2.5rem 0 1rem;
 		font-size: 1.1rem;
 		font-weight: 600;
 		color: var(--heading-color);
 	}
-
+	
 	.github-activity {
 		background: var(--code-background-color);
 		border-radius: 6px;
 		padding: 0.75rem;
 		border: 1px solid rgba(0, 0, 0, 0.05);
 	}
-
+	
 	:global([data-theme='dark']) .github-activity {
 		border-color: rgba(255, 255, 255, 0.08);
 	}
-
+	
 	.github-activity__chart {
 		border-radius: 4px;
 		overflow: hidden;
 	}
-
+	
 	.github-activity__chart img {
 		width: 100%;
 		display: block;
