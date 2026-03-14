@@ -2,7 +2,7 @@
 slug: 2026-03-15-binancealpha
 title: 币安 Alpha 监控部署教程（Telegram 推送版)
 description: 教程
-pubDate: 2026-03-12
+pubDate: 2026-03-15
 tags:
   - 币安
   - alpha
