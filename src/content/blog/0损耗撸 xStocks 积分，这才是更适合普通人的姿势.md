@@ -53,8 +53,7 @@ tags:
 目前注册还有 **20% 积分加成**，算是比较典型的早期福利。
 
 注册链接：  
-**[https://defi.xstocks.fi/points?ref=XSTOCKS07](https://defi.xstocks.fi/points?ref=XSTOCKS07)**
-
+https://defi.xstocks.fi/points?ref=IV63CUC9
 注册时我建议**优先选择 Solana 链**。
 
 原因很简单：
@@ -79,7 +78,7 @@ tags:
 ### 具体操作流程
 
 1. 打开官网  
-    **[https://defi.xstocks.fi/points?ref=STORCKS](https://defi.xstocks.fi/points?ref=STORCKS)**
+    **https://defi.xstocks.fi/points?ref=IV63CUC9**
     
 2. 连接钱包  
     建议优先使用 **Solana 链钱包**，因为目前流动性最好，滑点通常更低。
