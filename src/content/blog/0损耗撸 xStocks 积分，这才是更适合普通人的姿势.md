@@ -83,30 +83,30 @@ tags:
     
 2. 连接钱包  
     建议优先使用 **Solana 链钱包**，因为目前流动性最好，滑点通常更低。
-    
+    ![](assets/0损耗撸%20xStocks%20积分，这才是更适合普通人的姿势/file-20260320205524129.png)
 3. 查看当前已经上线的产品  
     比如 NVDAx、TSLAx、SPYx 等。
-    
+    ![](assets/0损耗撸%20xStocks%20积分，这才是更适合普通人的姿势/file-20260320205535639.png)
 4. 找到对应代币的**合约地址**
-    
+    ![](assets/0损耗撸%20xStocks%20积分，这才是更适合普通人的姿势/file-20260320205541871.png)
 5. 下单前最好先确认两件事：
-    
+    ![](assets/0损耗撸%20xStocks%20积分，这才是更适合普通人的姿势/file-20260320205556452.png)
     - 当前价格是否明显偏离正股价格
         
     - 该代币的流动性是否足够
         
 6. 复制合约地址后，到钱包或聚合器里搜索交易  
     我自己用的是 **OKX Wallet**，可视化体验会舒服一点。
-    
+    ![](assets/0损耗撸%20xStocks%20积分，这才是更适合普通人的姿势/file-20260320205606108.png)
 7. 有些 xStocks 代币默认不会直接显示  
     比如某些代币可能需要你通过**合约地址手动搜索**才能找到。
-    
+    ![](assets/0损耗撸%20xStocks%20积分，这才是更适合普通人的姿势/file-20260320205612330.png)
 8. 再次确认流动性  
     如果某个池子的流动性太低，就不建议碰，否则买进去容易，出来可能损耗很高。
-    
+    ![](assets/0损耗撸%20xStocks%20积分，这才是更适合普通人的姿势/file-20260320205619299.png)
 9. 直接兑换买入  
     这里通常会有一点点滑点，但只要流动性尚可，损耗一般都还能接受。
-    
+    ![](assets/0损耗撸%20xStocks%20积分，这才是更适合普通人的姿势/file-20260320205626245.png)
 10. 买完后先持有  
     这一步的目的不是赌涨跌，而是为了后面的**积分获取 + 对冲策略**做准备。
     
@@ -158,10 +158,10 @@ tags:
 
 **第二步：进入交易界面**  
 从 HIP-3 里面找到你对应的标的。
-
+![](assets/0损耗撸%20xStocks%20积分，这才是更适合普通人的姿势/file-20260320205652304.png)
 **第三步：开对应数量的空单**  
 比如你在 xStocks 买的是 TSLAx，那就在另一边开一个尽量等额的 Tesla 空单。
-
+![](assets/0损耗撸%20xStocks%20积分，这才是更适合普通人的姿势/file-20260320205658393.png)
 这样做的目的，就是尽量把波动风险锁住，避免因为正股波动导致你整体策略失衡。
 
 ---
@@ -265,3 +265,4 @@ tags:
 
 **这是一种尽量降低价格风险、以积分收益为核心目标的策略，  
 而不是绝对意义上的“零损耗”。**
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yWoi4eoNDJg?si=eUEp5DIUhB44Xq__" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
