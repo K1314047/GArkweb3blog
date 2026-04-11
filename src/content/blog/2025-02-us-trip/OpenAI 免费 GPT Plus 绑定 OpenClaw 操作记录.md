@@ -1,9 +1,9 @@
 ---
 slug: 2025-04-us-trip
-title: openclaw使用openai
+title: OpenAI 免费 GPT Plus 绑定 OpenClaw 操作记录
 tags:
   - openclaw
-pubDate: 2025-04-11
+pubDate: 2026-04-11
 ---
 
 >今天发现 OpenAI 提供了 1 个月免费 GPT Plus。  
