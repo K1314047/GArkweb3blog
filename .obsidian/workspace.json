@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/content/blog/2025-02-us-trip/OpenAI 免费 GPT Plus 绑定 OpenClaw 操作记录.md",
+                "file": "Clippings/Thread by @0xduyan.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "OpenAI 免费 GPT Plus 绑定 OpenClaw 操作记录"
+              "title": "Thread by @0xduyan"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "src/content/blog/2025-02-us-trip/OpenAI 免费 GPT Plus 绑定 OpenClaw 操作记录.md",
+                "file": "Clippings/Thread by @0xduyan.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "OpenAI 免费 GPT Plus 绑定 OpenClaw 操作记录 的反向链接列表"
+              "title": "Thread by @0xduyan 的反向链接列表"
             }
           },
           {
@@ -185,6 +185,9 @@
   },
   "active": "8e4c194b3d251559",
   "lastOpenFiles": [
+    "src/content/blog/2025-02-us-trip/OpenAI 免费 GPT Plus 绑定 OpenClaw 操作记录.md",
+    "Clippings/Thread by @0xduyan.md",
+    "Clippings",
     "src/content/blog/2026-01-04-overload/2026-01-04.md",
     "未命名.base",
     "src/content/blog/我是怎么在自己的 RSS 工具里订阅 YouTube 和 Telegram 频道的.md",
@@ -227,10 +230,7 @@
     "src/components/MediaCardLarge.astro",
     "src/pages/resume.astro",
     "public/linxu-cv-en-latest.pdf",
-    "src/pages/copyright.astro",
     "src/content/blog/2026-01-26-test/2026-01-26.md",
-    "src/content/blog/2026-01-26-test/2026-01-25.md",
-    "src/content/blog/2026-01-19-blog/2026-01-19.md",
-    "src/content/blog/2026-01-25-test/test-2.md"
+    "src/content/blog/2026-01-26-test/2026-01-25.md"
   ]
 }
