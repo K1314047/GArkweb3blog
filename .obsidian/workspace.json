@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Clippings/Thread by @0xduyan.md",
+                "file": "src/content/blog/2025-02-us-trip/OpenAI 免费 GPT Plus 绑定 OpenClaw 操作记录.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Thread by @0xduyan"
+              "title": "OpenAI 免费 GPT Plus 绑定 OpenClaw 操作记录"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Clippings/Thread by @0xduyan.md",
+                "file": "src/content/blog/2025-02-us-trip/OpenAI 免费 GPT Plus 绑定 OpenClaw 操作记录.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Thread by @0xduyan 的反向链接列表"
+              "title": "OpenAI 免费 GPT Plus 绑定 OpenClaw 操作记录 的反向链接列表"
             }
           },
           {
@@ -185,9 +185,10 @@
   },
   "active": "8e4c194b3d251559",
   "lastOpenFiles": [
+    "Clippings/Thread by @QiYib5.md",
     "src/content/blog/2025-02-us-trip/OpenAI 免费 GPT Plus 绑定 OpenClaw 操作记录.md",
-    "Clippings/Thread by @0xduyan.md",
     "Clippings",
+    "Clippings/Thread by @0xduyan.md",
     "src/content/blog/2026-01-04-overload/2026-01-04.md",
     "未命名.base",
     "src/content/blog/我是怎么在自己的 RSS 工具里订阅 YouTube 和 Telegram 频道的.md",
@@ -230,7 +231,6 @@
     "src/components/MediaCardLarge.astro",
     "src/pages/resume.astro",
     "public/linxu-cv-en-latest.pdf",
-    "src/content/blog/2026-01-26-test/2026-01-26.md",
-    "src/content/blog/2026-01-26-test/2026-01-25.md"
+    "src/content/blog/2026-01-26-test/2026-01-26.md"
   ]
 }
