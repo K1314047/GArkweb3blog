@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/content/blog/2025-02-us-trip/OpenAI 免费 GPT Plus 绑定 OpenClaw 操作记录.md",
+                "file": "src/content/gossips/2026-04-17-genius.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "OpenAI 免费 GPT Plus 绑定 OpenClaw 操作记录"
+              "title": "2026-04-17-genius"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "src/content/blog/2025-02-us-trip/OpenAI 免费 GPT Plus 绑定 OpenClaw 操作记录.md",
+                "file": "src/content/gossips/2026-04-17-genius.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "OpenAI 免费 GPT Plus 绑定 OpenClaw 操作记录 的反向链接列表"
+              "title": "2026-04-17-genius 的反向链接列表"
             }
           },
           {
@@ -185,15 +185,17 @@
   },
   "active": "8e4c194b3d251559",
   "lastOpenFiles": [
-    "Clippings/Thread by @QiYib5.md",
+    "src/content/gossips/2026-04-01-zongjie.md",
+    "src/content/gossips/2026-04-17-genius.md",
+    "src/content/gossips/2026-01-03-note.md",
     "src/content/blog/2025-02-us-trip/OpenAI 免费 GPT Plus 绑定 OpenClaw 操作记录.md",
+    "Clippings/Thread by @QiYib5.md",
     "Clippings",
     "Clippings/Thread by @0xduyan.md",
     "src/content/blog/2026-01-04-overload/2026-01-04.md",
     "未命名.base",
     "src/content/blog/我是怎么在自己的 RSS 工具里订阅 YouTube 和 Telegram 频道的.md",
     "src/content/blog/尾盘交易赛门槛判断规则.md",
-    "src/content/gossips/2026-04-01-zongjie.md",
     "src/content/gossips/2026-03-08-genius.md",
     "src/content/blog/0损耗撸 xStocks 积分，这才是更适合普通人的姿势.md",
     "src/content/blog/Linux Mint + OpenClaw 随身启动 U 盘制作教程.md",
@@ -227,10 +229,8 @@
     "新建文本文档.txt",
     "src/content/blog/2025-12-29-review/review-2025.md",
     "README.md",
-    "src/content/blog/2026-01-25-blog-sync/2026-01-25.md",
     "src/components/MediaCardLarge.astro",
     "src/pages/resume.astro",
-    "public/linxu-cv-en-latest.pdf",
-    "src/content/blog/2026-01-26-test/2026-01-26.md"
+    "public/linxu-cv-en-latest.pdf"
   ]
 }
