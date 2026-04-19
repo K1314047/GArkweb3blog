@@ -1,5 +1,5 @@
 ---
-slug: alphatradetoolkit
+slug: 2026-04-19-alphatradetoolkit
 title: 部署 Alpha Trade Toolkit
 description: 教程
 created: 2026-04-19
