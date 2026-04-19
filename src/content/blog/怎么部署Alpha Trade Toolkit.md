@@ -2,7 +2,7 @@
 slug: 2026-04-19-U
 title: 怎么部署Alpha Trade Toolkit
 description: 教程
-pubDate: 2026-03-19
+pubDate: 2026-04-19
 tags:
   - 币安
   - 脚本
