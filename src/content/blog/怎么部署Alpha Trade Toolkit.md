@@ -1,13 +1,13 @@
 ---
-slug: 2026-04-19-alphatradetoolkit
-title: 部署 Alpha Trade Toolkit
+slug: 2026-04-19-U
+title: 怎么部署Alpha Trade Toolkit
 description: 教程
-created: 2026-04-19
+pubDate: 2026-03-19
 tags:
-  - 教程
-  - 撸毛
-  - 交易赛
   - 币安
+  - 脚本
+  - 交易赛
+  - 教程
 ---
 https://github.com/0xxue/alpha-trade-toolkit 这个怎么部署，部署好之后又要怎么设置呢
 
