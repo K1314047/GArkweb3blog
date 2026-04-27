@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "911185cc8039f345",
+        "id": "0a0a7a0b80f3392a",
         "type": "tabs",
         "children": [
           {
-            "id": "aace22b9f530f0d3",
+            "id": "4328508b7200f4f8",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "src/content/gossips/2026-01-03-note.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "2026-01-03-note"
             }
           }
         ]
@@ -90,6 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "src/content/gossips/2026-01-03-note.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "反向链接"
+              "title": "2026-01-03-note 的反向链接列表"
             }
           },
           {
@@ -178,53 +183,54 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "aace22b9f530f0d3",
+  "active": "4328508b7200f4f8",
   "lastOpenFiles": [
-    "未命名 1.base",
-    "src/content/gossips/2026-04-25-xchat.md",
-    "Clippings/稳定运行半年自用中转搭建分享，手把手教学实现token自由，末尾包含账号购买邪修方式.md",
-    "Clippings",
-    "src/content/gossips/2026-04-17-genius.md",
-    "src/content/gossips/2026-01-03-note.md",
-    "src/content/blog/Lista 智能借贷还有补贴：10% 年化的 U，到底该借还是该买？.md",
-    "src/content/blog/币安交易赛复盘.md",
-    "src/content/blog/Alpha Trade Toolkit 部署与使用指南.md",
-    "src/content/blog/Binance Alpha Trade Bot 部署与运行说明.md",
-    "src/content/blog/怎么部署Alpha Trade Toolkit111.md",
-    "src/content/blog/Linux Mint + OpenClaw 随身启动 U 盘制作教程.md",
-    "src/content/blog/尾盘交易赛门槛判断规则.md",
-    "src/content/blog/我是怎么在自己的 RSS 工具里订阅 YouTube 和 Telegram 频道的.md",
-    "src/content/blog/纳斯达克官方合作xStocks 撸毛全攻略， 低成本刷交易教程.md",
-    "src/content/blog/告别天天熬夜盯盘，XXYY API Skill 完整扫链功能正式上线.md",
-    "src/content/blog/一文讲清楚 ByUSDT 循环借贷.md",
-    "src/content/blog/撸空投多开安全起见，谨慎使用指纹浏览器.md",
-    "src/content/gossips/2026-04-01-zongjie.md",
-    "src/content/blog/2025-02-us-trip/OpenAI 免费 GPT Plus 绑定 OpenClaw 操作记录.md",
-    "Clippings/Thread by @QiYib5.md",
-    "Clippings/Thread by @0xduyan.md",
-    "src/content/blog/2026-01-04-overload/2026-01-04.md",
-    "未命名.base",
-    "src/content/gossips/2026-03-08-genius.md",
-    "src/content/blog/0损耗撸 xStocks 积分，这才是更适合普通人的姿势.md",
-    "src/content/blog/assets/0损耗撸 xStocks 积分，这才是更适合普通人的姿势/file-20260320205658393.png",
-    "src/content/blog/assets/0损耗撸 xStocks 积分，这才是更适合普通人的姿势/file-20260320205652304.png",
-    "src/content/blog/assets/0损耗撸 xStocks 积分，这才是更适合普通人的姿势/file-20260320205626245.png",
-    "src/content/blog/assets/0损耗撸 xStocks 积分，这才是更适合普通人的姿势/file-20260320205619299.png",
-    "src/content/blog/assets/0损耗撸 xStocks 积分，这才是更适合普通人的姿势/file-20260320205612330.png",
-    "src/content/blog/assets/0损耗撸 xStocks 积分，这才是更适合普通人的姿势/file-20260320205606108.png",
-    "src/content/blog/assets/0损耗撸 xStocks 积分，这才是更适合普通人的姿势/file-20260320205556452.png",
-    "src/content/blog/assets/0损耗撸 xStocks 积分，这才是更适合普通人的姿势/file-20260320205541871.png",
-    "src/content/blog/assets/0损耗撸 xStocks 积分，这才是更适合普通人的姿势/file-20260320205535639.png",
-    "src/content/blog/assets/0损耗撸 xStocks 积分，这才是更适合普通人的姿势/file-20260320205524129.png",
-    "src/content/blog/assets/0损耗撸 xStocks 积分，这才是更适合普通人的姿势",
-    "src/content/blog/币安Alpha监控部署教程Telegram 推送版.md",
-    "src/content/blog/20260209.md",
-    "scripts/publish-blog-to-mastodon.mjs",
-    "src/content/blog/assets/纳斯达克官方合作xStocks 撸毛全攻略， 低成本刷交易教程",
-    "src/content/blog/assets",
-    "未命名.canvas",
-    "新建文本文档.txt",
-    "src/components/MediaCardLarge.astro",
-    "src/pages/resume.astro"
+    "node_modules/sharp/node_modules/detect-libc/lib/process.js",
+    "node_modules/sharp/node_modules/detect-libc/lib/filesystem.js",
+    "node_modules/sharp/node_modules/detect-libc/lib/elf.js",
+    "node_modules/sharp/node_modules/detect-libc/lib/detect-libc.js",
+    "node_modules/sharp/node_modules/detect-libc/lib",
+    "node_modules/@pagefind/windows-x64/bin/pagefind-v1.5.2-x86_64-pc-windows-msvc.tar.gz.sha256",
+    "node_modules/@pagefind/windows-x64/bin/pagefind_extended-v1.5.2-x86_64-pc-windows-msvc.tar.gz.sha256",
+    "node_modules/@pagefind/windows-x64/README.md",
+    "node_modules/@pagefind/windows-x64/package.json",
+    "node_modules/@esbuild/win32-x64/README.md",
+    "node_modules/@esbuild/win32-x64/package.json",
+    "node_modules/@img/sharp-win32-x64/lib/sharp-win32-x64.node",
+    "node_modules/@img/sharp-win32-x64/README.md",
+    "node_modules/@img/sharp-win32-x64/versions.json",
+    "node_modules/@astrojs/compiler/README.md",
+    "node_modules/csso/node_modules/css-tree/README.md",
+    "node_modules/csso/node_modules/mdn-data/README.md",
+    "node_modules/anymatch/node_modules/picomatch/README.md",
+    "node_modules/anymatch/node_modules/picomatch/CHANGELOG.md",
+    "node_modules/sitemap/node_modules/@types/node/README.md",
+    "node_modules/csso/node_modules/mdn-data/css/readme.md",
+    "node_modules/micromatch/node_modules/picomatch/README.md",
+    "node_modules/micromatch/node_modules/picomatch/CHANGELOG.md",
+    "node_modules/@astrojs/rss/README.md",
+    "node_modules/@astrojs/prism/README.md",
+    "node_modules/sass/README.md",
+    "node_modules/@babel/helper-validator-identifier/README.md",
+    "node_modules/@babel/parser/CHANGELOG.md",
+    "node_modules/zod-to-json-schema/README.md",
+    "node_modules/zod-to-json-schema/dist-test-v4/types/node_modules/zod/README.md",
+    "node_modules/zod-to-json-schema/dist-test-v4/esm/node_modules/zod/README.md",
+    "node_modules/zod-to-json-schema/dist-test-v4/cjs/node_modules/zod/README.md",
+    "node_modules/zod-to-json-schema/dist-test-v3/types/node_modules/zod/README.md",
+    "node_modules/zod-to-json-schema/dist-test-v3/esm/node_modules/zod/README.md",
+    "node_modules/zod-to-json-schema/dist-test-v3/cjs/node_modules/zod/README.md",
+    "node_modules/zod-to-json-schema/contributing.md",
+    "node_modules/lightgallery.js/src/img/youtube-play.png",
+    "node_modules/lightgallery.js/src/img/vimeo-play.png",
+    "node_modules/lightgallery.js/src/img/video-play.png",
+    "node_modules/lightgallery.js/src/img/loading.gif",
+    "node_modules/lightgallery.js/src/fonts/lg.svg",
+    "node_modules/lightgallery.js/dist/fonts/lg.svg",
+    "node_modules/lightgallery.js/dist/img/youtube-play.png",
+    "node_modules/lightgallery.js/dist/img/vimeo-play.png",
+    "node_modules/lightgallery.js/dist/img/video-play.png",
+    "node_modules/lightgallery.js/dist/img/loading.gif",
+    "未命名.canvas"
   ]
 }
