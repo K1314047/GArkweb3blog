@@ -1,16 +1,24 @@
 // @ts-check
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import pagefind from 'astro-pagefind';
 import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://1314047.xyz',
-	integrations: [mdx(), sitemap()],
+
+	integrations: [
+		mdx(),
+		sitemap(),
+		pagefind(),
+	],
+
 	devToolbar: {
-		enabled: false, // 是否开启开发工具栏
+		enabled: false,
 	},
-	compressHTML: false, // 是否压缩 HTML 源代码
+
+	compressHTML: false,
 
 	markdown: {
 		shikiConfig: {
@@ -18,9 +26,10 @@ export default defineConfig({
 				light: 'github-light',
 				dark: 'material-theme-darker',
 			},
-			wrap: true, // 强制换行
+			wrap: true,
 		},
 	},
+
 	vite: {
 		assetsInclude: ['**/*.HEIC', '**/*.heic'],
 	},
