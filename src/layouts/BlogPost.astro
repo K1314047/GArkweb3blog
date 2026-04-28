@@ -178,8 +178,14 @@ const isDev = import.meta.env.DEV;
 	</style>
 	
 	<div class="post-title-separator" aria-hidden="true">–</div>
-	<h1 class="post-title" transition:name={postId ? `post-title-${postId}` : undefined}>{title}</h1>
-		<div class="post-meta" data-pagefind-ignore> role="note" aria-label="文章信息">
+	<h1
+		class="post-title"
+		data-pagefind-meta="title"
+		transition:name={postId ? `post-title-${postId}` : undefined}
+	>
+		{title}
+	</h1>
+		<div class="post-meta" data-pagefind-ignore role="note" aria-label="文章信息">
 			<FormattedDate date={pubDate} />
 			{readingTime && (
 				<>
