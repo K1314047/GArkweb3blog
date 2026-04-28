@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/content/gossips/2026-01-03-note.md",
+                "file": "src/content/index.en.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-01-03-note"
+              "title": "index.en"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "src/content/gossips/2026-01-03-note.md",
+                "file": "src/content/index.en.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "2026-01-03-note 的反向链接列表"
+              "title": "index.en 的反向链接列表"
             }
           },
           {
@@ -185,6 +185,40 @@
   },
   "active": "4328508b7200f4f8",
   "lastOpenFiles": [
+    "src/content/index.md",
+    "src/content/page/search.md",
+    "src/content/page/shuoshuo.md",
+    "src/content/page/message.md",
+    "src/content/page/friends.md",
+    "src/content/page/en/about.md",
+    "scripts/README-mastodon.md",
+    "public/avatar.png",
+    "public/linxu-cv-en-latest.pdf",
+    "public/strava-poster.svg",
+    "docs/review-2025-followup.md",
+    "src/content/blog/给想“全职撸毛”的新手一些现实建议（强烈建议从兼职开始）.md",
+    "src/content/blog/不用买 API ！GPT-5.4 接入OpenClaw龙虾（小白极简安装教程）.md",
+    "src/content/blog/Binance Alpha 盲盒：加密空投的新玩法还是权宜之计？.md",
+    "src/content/blog/告别高价VPS！手把手教你用NAT主机打造高性价比节点.md",
+    "src/content/blog/assets/告别高价VPS！手把手教你用NAT主机打造高性价比节点/file-20260429013556228.png",
+    "src/content/blog/assets/告别高价VPS！手把手教你用NAT主机打造高性价比节点/file-20260429013545235.png",
+    "src/content/blog/assets/告别高价VPS！手把手教你用NAT主机打造高性价比节点/file-20260429013530760.png",
+    "src/content/blog/assets/告别高价VPS！手把手教你用NAT主机打造高性价比节点/file-20260429013507055.png",
+    "src/content/blog/assets/告别高价VPS！手把手教你用NAT主机打造高性价比节点",
+    "src/content/blog/币安Alpha监控部署教程Telegram 推送版.md",
+    "src/content/blog/Lista 智能借贷还有补贴：10% 年化的 U，到底该借还是该买？.md",
+    "src/content/blog/Linux Mint + OpenClaw 随身启动 U 盘制作教程.md",
+    "src/content/blog/Alpha Trade Toolkit 部署与使用指南.md",
+    "src/content/blog/一文讲清楚 ByUSDT 循环借贷.md",
+    "src/content/blog/我是怎么在自己的 RSS 工具里订阅 YouTube 和 Telegram 频道的.md",
+    "src/content/blog/尾盘交易赛门槛判断规则.md",
+    "src/content/blog/纳斯达克官方合作xStocks 撸毛全攻略， 低成本刷交易教程.md",
+    "src/content/blog/撸空投多开安全起见，谨慎使用指纹浏览器.md",
+    "src/content/blog/告别天天熬夜盯盘，XXYY API Skill 完整扫链功能正式上线.md",
+    "src/content/blog/2026-01-19-blog/2026-01-19.md",
+    "src/content/blog/2026-01-04-overload/2026-01-04.md",
+    "src/content/blog/2025-12-29-review/review-2025.md",
+    "src/content/blog/2025-09-new-job/2025-09.md",
     "dist/pagefind/index/zh-cn_ff80a2a.pf_index",
     "dist/pagefind/index/zh-cn_8f6b928.pf_index",
     "dist/pagefind/index/zh-cn_692c1ff.pf_index",
@@ -193,44 +227,10 @@
     "dist/pagefind/fragment/zh-cn_af6540e.pf_fragment",
     "dist/pagefind/fragment/zh-cn_a2aa90b.pf_fragment",
     "dist/pagefind/fragment/zh-cn_99ec58d.pf_fragment",
-    "dist/pagefind/fragment/zh-cn_8132bc3.pf_fragment",
-    "dist/pagefind/fragment/zh-cn_7247f13.pf_fragment",
-    "dist/pagefind/fragment/zh-cn_6c86c12.pf_fragment",
     "dist/_astro/thumbnail.UTvGGEIF.jpg",
     "dist/_astro/thumbnail.DYSx6Sp5.jpg",
     "dist/_astro/thumbnail.CqYFMfK8.jpg",
     "dist/_astro/thumbnail.BNvRApoH.jpg",
-    "dist/_astro/thumbnail.B7ZMg_8Y.jpg",
-    "dist/_astro/file-20260320205658393.C77MOXB8.png",
-    "dist/_astro/file-20260320205652304.CUbbim5H.png",
-    "dist/_astro/file-20260320205626245.DdeWFaI3.png",
-    "dist/_astro/file-20260320205619299.BRD31ut3.png",
-    "dist/_astro/file-20260320205612330.ChemlqkL.png",
-    "src/pages/search.astro.md",
-    "node_modules/is-alphabetical/readme.md",
-    "node_modules/character-reference-invalid/readme.md",
-    "node_modules/fontace/README.md",
-    "node_modules/clone/README.md",
-    "node_modules/ccount/readme.md",
-    "node_modules/character-entities-html4/readme.md",
-    "node_modules/common-ancestor-path/README.md",
-    "node_modules/@pagefind/windows-x64/README.md",
-    "node_modules/@esbuild/win32-x64/README.md",
-    "node_modules/@img/sharp-win32-x64/README.md",
-    "node_modules/@astrojs/compiler/README.md",
-    "node_modules/csso/node_modules/css-tree/README.md",
-    "node_modules/csso/node_modules/mdn-data/README.md",
-    "node_modules/anymatch/node_modules/picomatch/README.md",
-    "node_modules/anymatch/node_modules/picomatch/CHANGELOG.md",
-    "node_modules/sitemap/node_modules/@types/node/README.md",
-    "node_modules/csso/node_modules/mdn-data/css/readme.md",
-    "node_modules/micromatch/node_modules/picomatch/README.md",
-    "node_modules/micromatch/node_modules/picomatch/CHANGELOG.md",
-    "node_modules/@astrojs/rss/README.md",
-    "node_modules/@astrojs/prism/README.md",
-    "node_modules/sass/README.md",
-    "node_modules/@babel/helper-validator-identifier/README.md",
-    "node_modules/@babel/parser/CHANGELOG.md",
     "未命名.canvas"
   ]
 }
