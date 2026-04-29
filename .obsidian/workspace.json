@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/content/blog/告别高价VPS！手把手教你用NAT主机打造高性价比节点.md",
+                "file": "src/content/blog/给想“全职撸毛”的新手一些现实建议（强烈建议从兼职开始）.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "告别高价VPS！手把手教你用NAT主机打造高性价比节点"
+              "title": "给想“全职撸毛”的新手一些现实建议（强烈建议从兼职开始）"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "src/content/blog/告别高价VPS！手把手教你用NAT主机打造高性价比节点.md",
+                "file": "src/content/blog/给想“全职撸毛”的新手一些现实建议（强烈建议从兼职开始）.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "告别高价VPS！手把手教你用NAT主机打造高性价比节点 的反向链接列表"
+              "title": "给想“全职撸毛”的新手一些现实建议（强烈建议从兼职开始） 的反向链接列表"
             }
           },
           {
@@ -185,6 +185,8 @@
   },
   "active": "4328508b7200f4f8",
   "lastOpenFiles": [
+    "src/content/blog/告别天天熬夜盯盘，XXYY API Skill 完整扫链功能正式上线.md",
+    "src/content/blog/告别高价VPS！手把手教你用NAT主机打造高性价比节点.md",
     "src/content/gossips/2026-04-25-xchat.md",
     "src/content/index.en.md",
     "src/content/index.md",
@@ -201,7 +203,6 @@
     "src/content/blog/给想“全职撸毛”的新手一些现实建议（强烈建议从兼职开始）.md",
     "src/content/blog/不用买 API ！GPT-5.4 接入OpenClaw龙虾（小白极简安装教程）.md",
     "src/content/blog/Binance Alpha 盲盒：加密空投的新玩法还是权宜之计？.md",
-    "src/content/blog/告别高价VPS！手把手教你用NAT主机打造高性价比节点.md",
     "src/content/blog/assets/告别高价VPS！手把手教你用NAT主机打造高性价比节点/file-20260429013556228.png",
     "src/content/blog/assets/告别高价VPS！手把手教你用NAT主机打造高性价比节点/file-20260429013545235.png",
     "src/content/blog/assets/告别高价VPS！手把手教你用NAT主机打造高性价比节点/file-20260429013530760.png",
@@ -216,7 +217,6 @@
     "src/content/blog/尾盘交易赛门槛判断规则.md",
     "src/content/blog/纳斯达克官方合作xStocks 撸毛全攻略， 低成本刷交易教程.md",
     "src/content/blog/撸空投多开安全起见，谨慎使用指纹浏览器.md",
-    "src/content/blog/告别天天熬夜盯盘，XXYY API Skill 完整扫链功能正式上线.md",
     "src/content/blog/2026-01-19-blog/2026-01-19.md",
     "src/content/blog/2026-01-04-overload/2026-01-04.md",
     "dist/pagefind/index/zh-cn_ff80a2a.pf_index",
