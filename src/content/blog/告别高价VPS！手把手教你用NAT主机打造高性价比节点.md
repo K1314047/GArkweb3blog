@@ -1,5 +1,5 @@
 ---
-slug: 2025-08-30-NAT
+slug: 2025-08-30-nat
 title: " 解锁NAT主机的隐藏能力：搭建私人节点的终极指南"
 description: 教程
 pubDate: 2025-08-30
