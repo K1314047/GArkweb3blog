@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/content/gossips/2026-05-01-zongjie.md",
+                "file": "src/content/gossips/2026-05-01-jiedian.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-05-01-zongjie"
+              "title": "2026-05-01-jiedian"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "src/content/gossips/2026-05-01-zongjie.md",
+                "file": "src/content/gossips/2026-05-01-jiedian.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "2026-05-01-zongjie 的反向链接列表"
+              "title": "2026-05-01-jiedian 的反向链接列表"
             }
           },
           {
@@ -185,11 +185,12 @@
   },
   "active": "4328508b7200f4f8",
   "lastOpenFiles": [
-    "src/content/gossips/2026-04-01-zongjie.md",
     "src/content/gossips/2026-05-01-zongjie.md",
+    "src/content/gossips/2026-05-01-jiedian.md",
+    "src/content/blog/2025-09-new-job/如何优雅地搭建“机场前置+独立落地”链式代理？.md",
+    "src/content/gossips/2026-04-01-zongjie.md",
     "src/content/gossips/2026-04-17-genius.md",
     "src/content/gossips/2026-04-25-xchat.md",
-    "src/content/blog/2025-09-new-job/如何优雅地搭建“机场前置+独立落地”链式代理？.md",
     "src/content/blog/2025-09-new-job/assets/如何优雅地搭建“机场前置+独立落地”链式代理？",
     "src/content/blog/2025-09-new-job/assets/如何优雅地搭建“机场前置+独立落地”链式代理？/file-20260430103345688.png",
     "src/content/blog/2025-09-new-job/assets/如何优雅地搭建“机场前置+独立落地”链式代理？/file-20260430103345704.png",
@@ -225,7 +226,6 @@
     "src/content/blog/Lista 智能借贷还有补贴：10% 年化的 U，到底该借还是该买？.md",
     "src/content/blog/Linux Mint + OpenClaw 随身启动 U 盘制作教程.md",
     "src/content/blog/Alpha Trade Toolkit 部署与使用指南.md",
-    "src/content/blog/一文讲清楚 ByUSDT 循环借贷.md",
     "dist/pagefind/index/zh-cn_ff80a2a.pf_index",
     "dist/pagefind/index/zh-cn_8f6b928.pf_index",
     "dist/pagefind/index/zh-cn_692c1ff.pf_index",
