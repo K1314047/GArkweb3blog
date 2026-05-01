@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/content/blog/2025-09-new-job/如何优雅地搭建“机场前置+独立落地”链式代理？.md",
+                "file": "src/content/gossips/2026-05-01-zongjie.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "如何优雅地搭建“机场前置+独立落地”链式代理？"
+              "title": "2026-05-01-zongjie"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "src/content/blog/2025-09-new-job/如何优雅地搭建“机场前置+独立落地”链式代理？.md",
+                "file": "src/content/gossips/2026-05-01-zongjie.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "如何优雅地搭建“机场前置+独立落地”链式代理？ 的反向链接列表"
+              "title": "2026-05-01-zongjie 的反向链接列表"
             }
           },
           {
@@ -185,6 +185,11 @@
   },
   "active": "4328508b7200f4f8",
   "lastOpenFiles": [
+    "src/content/gossips/2026-04-01-zongjie.md",
+    "src/content/gossips/2026-05-01-zongjie.md",
+    "src/content/gossips/2026-04-17-genius.md",
+    "src/content/gossips/2026-04-25-xchat.md",
+    "src/content/blog/2025-09-new-job/如何优雅地搭建“机场前置+独立落地”链式代理？.md",
     "src/content/blog/2025-09-new-job/assets/如何优雅地搭建“机场前置+独立落地”链式代理？",
     "src/content/blog/2025-09-new-job/assets/如何优雅地搭建“机场前置+独立落地”链式代理？/file-20260430103345688.png",
     "src/content/blog/2025-09-new-job/assets/如何优雅地搭建“机场前置+独立落地”链式代理？/file-20260430103345704.png",
@@ -198,12 +203,10 @@
     "src/content/blog/2025-09-new-job/assets/如何优雅地搭建“机场前置+独立落地”链式代理？（附 Clash Verge 与 V2rayN 指南）",
     "src/content/blog/2025-09-new-job/assets",
     "().md",
-    "src/content/blog/2025-09-new-job/如何优雅地搭建“机场前置+独立落地”链式代理？.md",
     "src/content/blog/0损耗撸 xStocks 积分，这才是更适合普通人的姿势.md",
     "src/content/blog/给想“全职撸毛”的新手一些现实建议（强烈建议从兼职开始）.md",
     "src/content/blog/告别天天熬夜盯盘，XXYY API Skill 完整扫链功能正式上线.md",
     "src/content/blog/告别高价VPS！手把手教你用NAT主机打造高性价比节点.md",
-    "src/content/gossips/2026-04-25-xchat.md",
     "src/content/index.en.md",
     "src/content/index.md",
     "src/content/page/search.md",
@@ -223,14 +226,11 @@
     "src/content/blog/Linux Mint + OpenClaw 随身启动 U 盘制作教程.md",
     "src/content/blog/Alpha Trade Toolkit 部署与使用指南.md",
     "src/content/blog/一文讲清楚 ByUSDT 循环借贷.md",
-    "src/content/blog/我是怎么在自己的 RSS 工具里订阅 YouTube 和 Telegram 频道的.md",
-    "src/content/blog/尾盘交易赛门槛判断规则.md",
     "dist/pagefind/index/zh-cn_ff80a2a.pf_index",
     "dist/pagefind/index/zh-cn_8f6b928.pf_index",
     "dist/pagefind/index/zh-cn_692c1ff.pf_index",
     "dist/pagefind/fragment/zh-cn_fa24fad.pf_fragment",
     "dist/pagefind/fragment/zh-cn_de459fc.pf_fragment",
-    "dist/pagefind/fragment/zh-cn_af6540e.pf_fragment",
     "未命名.canvas"
   ]
 }
