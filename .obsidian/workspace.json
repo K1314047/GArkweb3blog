@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/content/gossips/2026-05-01-jiedian.md",
+                "file": "src/content/blog/Komari部署与美化完整指南.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-05-01-jiedian"
+              "title": "Komari部署与美化完整指南"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "src/content/gossips/2026-05-01-jiedian.md",
+                "file": "src/content/blog/Komari部署与美化完整指南.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "2026-05-01-jiedian 的反向链接列表"
+              "title": "Komari部署与美化完整指南 的反向链接列表"
             }
           },
           {
@@ -185,8 +185,10 @@
   },
   "active": "4328508b7200f4f8",
   "lastOpenFiles": [
-    "src/content/gossips/2026-05-01-zongjie.md",
+    "src/content/blog/Lista 智能借贷还有补贴：10% 年化的 U，到底该借还是该买？.md",
+    "src/content/blog/Komari部署与美化完整指南.md",
     "src/content/gossips/2026-05-01-jiedian.md",
+    "src/content/gossips/2026-05-01-zongjie.md",
     "src/content/blog/2025-09-new-job/如何优雅地搭建“机场前置+独立落地”链式代理？.md",
     "src/content/gossips/2026-04-01-zongjie.md",
     "src/content/gossips/2026-04-17-genius.md",
@@ -223,9 +225,7 @@
     "src/content/blog/Binance Alpha 盲盒：加密空投的新玩法还是权宜之计？.md",
     "src/content/blog/assets/告别高价VPS！手把手教你用NAT主机打造高性价比节点",
     "src/content/blog/币安Alpha监控部署教程Telegram 推送版.md",
-    "src/content/blog/Lista 智能借贷还有补贴：10% 年化的 U，到底该借还是该买？.md",
     "src/content/blog/Linux Mint + OpenClaw 随身启动 U 盘制作教程.md",
-    "src/content/blog/Alpha Trade Toolkit 部署与使用指南.md",
     "dist/pagefind/index/zh-cn_ff80a2a.pf_index",
     "dist/pagefind/index/zh-cn_8f6b928.pf_index",
     "dist/pagefind/index/zh-cn_692c1ff.pf_index",
