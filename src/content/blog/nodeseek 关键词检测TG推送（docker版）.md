@@ -1,0 +1,237 @@
+---
+slug: 2026-05-22-tg
+title: Nodeseek 关键词检测并推送至 Telegram（Docker 版）
+description: 教程
+pubDate: 2026-05-22
+tags:
+  - telegram
+  - RSS
+  - docker
+---
+
+
+本教程将指导你如何使用 Docker 部署一个 Nodeseek 关键词监控工具。该工具能够自动检测 Nodeseek 论坛上的新帖子，并根据你设定的关键词，将相关内容实时推送到你的 Telegram 机器人。这对于希望第一时间获取特定信息的用户来说非常方便。
+
+### 前置条件
+
+在开始之前，请确保你已具备以下条件：
+
+-   一台安装了 Docker 和 Docker Compose 的服务器或设备。
+-   一个 Telegram 机器人 Token。如果你还没有，可以参考 [Telegram Bot Father 官方指南](https://core.telegram.org/bots#6-botfather) 创建一个。
+-   你的 Telegram 聊天 ID。你可以通过向你的机器人发送消息，然后访问 `https://api.telegram.org/bot<你的机器人Token>/getUpdates` 来获取 `chat_id`。
+
+### 部署步骤
+
+#### 步骤 1：创建工作目录和文件
+
+首先，在你的服务器上创建一个用于存放 Nodeseek 监控服务相关文件的目录，并进入该目录。
+
+```bash
+mkdir -p data/docker_data/nodeseek
+cd data/docker_data/nodeseek/
+```
+
+#### 步骤 2：创建 `docker-compose.yml` 配置文件
+
+在当前目录下创建一个名为 `docker-compose.yml` 的文件，并将以下内容复制进去。**请务必替换 `TG_BOT_TOKEN` 和 `TG_CHAT_ID` 为你自己的信息。**
+
+```yaml
+services:
+  nseek-monitor:
+    image: dajie000/rss_nodeseek:latest
+    container_name: rss_nodeseek
+    restart: always
+    environment:
+      - TG_BOT_TOKEN=123 # 替换为你的 Telegram 机器人 Token (无需引号)
+      - TG_CHAT_ID=123 # 替换为接收通知的 Telegram 聊天 ID (无需引号)
+      - CHECK_MIN_INTERVAL=20 # 最小检查间隔（秒）。修改后需停止容器并重新启动才能生效。
+      - CHECK_MAX_INTERVAL=40 # 最大检查间隔（秒）。修改后需停止容器并重新启动才能生效。
+      - TZ=Asia/Shanghai # 设置时区为上海
+    volumes:
+      - ./data:/data # 挂载本地当前目录的data文件夹到容器内的/data目录，用于持久化存储数据（如日志 monitor.log 和关键词配置 config.json）
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m" # 每个容器日志文件最大 5MB
+        max-file: "1" # 最多保留 1 个日志文件
+```
+
+**参数说明：**
+
+-   `TG_BOT_TOKEN`: 你的 Telegram 机器人 API Token。
+-   `TG_CHAT_ID`: 你希望接收通知的 Telegram 聊天 ID。可以是个人用户、群组或频道 ID。
+-   `CHECK_MIN_INTERVAL` / `CHECK_MAX_INTERVAL`: 定义了程序检查 Nodeseek 更新的随机时间间隔范围。例如，设置为 20 和 40 秒，程序将在 20 到 40 秒之间随机选择一个时间间隔进行检查，以避免过于频繁的请求。
+-   `TZ`: 设置容器的时区，确保日志时间正确。
+-   `volumes`: 将宿主机的 `./data` 目录挂载到容器的 `/data` 目录。这意味着容器内生成的所有数据（包括日志和关键词配置文件 `config.json`）都将保存在宿主机的 `./data` 目录下，即使容器被删除，数据也不会丢失。
+-   `logging`: 配置 Docker 容器的日志管理，限制日志文件的大小和数量，防止日志文件过大占用磁盘空间。
+
+#### 步骤 3：配置关键词 `config.json`
+
+在 `docker-compose.yml` 文件所在的目录下，进入 `data` 文件夹，并创建一个名为 `config.json` 的文件。
+
+```bash
+mkdir -p data
+touch data/config.json
+```
+
+然后编辑 `data/config.json` 文件，添加你想要监控的关键词。关键词支持正则表达式。
+
+```json
+[
+  "关键词1",
+  "关键词2",
+  "关键词3",
+  "VPS",
+  "流量",
+  "香港",
+  "新加坡",
+  "日本",
+  "美国",
+  "AMD",
+  "Intel",
+  "ARM",
+  "优惠",
+  "促销",
+  "特价",
+  "免费",
+  "试用",
+  "出",
+  "收",
+  "求",
+  "出号",
+  "收号",
+  "求号",
+  "出鸡",
+  "收鸡",
+  "求鸡",
+  "出账号",
+  "收账号",
+  "求账号",
+  "出闲置",
+  "收闲置",
+  "求闲置",
+  "出闲置物品",
+  "收闲置物品",
+  "求闲置物品",
+  "出闲置账号",
+  "收闲置账号",
+  "求闲置账号",
+  "出闲置鸡",
+  "收闲置鸡",
+  "求闲置鸡",
+  "出闲置VPS",
+  "收闲置VPS",
+  "求闲置VPS",
+  "出闲置流量",
+  "收闲置流量",
+  "求闲置流量",
+  "出闲置香港",
+  "收闲置香港",
+  "求闲置香港",
+  "出闲置新加坡",
+  "收闲置新加坡",
+  "求闲置新加坡",
+  "出闲置日本",
+  "收闲置日本",
+  "求闲置日本",
+  "出闲置美国",
+  "收闲置美国",
+  "求闲置美国",
+  "出闲置AMD",
+  "收闲置AMD",
+  "求闲置AMD",
+  "出闲置Intel",
+  "收闲置Intel",
+  "求闲置Intel",
+  "出闲置ARM",
+  "收闲置ARM",
+  "求闲置ARM",
+  "出闲置优惠",
+  "收闲置优惠",
+  "求闲置优惠",
+  "出闲置促销",
+  "收闲置促销",
+  "求闲置促销",
+  "出闲置特价",
+  "收闲置特价",
+  "求闲置特价",
+  "出闲置免费",
+  "收闲置免费",
+  "求闲置免费",
+  "出闲置试用",
+  "收闲置试用",
+  "求闲置试用"
+]
+```
+
+**注意：**
+-   每个关键词用双引号包裹，并用逗号分隔。
+-   这是一个 JSON 数组，请确保格式正确。
+-   你可以根据自己的需求添加或删除关键词。
+
+#### 步骤 4：运行 Docker 容器
+
+在 `docker-compose.yml` 文件所在的目录（即 `/root/data/docker_data/nodeseek/`）下，运行以下命令启动服务：
+
+```bash
+docker compose up -d
+```
+
+-   `docker compose up -d` 命令会根据 `docker-compose.yml` 文件创建并启动容器，`-d` 参数表示在后台运行。
+
+### 查看运行状态和日志
+
+#### 查看容器状态
+
+你可以使用以下命令检查容器是否正常运行：
+
+```bash
+docker ps -f name=rss_nodeseek
+```
+
+#### 查看实时日志
+
+要查看程序的实时运行日志，请先 `cd` 到 `docker-compose.yml` 所在的目录，然后运行：
+
+```bash
+tail -f ./data/monitor.log
+```
+
+如果一切正常，你将看到程序正在检查 Nodeseek 并处理关键词的日志信息。
+
+### Telegram 机器人命令
+
+你的 Telegram 机器人支持一些简单的命令，你可以向机器人发送 `/help` 来获取帮助信息。
+
+```
+/help
+```
+
+### 停止和重启服务
+
+如果你需要停止或重启服务，可以在 `docker-compose.yml` 所在的目录下执行：
+
+-   **停止服务：**
+    ```bash
+    docker compose down
+    ```
+-   **重启服务：**
+    ```bash
+    docker compose restart nseek-monitor
+    ```
+    或者先 `down` 再 `up -d`。
+
+### 常见问题与故障排除
+
+-   **机器人不推送消息：**
+    -   检查 `TG_BOT_TOKEN` 和 `TG_CHAT_ID` 是否填写正确。
+    -   确保你的机器人已启动，并且你已向机器人发送过消息（对于个人聊天）。
+    -   查看 `monitor.log` 日志文件，看是否有错误信息。
+-   **关键词不生效：**
+    -   检查 `data/config.json` 文件格式是否正确，关键词是否已保存。
+    -   修改 `config.json` 后，需要重启容器才能加载新的配置：`docker compose restart nseek-monitor`。
+-   **容器无法启动：**
+    -   检查 `docker-compose.yml` 文件是否有语法错误。
+    -   查看 `docker logs rss_nodeseek` 命令输出的日志，获取详细错误信息。
+
+希望这份完善后的教程能帮助你顺利部署和使用 Nodeseek 关键词检测推送服务！
