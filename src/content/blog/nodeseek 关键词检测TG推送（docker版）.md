@@ -77,7 +77,8 @@ touch data/config.json
 然后编辑 `data/config.json` 文件，添加你想要监控的关键词。关键词支持正则表达式。
 
 ```json
-[
+{
+    "keywords": [
   "关键词1",
   "关键词2",
   "关键词3",
@@ -161,7 +162,7 @@ touch data/config.json
   "出闲置试用",
   "收闲置试用",
   "求闲置试用"
-]
+    ],
 ```
 
 **注意：**
