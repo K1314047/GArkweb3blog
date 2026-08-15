@@ -603,3 +603,6 @@ DOMAIN-SUFFIX,xxx.com,美国服务
 > **代理组决定“走哪个节点”，规则决定“哪些网站走这个代理组”。**
 > 
 > 两者配合起来，就可以实现非常灵活的 Clash Verge Rev 分流。
+
+# 十四、视频教程
+https://youtu.be/DNaF-rQ4b5U
