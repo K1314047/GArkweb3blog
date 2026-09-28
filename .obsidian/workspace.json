@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Clippings/Post by @BlockBloomer on X.md",
+                "file": "src/content/blog/Post by @BlockBloomer on X.md",
                 "mode": "source",
                 "source": false
               },
@@ -55,7 +55,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "copilot",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -199,8 +199,12 @@
   },
   "active": "cc55cdc6ac37d287",
   "lastOpenFiles": [
+    "src/content/blog/Post by @Rocky_Bitcoin on X.md",
+    "src/content/blog/nodeseek 关键词检测TG推送（docker版）.md",
+    "src/content/blog/Post by @BlockBloomer on X.md",
+    "未命名 3.base",
+    "scripts/README-mastodon.md",
     "src/content/blog/自己搭一个很轻量的 Telegram → Bark 转发器.md",
-    "Clippings/Post by @BlockBloomer on X.md",
     "Clippings",
     "src/content/blog/Clash Verge Rev 分流规则设置教程：让指定网站走指定国家节点.md",
     "src/content/blog/CF-Server-Monitor安装喂饭教程.md",
@@ -211,7 +215,6 @@
     "src/content/blog/VPS 流量监控 Telegram Bot 部署教程.md",
     "src/content/blog/科学上网汇总.md",
     "copilot/copilot-conversations/科学上网工具指南@20260701_001309.md",
-    "src/content/blog/nodeseek 关键词检测TG推送（docker版）.md",
     "src/content/blog/Lista 智能借贷还有补贴：10% 年化的 U，到底该借还是该买？.md",
     "src/content/blog/Linux Mint + OpenClaw 随身启动 U 盘制作教程.md",
     "copilot/copilot-conversations/完善文章@20260522_124847.md",
@@ -224,9 +227,6 @@
     "copilot/copilot-custom-prompts/Remove URLs.md",
     "copilot/copilot-custom-prompts/Generate glossary.md",
     "copilot/copilot-custom-prompts/Generate table of contents.md",
-    "copilot/copilot-custom-prompts/Make longer.md",
-    "copilot/copilot-custom-prompts/Make shorter.md",
-    "copilot/copilot-custom-prompts/Emojify.md",
     "copilot/copilot-custom-prompts",
     "copilot",
     "未命名 2.base",
@@ -244,7 +244,6 @@
     "src/content/blog/2025-09-new-job/assets",
     "public/avatar.png",
     "public/linxu-cv-en-latest.pdf",
-    "src/content/blog/assets/告别高价VPS！手把手教你用NAT主机打造高性价比节点",
     "未命名.canvas"
   ]
 }
