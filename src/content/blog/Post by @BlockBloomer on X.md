@@ -1,5 +1,5 @@
 ---
-slug: 2026-09-29BlockBloomer
+slug: 2026-09-29-blockbloomer
 title: Post by @BlockBloomer on X
 description: 教程
 published: 2026-09-29
