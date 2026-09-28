@@ -1,14 +1,12 @@
 ---
+slug: 2026-09-29rocky
 title: Post by @Rocky_Bitcoin on X
-source: https://x.com/rocky_bitcoin/status/2097295562504810927?s=46
-author:
-  - "[[@Rocky_Bitcoin]]"
-published: 2026-09-03
-created: 2026-09-29
-description: 我上个月开始用 1万 USDG 在 Robinhood Chain 做 LP，一个月赚了2万美金，后面我逐渐加大仓位，目前每天稳定收租，我讲讲其中的完整教程和思考，以及踩过的坑。（不是喊单，不是广告，个人最真实的工作流） 先说清楚：LP 不是把钱扔进去躺赚 很多人看到"年化
+description: 教程
+published: 2026-09-29
 tags:
   - KOL精选推文
 ---
+原文：https://x.com/rocky_bitcoin/status/2097295562504810927?s=46
 🧵 我上个月开始用 1万 USDG 在 Robinhood Chain 做 LP，一个月赚了2万美金，后面我逐渐加大仓位，目前每天稳定收租，我讲讲其中的完整教程和思考，以及踩过的坑。（不是喊单，不是广告，个人最真实的工作流）
 
 1️⃣📌 先说清楚：LP 不是把钱扔进去躺赚

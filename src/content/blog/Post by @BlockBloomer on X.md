@@ -1,14 +1,12 @@
 ---
+slug: 2026-09-29BlockBloomer
 title: Post by @BlockBloomer on X
-source: https://x.com/blockbloomer/status/2102671530182492584?s=46
-author:
-  - "[[@BlockBloomer]]"
-published: 2026-07-26
-created: 2026-09-29
-description: 这段时间一边出摊，一边写了些 LP 笔记。把里面不太吃时效性的内容整理到一起，做个导航，方便大家以后翻。 我理解的 LP 很像摆摊：有人来交易，我们收手续费；但货会跌价，搬摊也要花钱。想把这个小摊摆明白，下面几个问题绕不过去 :) ① 这笔 LP，要收多久手续费才能覆盖成本？
+description: 教程
+published: 2026-09-29
 tags:
   - KOL精选推文
 ---
+原文：https://x.com/blockbloomer/status/2102671530182492584?s=46
 这段时间一边出摊，一边写了些 LP 笔记。把里面不太吃时效性的内容整理到一起，做个导航，方便大家以后翻。
 
 我理解的 LP 很像摆摊：有人来交易，我们收手续费；但货会跌价，搬摊也要花钱。想把这个小摊摆明白，下面几个问题绕不过去 :)
